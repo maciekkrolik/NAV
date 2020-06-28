@@ -1,0 +1,756 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="5/18/2020 7:08:08 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-6PP0O3F"
+  DTS:CreatorName="DESKTOP-6PP0O3F\Maciek-PC"
+  DTS:DTSID="{083B3D4B-786D-4D84-8AD4-42CCF69D4AF7}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="14.0.3002.92"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Staging"
+  DTS:PackageType="5"
+  DTS:VersionBuild="3"
+  DTS:VersionGUID="{1DC62BB3-6F72-4D84-864E-460387AB9F59}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\NAV"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{B4D7D449-FD48-4553-B15E-20964AA59780}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="NAV"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\NAV\NAV"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="NAV"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT sl.[Posting Group]
+,sl.[Gen_ Bus_ Posting Group]
+,sl.Description
+,sl.Quantity
+,sl.[Profit _]
+,sl.[Unit Price]
+,sh.[Bill-to Name]
+,sh.[Bill-to City]
+,sh.[Order Date]
+,cda.Description as discount
+,sp.Name
+,cp.Description as campaign
+FROM [dbo].[CRONUS Polska Sp_ z o_o_$Sales Line] sl
+JOIN [dbo].[CRONUS Polska Sp_ z o_o_$Sales Header] sh
+ON(sl.[Document No_] = sh.No_)
+JOIN [dbo].[CRONUS Polska Sp_ z o_o_$Customer] c
+ON(sl.[Sell-to Customer No_] = c.No_)
+LEFT JOIN [dbo].[CRONUS Polska Sp_ z o_o_$Customer Discount Group] cda
+ON(c.[Customer Disc_ Group] = cda.Code)
+JOIN [dbo].[CRONUS Polska Sp_ z o_o_$Salesperson_Purchaser] sp
+ON(sh.[Salesperson Code] = sp.Code)
+LEFT JOIN [dbo].[CRONUS Polska Sp_ z o_o_$Campaign] cp
+ON(cp.[Salesperson Code] = sp.Code)</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\NAV\NAV.Connections[OleDbConnection]"
+                  connectionManagerID="{714F4243-8096-4048-8451-5FD552343863}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[NAV2016PL]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\NAV\NAV.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\NAV\NAV.Outputs[OLE DB Source Output].Columns[Name]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\NAV\NAV.Outputs[OLE DB Source Output].ExternalColumns[Name]"
+                      length="50"
+                      lineageId="Package\NAV\NAV.Outputs[OLE DB Source Output].Columns[Name]"
+                      name="Name"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\NAV\NAV.Outputs[OLE DB Source Output].Columns[PostingGroup]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\NAV\NAV.Outputs[OLE DB Source Output].ExternalColumns[Posting Group]"
+                      length="10"
+                      lineageId="Package\NAV\NAV.Outputs[OLE DB Source Output].Columns[PostingGroup]"
+                      name="PostingGroup"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\NAV\NAV.Outputs[OLE DB Source Output].Columns[SalesType]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\NAV\NAV.Outputs[OLE DB Source Output].ExternalColumns[Gen_ Bus_ Posting Group]"
+                      length="10"
+                      lineageId="Package\NAV\NAV.Outputs[OLE DB Source Output].Columns[SalesType]"
+                      name="SalesType"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\NAV\NAV.Outputs[OLE DB Source Output].Columns[ProductName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\NAV\NAV.Outputs[OLE DB Source Output].ExternalColumns[Description]"
+                      length="50"
+                      lineageId="Package\NAV\NAV.Outputs[OLE DB Source Output].Columns[ProductName]"
+                      name="ProductName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\NAV\NAV.Outputs[OLE DB Source Output].Columns[Quantity]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\NAV\NAV.Outputs[OLE DB Source Output].ExternalColumns[Quantity]"
+                      lineageId="Package\NAV\NAV.Outputs[OLE DB Source Output].Columns[Quantity]"
+                      name="Quantity"
+                      precision="38"
+                      scale="20"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\NAV\NAV.Outputs[OLE DB Source Output].Columns[Profit _]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\NAV\NAV.Outputs[OLE DB Source Output].ExternalColumns[Profit _]"
+                      lineageId="Package\NAV\NAV.Outputs[OLE DB Source Output].Columns[Profit _]"
+                      name="Profit _"
+                      precision="38"
+                      scale="20"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\NAV\NAV.Outputs[OLE DB Source Output].Columns[Unit Price]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\NAV\NAV.Outputs[OLE DB Source Output].ExternalColumns[Unit Price]"
+                      lineageId="Package\NAV\NAV.Outputs[OLE DB Source Output].Columns[Unit Price]"
+                      name="Unit Price"
+                      precision="38"
+                      scale="20"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\NAV\NAV.Outputs[OLE DB Source Output].Columns[Customer]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\NAV\NAV.Outputs[OLE DB Source Output].ExternalColumns[Bill-to Name]"
+                      length="50"
+                      lineageId="Package\NAV\NAV.Outputs[OLE DB Source Output].Columns[Customer]"
+                      name="Customer"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\NAV\NAV.Outputs[OLE DB Source Output].Columns[Bill-to City]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\NAV\NAV.Outputs[OLE DB Source Output].ExternalColumns[Bill-to City]"
+                      length="30"
+                      lineageId="Package\NAV\NAV.Outputs[OLE DB Source Output].Columns[Bill-to City]"
+                      name="Bill-to City"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\NAV\NAV.Outputs[OLE DB Source Output].Columns[Order Date]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\NAV\NAV.Outputs[OLE DB Source Output].ExternalColumns[Order Date]"
+                      lineageId="Package\NAV\NAV.Outputs[OLE DB Source Output].Columns[Order Date]"
+                      name="Order Date"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\NAV\NAV.Outputs[OLE DB Source Output].Columns[discount]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\NAV\NAV.Outputs[OLE DB Source Output].ExternalColumns[discount]"
+                      length="50"
+                      lineageId="Package\NAV\NAV.Outputs[OLE DB Source Output].Columns[discount]"
+                      name="discount"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\NAV\NAV.Outputs[OLE DB Source Output].Columns[campaign]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\NAV\NAV.Outputs[OLE DB Source Output].ExternalColumns[campaign]"
+                      length="50"
+                      lineageId="Package\NAV\NAV.Outputs[OLE DB Source Output].Columns[campaign]"
+                      name="campaign"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\NAV\NAV.Outputs[OLE DB Source Output].ExternalColumns[Name]"
+                      dataType="wstr"
+                      length="50"
+                      name="Name" />
+                    <externalMetadataColumn
+                      refId="Package\NAV\NAV.Outputs[OLE DB Source Output].ExternalColumns[Posting Group]"
+                      dataType="wstr"
+                      length="10"
+                      name="Posting Group" />
+                    <externalMetadataColumn
+                      refId="Package\NAV\NAV.Outputs[OLE DB Source Output].ExternalColumns[Gen_ Bus_ Posting Group]"
+                      dataType="wstr"
+                      length="10"
+                      name="Gen_ Bus_ Posting Group" />
+                    <externalMetadataColumn
+                      refId="Package\NAV\NAV.Outputs[OLE DB Source Output].ExternalColumns[Description]"
+                      dataType="wstr"
+                      length="50"
+                      name="Description" />
+                    <externalMetadataColumn
+                      refId="Package\NAV\NAV.Outputs[OLE DB Source Output].ExternalColumns[Quantity]"
+                      dataType="numeric"
+                      name="Quantity"
+                      precision="38"
+                      scale="20" />
+                    <externalMetadataColumn
+                      refId="Package\NAV\NAV.Outputs[OLE DB Source Output].ExternalColumns[Profit _]"
+                      dataType="numeric"
+                      name="Profit _"
+                      precision="38"
+                      scale="20" />
+                    <externalMetadataColumn
+                      refId="Package\NAV\NAV.Outputs[OLE DB Source Output].ExternalColumns[Unit Price]"
+                      dataType="numeric"
+                      name="Unit Price"
+                      precision="38"
+                      scale="20" />
+                    <externalMetadataColumn
+                      refId="Package\NAV\NAV.Outputs[OLE DB Source Output].ExternalColumns[Bill-to Name]"
+                      dataType="wstr"
+                      length="50"
+                      name="Bill-to Name" />
+                    <externalMetadataColumn
+                      refId="Package\NAV\NAV.Outputs[OLE DB Source Output].ExternalColumns[Bill-to City]"
+                      dataType="wstr"
+                      length="30"
+                      name="Bill-to City" />
+                    <externalMetadataColumn
+                      refId="Package\NAV\NAV.Outputs[OLE DB Source Output].ExternalColumns[Order Date]"
+                      dataType="dbTimeStamp"
+                      name="Order Date" />
+                    <externalMetadataColumn
+                      refId="Package\NAV\NAV.Outputs[OLE DB Source Output].ExternalColumns[discount]"
+                      dataType="wstr"
+                      length="50"
+                      name="discount" />
+                    <externalMetadataColumn
+                      refId="Package\NAV\NAV.Outputs[OLE DB Source Output].ExternalColumns[campaign]"
+                      dataType="wstr"
+                      length="50"
+                      name="campaign" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\NAV\NAV.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\NAV\NAV.Outputs[OLE DB Source Error Output].Columns[Posting Group]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\NAV\NAV.Outputs[OLE DB Source Error Output].Columns[Posting Group]"
+                      name="Posting Group" />
+                    <outputColumn
+                      refId="Package\NAV\NAV.Outputs[OLE DB Source Error Output].Columns[Gen_ Bus_ Posting Group]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\NAV\NAV.Outputs[OLE DB Source Error Output].Columns[Gen_ Bus_ Posting Group]"
+                      name="Gen_ Bus_ Posting Group" />
+                    <outputColumn
+                      refId="Package\NAV\NAV.Outputs[OLE DB Source Error Output].Columns[Description]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\NAV\NAV.Outputs[OLE DB Source Error Output].Columns[Description]"
+                      name="Description" />
+                    <outputColumn
+                      refId="Package\NAV\NAV.Outputs[OLE DB Source Error Output].Columns[Quantity]"
+                      dataType="numeric"
+                      lineageId="Package\NAV\NAV.Outputs[OLE DB Source Error Output].Columns[Quantity]"
+                      name="Quantity"
+                      precision="38"
+                      scale="20" />
+                    <outputColumn
+                      refId="Package\NAV\NAV.Outputs[OLE DB Source Error Output].Columns[Profit _]"
+                      dataType="numeric"
+                      lineageId="Package\NAV\NAV.Outputs[OLE DB Source Error Output].Columns[Profit _]"
+                      name="Profit _"
+                      precision="38"
+                      scale="20" />
+                    <outputColumn
+                      refId="Package\NAV\NAV.Outputs[OLE DB Source Error Output].Columns[Unit Price]"
+                      dataType="numeric"
+                      lineageId="Package\NAV\NAV.Outputs[OLE DB Source Error Output].Columns[Unit Price]"
+                      name="Unit Price"
+                      precision="38"
+                      scale="20" />
+                    <outputColumn
+                      refId="Package\NAV\NAV.Outputs[OLE DB Source Error Output].Columns[Bill-to Name]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\NAV\NAV.Outputs[OLE DB Source Error Output].Columns[Bill-to Name]"
+                      name="Bill-to Name" />
+                    <outputColumn
+                      refId="Package\NAV\NAV.Outputs[OLE DB Source Error Output].Columns[Bill-to City]"
+                      dataType="wstr"
+                      length="30"
+                      lineageId="Package\NAV\NAV.Outputs[OLE DB Source Error Output].Columns[Bill-to City]"
+                      name="Bill-to City" />
+                    <outputColumn
+                      refId="Package\NAV\NAV.Outputs[OLE DB Source Error Output].Columns[Order Date]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\NAV\NAV.Outputs[OLE DB Source Error Output].Columns[Order Date]"
+                      name="Order Date" />
+                    <outputColumn
+                      refId="Package\NAV\NAV.Outputs[OLE DB Source Error Output].Columns[discount]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\NAV\NAV.Outputs[OLE DB Source Error Output].Columns[discount]"
+                      name="discount" />
+                    <outputColumn
+                      refId="Package\NAV\NAV.Outputs[OLE DB Source Error Output].Columns[Name]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\NAV\NAV.Outputs[OLE DB Source Error Output].Columns[Name]"
+                      name="Name" />
+                    <outputColumn
+                      refId="Package\NAV\NAV.Outputs[OLE DB Source Error Output].Columns[campaign]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\NAV\NAV.Outputs[OLE DB Source Error Output].Columns[campaign]"
+                      name="campaign" />
+                    <outputColumn
+                      refId="Package\NAV\NAV.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\NAV\NAV.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\NAV\NAV.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\NAV\NAV.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\NAV\NAV Staging"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="NAV Staging"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[staging].[OrderDetails]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\NAV\NAV Staging.Connections[OleDbConnection]"
+                  connectionManagerID="{C8A1A240-BCE2-40D7-AAE1-8C2A5441DE5B}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[NAV_SQL]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\NAV\NAV Staging.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\NAV\NAV Staging.Inputs[OLE DB Destination Input].Columns[PostingGroup]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="PostingGroup"
+                      externalMetadataColumnId="Package\NAV\NAV Staging.Inputs[OLE DB Destination Input].ExternalColumns[postinggroup]"
+                      lineageId="Package\NAV\NAV.Outputs[OLE DB Source Output].Columns[PostingGroup]" />
+                    <inputColumn
+                      refId="Package\NAV\NAV Staging.Inputs[OLE DB Destination Input].Columns[ProductName]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="ProductName"
+                      externalMetadataColumnId="Package\NAV\NAV Staging.Inputs[OLE DB Destination Input].ExternalColumns[productName]"
+                      lineageId="Package\NAV\NAV.Outputs[OLE DB Source Output].Columns[ProductName]" />
+                    <inputColumn
+                      refId="Package\NAV\NAV Staging.Inputs[OLE DB Destination Input].Columns[Quantity]"
+                      cachedDataType="numeric"
+                      cachedName="Quantity"
+                      cachedPrecision="38"
+                      cachedScale="20"
+                      externalMetadataColumnId="Package\NAV\NAV Staging.Inputs[OLE DB Destination Input].ExternalColumns[quantity]"
+                      lineageId="Package\NAV\NAV.Outputs[OLE DB Source Output].Columns[Quantity]" />
+                    <inputColumn
+                      refId="Package\NAV\NAV Staging.Inputs[OLE DB Destination Input].Columns[Customer]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Customer"
+                      externalMetadataColumnId="Package\NAV\NAV Staging.Inputs[OLE DB Destination Input].ExternalColumns[customer]"
+                      lineageId="Package\NAV\NAV.Outputs[OLE DB Source Output].Columns[Customer]" />
+                    <inputColumn
+                      refId="Package\NAV\NAV Staging.Inputs[OLE DB Destination Input].Columns[discount]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="discount"
+                      externalMetadataColumnId="Package\NAV\NAV Staging.Inputs[OLE DB Destination Input].ExternalColumns[discount]"
+                      lineageId="Package\NAV\NAV.Outputs[OLE DB Source Output].Columns[discount]" />
+                    <inputColumn
+                      refId="Package\NAV\NAV Staging.Inputs[OLE DB Destination Input].Columns[Name]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Name"
+                      externalMetadataColumnId="Package\NAV\NAV Staging.Inputs[OLE DB Destination Input].ExternalColumns[sprzedawca]"
+                      lineageId="Package\NAV\NAV.Outputs[OLE DB Source Output].Columns[Name]" />
+                    <inputColumn
+                      refId="Package\NAV\NAV Staging.Inputs[OLE DB Destination Input].Columns[SalesType]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="SalesType"
+                      externalMetadataColumnId="Package\NAV\NAV Staging.Inputs[OLE DB Destination Input].ExternalColumns[rodzajsprzedazy]"
+                      lineageId="Package\NAV\NAV.Outputs[OLE DB Source Output].Columns[SalesType]" />
+                    <inputColumn
+                      refId="Package\NAV\NAV Staging.Inputs[OLE DB Destination Input].Columns[Profit _]"
+                      cachedDataType="numeric"
+                      cachedName="Profit _"
+                      cachedPrecision="38"
+                      cachedScale="20"
+                      externalMetadataColumnId="Package\NAV\NAV Staging.Inputs[OLE DB Destination Input].ExternalColumns[profit]"
+                      lineageId="Package\NAV\NAV.Outputs[OLE DB Source Output].Columns[Profit _]" />
+                    <inputColumn
+                      refId="Package\NAV\NAV Staging.Inputs[OLE DB Destination Input].Columns[Unit Price]"
+                      cachedDataType="numeric"
+                      cachedName="Unit Price"
+                      cachedPrecision="38"
+                      cachedScale="20"
+                      externalMetadataColumnId="Package\NAV\NAV Staging.Inputs[OLE DB Destination Input].ExternalColumns[uniteprice]"
+                      lineageId="Package\NAV\NAV.Outputs[OLE DB Source Output].Columns[Unit Price]" />
+                    <inputColumn
+                      refId="Package\NAV\NAV Staging.Inputs[OLE DB Destination Input].Columns[Bill-to City]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="Bill-to City"
+                      externalMetadataColumnId="Package\NAV\NAV Staging.Inputs[OLE DB Destination Input].ExternalColumns[city]"
+                      lineageId="Package\NAV\NAV.Outputs[OLE DB Source Output].Columns[Bill-to City]" />
+                    <inputColumn
+                      refId="Package\NAV\NAV Staging.Inputs[OLE DB Destination Input].Columns[Order Date]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Order Date"
+                      externalMetadataColumnId="Package\NAV\NAV Staging.Inputs[OLE DB Destination Input].ExternalColumns[orderDate]"
+                      lineageId="Package\NAV\NAV.Outputs[OLE DB Source Output].Columns[Order Date]" />
+                    <inputColumn
+                      refId="Package\NAV\NAV Staging.Inputs[OLE DB Destination Input].Columns[campaign]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="campaign"
+                      externalMetadataColumnId="Package\NAV\NAV Staging.Inputs[OLE DB Destination Input].ExternalColumns[kampania]"
+                      lineageId="Package\NAV\NAV.Outputs[OLE DB Source Output].Columns[campaign]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\NAV\NAV Staging.Inputs[OLE DB Destination Input].ExternalColumns[productName]"
+                      dataType="wstr"
+                      length="50"
+                      name="productName" />
+                    <externalMetadataColumn
+                      refId="Package\NAV\NAV Staging.Inputs[OLE DB Destination Input].ExternalColumns[orderDate]"
+                      dataType="dbTimeStamp"
+                      name="orderDate" />
+                    <externalMetadataColumn
+                      refId="Package\NAV\NAV Staging.Inputs[OLE DB Destination Input].ExternalColumns[postinggroup]"
+                      dataType="wstr"
+                      length="10"
+                      name="postinggroup" />
+                    <externalMetadataColumn
+                      refId="Package\NAV\NAV Staging.Inputs[OLE DB Destination Input].ExternalColumns[rodzajsprzedazy]"
+                      dataType="wstr"
+                      length="10"
+                      name="rodzajsprzedazy" />
+                    <externalMetadataColumn
+                      refId="Package\NAV\NAV Staging.Inputs[OLE DB Destination Input].ExternalColumns[quantity]"
+                      dataType="numeric"
+                      name="quantity"
+                      precision="10"
+                      scale="5" />
+                    <externalMetadataColumn
+                      refId="Package\NAV\NAV Staging.Inputs[OLE DB Destination Input].ExternalColumns[profit]"
+                      dataType="numeric"
+                      name="profit"
+                      precision="10"
+                      scale="5" />
+                    <externalMetadataColumn
+                      refId="Package\NAV\NAV Staging.Inputs[OLE DB Destination Input].ExternalColumns[uniteprice]"
+                      dataType="numeric"
+                      name="uniteprice"
+                      precision="10"
+                      scale="5" />
+                    <externalMetadataColumn
+                      refId="Package\NAV\NAV Staging.Inputs[OLE DB Destination Input].ExternalColumns[customer]"
+                      dataType="wstr"
+                      length="50"
+                      name="customer" />
+                    <externalMetadataColumn
+                      refId="Package\NAV\NAV Staging.Inputs[OLE DB Destination Input].ExternalColumns[city]"
+                      dataType="wstr"
+                      length="30"
+                      name="city" />
+                    <externalMetadataColumn
+                      refId="Package\NAV\NAV Staging.Inputs[OLE DB Destination Input].ExternalColumns[discount]"
+                      dataType="wstr"
+                      length="50"
+                      name="discount" />
+                    <externalMetadataColumn
+                      refId="Package\NAV\NAV Staging.Inputs[OLE DB Destination Input].ExternalColumns[sprzedawca]"
+                      dataType="wstr"
+                      length="50"
+                      name="sprzedawca" />
+                    <externalMetadataColumn
+                      refId="Package\NAV\NAV Staging.Inputs[OLE DB Destination Input].ExternalColumns[kampania]"
+                      dataType="wstr"
+                      length="50"
+                      name="kampania" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\NAV\NAV Staging.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\NAV\NAV Staging.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\NAV\NAV Staging.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\NAV\NAV Staging.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\NAV\NAV Staging.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\NAV\NAV Staging.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\NAV.Paths[OLE DB Source Output]"
+              endId="Package\NAV\NAV Staging.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\NAV\NAV.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="99,42"
+          Id="Package\NAV"
+          TopLeft="97,49" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\NAV">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="99,42"
+          Id="Package\NAV\NAV"
+          TopLeft="223,42" />
+        <NodeLayout
+          Size="138,42"
+          Id="Package\NAV\NAV Staging"
+          TopLeft="326,217" />
+        <EdgeLayout
+          Id="Package\NAV.Paths[OLE DB Source Output]"
+          TopLeft="272.5,84">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="122.5,133"
+              Start="0,0"
+              End="122.5,125.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,62.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,62.5"
+                    Point2="0,66.5"
+                    Point3="4,66.5" />
+                  <mssgle:LineSegment
+                    End="118.5,66.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="118.5,66.5"
+                    Point2="122.5,66.5"
+                    Point3="122.5,70.5" />
+                  <mssgle:LineSegment
+                    End="122.5,125.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\NAV\NAV">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\NAV\NAV Staging">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
