@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="DIM"
   DTS:PackageType="5"
-  DTS:VersionBuild="7"
-  DTS:VersionGUID="{187B0823-0CA2-45E8-99A4-16C3720D1E63}">
+  DTS:VersionBuild="10"
+  DTS:VersionGUID="{B80DCBD8-AA2A-481A-8654-5092F3C70B2F}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -32,6 +32,131 @@
           version="1">
           <components>
             <component
+              refId="Package\Data Flow Task\Derived Column"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Derived Column"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\Derived Column.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Derived Column.Inputs[Derived Column Input].Columns[orderDate]"
+                      cachedDataType="dbDate"
+                      cachedName="orderDate"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Data Flow Task\SortDate.Outputs[Sort Output].Columns[orderDate]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Data Flow Task\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[Year]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[Year]"
+                      name="Year"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[YEAR](#{Package\Data Flow Task\SortDate.Outputs[Sort Output].Columns[orderDate]})</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">YEAR(orderDate)</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[Month]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[Month]"
+                      name="Month"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[MONTH](#{Package\Data Flow Task\SortDate.Outputs[Sort Output].Columns[orderDate]})</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">MONTH(orderDate)</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[Day]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[Day]"
+                      name="Day"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[DAY](#{Package\Data Flow Task\SortDate.Outputs[Sort Output].Columns[orderDate]})</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">DAY(orderDate)</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Data Flow Task\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
               refId="Package\Data Flow Task\DIM Customer"
               componentClassID="Microsoft.OLEDBDestination"
               contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
@@ -47,7 +172,7 @@
                 <property
                   dataType="System.String"
                   description="Specifies the name of the database object used to open a rowset."
-                  name="OpenRowset"></property>
+                  name="OpenRowset">[dim].[customer]</property>
                 <property
                   dataType="System.String"
                   description="Specifies the variable that contains the name of the database object used to open a rowset."
@@ -69,7 +194,7 @@
                   dataType="System.Int32"
                   description="Specifies the mode used to access the database."
                   name="AccessMode"
-                  typeConverter="AccessMode">0</property>
+                  typeConverter="AccessMode">3</property>
                 <property
                   dataType="System.Boolean"
                   description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
@@ -81,7 +206,7 @@
                 <property
                   dataType="System.String"
                   description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
-                  name="FastLoadOptions"></property>
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
@@ -90,6 +215,8 @@
               <connections>
                 <connection
                   refId="Package\Data Flow Task\DIM Customer.Connections[OleDbConnection]"
+                  connectionManagerID="{C8A1A240-BCE2-40D7-AAE1-8C2A5441DE5B}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[NAV_SQL]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -100,8 +227,41 @@
                   errorRowDisposition="FailComponent"
                   hasSideEffects="true"
                   name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\DIM Customer.Inputs[OLE DB Destination Input].Columns[city]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="city"
+                      cachedSortKeyPosition="2"
+                      externalMetadataColumnId="Package\Data Flow Task\DIM Customer.Inputs[OLE DB Destination Input].ExternalColumns[city]"
+                      lineageId="Package\Data Flow Task\SortCustomer.Outputs[Sort Output].Columns[city]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\DIM Customer.Inputs[OLE DB Destination Input].Columns[customer]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="customer"
+                      cachedSortKeyPosition="1"
+                      externalMetadataColumnId="Package\Data Flow Task\DIM Customer.Inputs[OLE DB Destination Input].ExternalColumns[name]"
+                      lineageId="Package\Data Flow Task\SortCustomer.Outputs[Sort Output].Columns[customer]" />
+                  </inputColumns>
                   <externalMetadataColumns
-                    isUsed="True" />
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\DIM Customer.Inputs[OLE DB Destination Input].ExternalColumns[customerKey]"
+                      dataType="i4"
+                      name="customerKey" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\DIM Customer.Inputs[OLE DB Destination Input].ExternalColumns[name]"
+                      dataType="wstr"
+                      length="50"
+                      name="name" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\DIM Customer.Inputs[OLE DB Destination Input].ExternalColumns[city]"
+                      dataType="wstr"
+                      length="30"
+                      name="city" />
+                  </externalMetadataColumns>
                 </input>
               </inputs>
               <outputs>
@@ -278,7 +438,7 @@
                 <property
                   dataType="System.String"
                   description="Specifies the name of the database object used to open a rowset."
-                  name="OpenRowset"></property>
+                  name="OpenRowset">[dim].[salesperson]</property>
                 <property
                   dataType="System.String"
                   description="Specifies the variable that contains the name of the database object used to open a rowset."
@@ -300,7 +460,7 @@
                   dataType="System.Int32"
                   description="Specifies the mode used to access the database."
                   name="AccessMode"
-                  typeConverter="AccessMode">0</property>
+                  typeConverter="AccessMode">3</property>
                 <property
                   dataType="System.Boolean"
                   description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
@@ -312,7 +472,7 @@
                 <property
                   dataType="System.String"
                   description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
-                  name="FastLoadOptions"></property>
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
@@ -321,6 +481,8 @@
               <connections>
                 <connection
                   refId="Package\Data Flow Task\Dim Salesman.Connections[OleDbConnection]"
+                  connectionManagerID="{C8A1A240-BCE2-40D7-AAE1-8C2A5441DE5B}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[NAV_SQL]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -331,8 +493,28 @@
                   errorRowDisposition="FailComponent"
                   hasSideEffects="true"
                   name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Dim Salesman.Inputs[OLE DB Destination Input].Columns[sprzedawca]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="sprzedawca"
+                      cachedSortKeyPosition="1"
+                      externalMetadataColumnId="Package\Data Flow Task\Dim Salesman.Inputs[OLE DB Destination Input].ExternalColumns[sprzedawca]"
+                      lineageId="Package\Data Flow Task\SortSalesman.Outputs[Sort Output].Columns[sprzedawca]" />
+                  </inputColumns>
                   <externalMetadataColumns
-                    isUsed="True" />
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Dim Salesman.Inputs[OLE DB Destination Input].ExternalColumns[salespersonKey]"
+                      dataType="i4"
+                      name="salespersonKey" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Dim Salesman.Inputs[OLE DB Destination Input].ExternalColumns[sprzedawca]"
+                      dataType="wstr"
+                      length="50"
+                      name="sprzedawca" />
+                  </externalMetadataColumns>
                 </input>
               </inputs>
               <outputs>
@@ -376,7 +558,7 @@
                 <property
                   dataType="System.String"
                   description="Specifies the name of the database object used to open a rowset."
-                  name="OpenRowset"></property>
+                  name="OpenRowset">[dim].[date]</property>
                 <property
                   dataType="System.String"
                   description="Specifies the variable that contains the name of the database object used to open a rowset."
@@ -398,7 +580,7 @@
                   dataType="System.Int32"
                   description="Specifies the mode used to access the database."
                   name="AccessMode"
-                  typeConverter="AccessMode">0</property>
+                  typeConverter="AccessMode">3</property>
                 <property
                   dataType="System.Boolean"
                   description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
@@ -410,7 +592,7 @@
                 <property
                   dataType="System.String"
                   description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
-                  name="FastLoadOptions"></property>
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
@@ -419,6 +601,8 @@
               <connections>
                 <connection
                   refId="Package\Data Flow Task\DimDate.Connections[OleDbConnection]"
+                  connectionManagerID="{C8A1A240-BCE2-40D7-AAE1-8C2A5441DE5B}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[NAV_SQL]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -429,8 +613,57 @@
                   errorRowDisposition="FailComponent"
                   hasSideEffects="true"
                   name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\DimDate.Inputs[OLE DB Destination Input].Columns[Year]"
+                      cachedDataType="i4"
+                      cachedName="Year"
+                      externalMetadataColumnId="Package\Data Flow Task\DimDate.Inputs[OLE DB Destination Input].ExternalColumns[Year]"
+                      lineageId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[Year]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\DimDate.Inputs[OLE DB Destination Input].Columns[Month]"
+                      cachedDataType="i4"
+                      cachedName="Month"
+                      externalMetadataColumnId="Package\Data Flow Task\DimDate.Inputs[OLE DB Destination Input].ExternalColumns[month]"
+                      lineageId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[Month]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\DimDate.Inputs[OLE DB Destination Input].Columns[Day]"
+                      cachedDataType="i4"
+                      cachedName="Day"
+                      externalMetadataColumnId="Package\Data Flow Task\DimDate.Inputs[OLE DB Destination Input].ExternalColumns[day]"
+                      lineageId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[Day]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\DimDate.Inputs[OLE DB Destination Input].Columns[orderDate]"
+                      cachedDataType="dbDate"
+                      cachedName="orderDate"
+                      cachedSortKeyPosition="1"
+                      externalMetadataColumnId="Package\Data Flow Task\DimDate.Inputs[OLE DB Destination Input].ExternalColumns[date]"
+                      lineageId="Package\Data Flow Task\SortDate.Outputs[Sort Output].Columns[orderDate]" />
+                  </inputColumns>
                   <externalMetadataColumns
-                    isUsed="True" />
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\DimDate.Inputs[OLE DB Destination Input].ExternalColumns[datekey]"
+                      dataType="i4"
+                      name="datekey" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\DimDate.Inputs[OLE DB Destination Input].ExternalColumns[Year]"
+                      dataType="i4"
+                      name="Year" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\DimDate.Inputs[OLE DB Destination Input].ExternalColumns[day]"
+                      dataType="wstr"
+                      length="50"
+                      name="day" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\DimDate.Inputs[OLE DB Destination Input].ExternalColumns[date]"
+                      dataType="dbDate"
+                      name="date" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\DimDate.Inputs[OLE DB Destination Input].ExternalColumns[month]"
+                      dataType="i4"
+                      name="month" />
+                  </externalMetadataColumns>
                 </input>
               </inputs>
               <outputs>
@@ -459,11 +692,11 @@
               </outputs>
             </component>
             <component
-              refId="Package\Data Flow Task\Lookup 1"
+              refId="Package\Data Flow Task\LookupCustomer"
               componentClassID="Microsoft.Lookup"
               contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
               description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
-              name="Lookup 1"
+              name="LookupCustomer"
               usesDispositions="true"
               version="6">
               <properties>
@@ -472,13 +705,14 @@
                   description="Specifies the SQL statement that generates the lookup table."
                   expressionType="Notify"
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dim].[customer]</property>
                 <property
                   dataType="System.String"
                   description="Specifies a SQL statement that uses parameters to generate the lookup table."
                   expressionType="Notify"
                   name="SqlCommandParam"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dim].[customer]) [refTable]
+where [refTable].[name] = ? and [refTable].[city] = ?</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the type of connection used to access the reference dataset."
@@ -493,7 +727,7 @@
                   dataType="System.Int32"
                   description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
                   name="NoMatchBehavior"
-                  typeConverter="LookupNoMatchBehavior">0</property>
+                  typeConverter="LookupNoMatchBehavior">1</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
@@ -509,12 +743,12 @@
                 <property
                   dataType="System.String"
                   description="Indicates whether to reference metadata in an XML format."
-                  name="ReferenceMetadataXml"></property>
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="customerKey" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="name" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="city" dataType="DT_WSTR" length="30" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
                 <property
                   containsID="true"
                   dataType="System.String"
                   description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
-                  name="ParameterMap"></property>
+                  name="ParameterMap">#{Package\Data Flow Task\SortCustomer.Outputs[Sort Output].Columns[customer]};#{Package\Data Flow Task\SortCustomer.Outputs[Sort Output].Columns[city]};</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -526,52 +760,91 @@
               </properties>
               <connections>
                 <connection
-                  refId="Package\Data Flow Task\Lookup 1.Connections[OleDbConnection]"
+                  refId="Package\Data Flow Task\LookupCustomer.Connections[OleDbConnection]"
+                  connectionManagerID="{C8A1A240-BCE2-40D7-AAE1-8C2A5441DE5B}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[NAV_SQL]"
                   description="Connection manager used to access lookup data."
                   name="OleDbConnection" />
               </connections>
               <inputs>
                 <input
-                  refId="Package\Data Flow Task\Lookup 1.Inputs[Lookup Input]"
+                  refId="Package\Data Flow Task\LookupCustomer.Inputs[Lookup Input]"
                   name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\LookupCustomer.Inputs[Lookup Input].Columns[customer]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="customer"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Data Flow Task\SortCustomer.Outputs[Sort Output].Columns[customer]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">name</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\LookupCustomer.Inputs[Lookup Input].Columns[city]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="city"
+                      cachedSortKeyPosition="2"
+                      lineageId="Package\Data Flow Task\SortCustomer.Outputs[Sort Output].Columns[city]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">city</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
                   <externalMetadataColumns />
                 </input>
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Data Flow Task\Lookup 1.Outputs[Lookup Match Output]"
+                  refId="Package\Data Flow Task\LookupCustomer.Outputs[Lookup Match Output]"
                   errorOrTruncationOperation="Lookup"
-                  errorRowDisposition="FailComponent"
                   exclusionGroup="1"
                   name="Lookup Match Output"
-                  synchronousInputId="Package\Data Flow Task\Lookup 1.Inputs[Lookup Input]">
+                  synchronousInputId="Package\Data Flow Task\LookupCustomer.Inputs[Lookup Input]">
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\Data Flow Task\Lookup 1.Outputs[Lookup No Match Output]"
+                  refId="Package\Data Flow Task\LookupCustomer.Outputs[Lookup No Match Output]"
                   description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
                   exclusionGroup="1"
                   name="Lookup No Match Output"
-                  synchronousInputId="Package\Data Flow Task\Lookup 1.Inputs[Lookup Input]">
+                  synchronousInputId="Package\Data Flow Task\LookupCustomer.Inputs[Lookup Input]">
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\Data Flow Task\Lookup 1.Outputs[Lookup Error Output]"
+                  refId="Package\Data Flow Task\LookupCustomer.Outputs[Lookup Error Output]"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="Lookup Error Output"
-                  synchronousInputId="Package\Data Flow Task\Lookup 1.Inputs[Lookup Input]">
+                  synchronousInputId="Package\Data Flow Task\LookupCustomer.Inputs[Lookup Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Data Flow Task\Lookup 1.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      refId="Package\Data Flow Task\LookupCustomer.Outputs[Lookup Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task\Lookup 1.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      lineageId="Package\Data Flow Task\LookupCustomer.Outputs[Lookup Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Data Flow Task\Lookup 1.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      refId="Package\Data Flow Task\LookupCustomer.Outputs[Lookup Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task\Lookup 1.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\Data Flow Task\LookupCustomer.Outputs[Lookup Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -580,11 +853,11 @@
               </outputs>
             </component>
             <component
-              refId="Package\Data Flow Task\Lookup 2"
+              refId="Package\Data Flow Task\LookupDate"
               componentClassID="Microsoft.Lookup"
               contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
               description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
-              name="Lookup 2"
+              name="LookupDate"
               usesDispositions="true"
               version="6">
               <properties>
@@ -593,13 +866,14 @@
                   description="Specifies the SQL statement that generates the lookup table."
                   expressionType="Notify"
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dim].[date]</property>
                 <property
                   dataType="System.String"
                   description="Specifies a SQL statement that uses parameters to generate the lookup table."
                   expressionType="Notify"
                   name="SqlCommandParam"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dim].[date]) [refTable]
+where [refTable].[date] = ?</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the type of connection used to access the reference dataset."
@@ -614,7 +888,7 @@
                   dataType="System.Int32"
                   description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
                   name="NoMatchBehavior"
-                  typeConverter="LookupNoMatchBehavior">0</property>
+                  typeConverter="LookupNoMatchBehavior">1</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
@@ -630,12 +904,12 @@
                 <property
                   dataType="System.String"
                   description="Indicates whether to reference metadata in an XML format."
-                  name="ReferenceMetadataXml"></property>
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="datekey" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Year" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="day" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="date" dataType="DT_DBDATE" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="month" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
                 <property
                   containsID="true"
                   dataType="System.String"
                   description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
-                  name="ParameterMap"></property>
+                  name="ParameterMap">#{Package\Data Flow Task\SortDate.Outputs[Sort Output].Columns[orderDate]};</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -647,173 +921,72 @@
               </properties>
               <connections>
                 <connection
-                  refId="Package\Data Flow Task\Lookup 2.Connections[OleDbConnection]"
+                  refId="Package\Data Flow Task\LookupDate.Connections[OleDbConnection]"
+                  connectionManagerID="{C8A1A240-BCE2-40D7-AAE1-8C2A5441DE5B}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[NAV_SQL]"
                   description="Connection manager used to access lookup data."
                   name="OleDbConnection" />
               </connections>
               <inputs>
                 <input
-                  refId="Package\Data Flow Task\Lookup 2.Inputs[Lookup Input]"
+                  refId="Package\Data Flow Task\LookupDate.Inputs[Lookup Input]"
                   name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\LookupDate.Inputs[Lookup Input].Columns[orderDate]"
+                      cachedDataType="dbDate"
+                      cachedName="orderDate"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Data Flow Task\SortDate.Outputs[Sort Output].Columns[orderDate]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">date</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
                   <externalMetadataColumns />
                 </input>
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Data Flow Task\Lookup 2.Outputs[Lookup Match Output]"
+                  refId="Package\Data Flow Task\LookupDate.Outputs[Lookup Match Output]"
                   errorOrTruncationOperation="Lookup"
-                  errorRowDisposition="FailComponent"
                   exclusionGroup="1"
                   name="Lookup Match Output"
-                  synchronousInputId="Package\Data Flow Task\Lookup 2.Inputs[Lookup Input]">
+                  synchronousInputId="Package\Data Flow Task\LookupDate.Inputs[Lookup Input]">
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\Data Flow Task\Lookup 2.Outputs[Lookup No Match Output]"
+                  refId="Package\Data Flow Task\LookupDate.Outputs[Lookup No Match Output]"
                   description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
                   exclusionGroup="1"
                   name="Lookup No Match Output"
-                  synchronousInputId="Package\Data Flow Task\Lookup 2.Inputs[Lookup Input]">
+                  synchronousInputId="Package\Data Flow Task\LookupDate.Inputs[Lookup Input]">
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\Data Flow Task\Lookup 2.Outputs[Lookup Error Output]"
+                  refId="Package\Data Flow Task\LookupDate.Outputs[Lookup Error Output]"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="Lookup Error Output"
-                  synchronousInputId="Package\Data Flow Task\Lookup 2.Inputs[Lookup Input]">
+                  synchronousInputId="Package\Data Flow Task\LookupDate.Inputs[Lookup Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Data Flow Task\Lookup 2.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      refId="Package\Data Flow Task\LookupDate.Outputs[Lookup Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task\Lookup 2.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      lineageId="Package\Data Flow Task\LookupDate.Outputs[Lookup Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Data Flow Task\Lookup 2.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      refId="Package\Data Flow Task\LookupDate.Outputs[Lookup Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task\Lookup 2.Outputs[Lookup Error Output].Columns[ErrorColumn]"
-                      name="ErrorColumn"
-                      specialFlags="2" />
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
-            <component
-              refId="Package\Data Flow Task\Lookup 3"
-              componentClassID="Microsoft.Lookup"
-              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
-              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
-              name="Lookup 3"
-              usesDispositions="true"
-              version="6">
-              <properties>
-                <property
-                  dataType="System.String"
-                  description="Specifies the SQL statement that generates the lookup table."
-                  expressionType="Notify"
-                  name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
-                <property
-                  dataType="System.String"
-                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
-                  expressionType="Notify"
-                  name="SqlCommandParam"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the type of connection used to access the reference dataset."
-                  name="ConnectionType"
-                  typeConverter="LookupConnectionType">0</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the cache type of the lookup table."
-                  name="CacheType"
-                  typeConverter="CacheType">0</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
-                  name="NoMatchBehavior"
-                  typeConverter="LookupNoMatchBehavior">0</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
-                  name="NoMatchCachePercentage">0</property>
-                <property
-                  dataType="System.Int32"
-                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
-                  name="MaxMemoryUsage">25</property>
-                <property
-                  dataType="System.Int64"
-                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
-                  name="MaxMemoryUsage64">25</property>
-                <property
-                  dataType="System.String"
-                  description="Indicates whether to reference metadata in an XML format."
-                  name="ReferenceMetadataXml"></property>
-                <property
-                  containsID="true"
-                  dataType="System.String"
-                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
-                  name="ParameterMap"></property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the column code page to use when code page information is unavailable from the data source."
-                  name="DefaultCodePage">1252</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
-                  name="TreatDuplicateKeysAsError">false</property>
-              </properties>
-              <connections>
-                <connection
-                  refId="Package\Data Flow Task\Lookup 3.Connections[OleDbConnection]"
-                  description="Connection manager used to access lookup data."
-                  name="OleDbConnection" />
-              </connections>
-              <inputs>
-                <input
-                  refId="Package\Data Flow Task\Lookup 3.Inputs[Lookup Input]"
-                  name="Lookup Input">
-                  <externalMetadataColumns />
-                </input>
-              </inputs>
-              <outputs>
-                <output
-                  refId="Package\Data Flow Task\Lookup 3.Outputs[Lookup Match Output]"
-                  errorOrTruncationOperation="Lookup"
-                  errorRowDisposition="FailComponent"
-                  exclusionGroup="1"
-                  name="Lookup Match Output"
-                  synchronousInputId="Package\Data Flow Task\Lookup 3.Inputs[Lookup Input]">
-                  <externalMetadataColumns />
-                </output>
-                <output
-                  refId="Package\Data Flow Task\Lookup 3.Outputs[Lookup No Match Output]"
-                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
-                  exclusionGroup="1"
-                  name="Lookup No Match Output"
-                  synchronousInputId="Package\Data Flow Task\Lookup 3.Inputs[Lookup Input]">
-                  <externalMetadataColumns />
-                </output>
-                <output
-                  refId="Package\Data Flow Task\Lookup 3.Outputs[Lookup Error Output]"
-                  exclusionGroup="1"
-                  isErrorOut="true"
-                  name="Lookup Error Output"
-                  synchronousInputId="Package\Data Flow Task\Lookup 3.Inputs[Lookup Input]">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\Data Flow Task\Lookup 3.Outputs[Lookup Error Output].Columns[ErrorCode]"
-                      dataType="i4"
-                      lineageId="Package\Data Flow Task\Lookup 3.Outputs[Lookup Error Output].Columns[ErrorCode]"
-                      name="ErrorCode"
-                      specialFlags="1" />
-                    <outputColumn
-                      refId="Package\Data Flow Task\Lookup 3.Outputs[Lookup Error Output].Columns[ErrorColumn]"
-                      dataType="i4"
-                      lineageId="Package\Data Flow Task\Lookup 3.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\Data Flow Task\LookupDate.Outputs[Lookup Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -857,7 +1030,7 @@ where [refTable].[productName] = ? and [refTable].[postinggroup] = ?</property>
                   dataType="System.Int32"
                   description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
                   name="NoMatchBehavior"
-                  typeConverter="LookupNoMatchBehavior">0</property>
+                  typeConverter="LookupNoMatchBehavior">1</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
@@ -907,19 +1080,16 @@ where [refTable].[productName] = ? and [refTable].[postinggroup] = ?</property>
                       cachedLength="50"
                       cachedName="productName"
                       cachedSortKeyPosition="1"
-                      errorOrTruncationOperation="Copy Column"
-                      lineageId="Package\Data Flow Task\SortProduct.Outputs[Sort Output].Columns[productName]"
-                      truncationRowDisposition="FailComponent"
-                      usageType="readWrite">
+                      lineageId="Package\Data Flow Task\SortProduct.Outputs[Sort Output].Columns[productName]">
                       <properties>
                         <property
                           dataType="System.String"
                           description="Specifies the column in the reference table that a column joins."
                           name="JoinToReferenceColumn">productName</property>
                         <property
-                          dataType="System.String"
+                          dataType="System.Null"
                           description="Specifies the column in the reference table from which a column is copied."
-                          name="CopyFromReferenceColumn">productName</property>
+                          name="CopyFromReferenceColumn" />
                       </properties>
                     </inputColumn>
                     <inputColumn
@@ -928,19 +1098,16 @@ where [refTable].[productName] = ? and [refTable].[postinggroup] = ?</property>
                       cachedLength="10"
                       cachedName="postinggroup"
                       cachedSortKeyPosition="2"
-                      errorOrTruncationOperation="Copy Column"
-                      lineageId="Package\Data Flow Task\SortProduct.Outputs[Sort Output].Columns[postinggroup]"
-                      truncationRowDisposition="FailComponent"
-                      usageType="readWrite">
+                      lineageId="Package\Data Flow Task\SortProduct.Outputs[Sort Output].Columns[postinggroup]">
                       <properties>
                         <property
                           dataType="System.String"
                           description="Specifies the column in the reference table that a column joins."
                           name="JoinToReferenceColumn">postinggroup</property>
                         <property
-                          dataType="System.String"
+                          dataType="System.Null"
                           description="Specifies the column in the reference table from which a column is copied."
-                          name="CopyFromReferenceColumn">postinggroup</property>
+                          name="CopyFromReferenceColumn" />
                       </properties>
                     </inputColumn>
                   </inputColumns>
@@ -951,7 +1118,6 @@ where [refTable].[productName] = ? and [refTable].[postinggroup] = ?</property>
                 <output
                   refId="Package\Data Flow Task\LookupProduct.Outputs[Lookup Match Output]"
                   errorOrTruncationOperation="Lookup"
-                  errorRowDisposition="FailComponent"
                   exclusionGroup="1"
                   name="Lookup Match Output"
                   synchronousInputId="Package\Data Flow Task\LookupProduct.Inputs[Lookup Input]">
@@ -990,6 +1156,149 @@ where [refTable].[productName] = ? and [refTable].[postinggroup] = ?</property>
               </outputs>
             </component>
             <component
+              refId="Package\Data Flow Task\LookupSalesman"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="LookupSalesman"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dim].[salesperson]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dim].[salesperson]) [refTable]
+where [refTable].[sprzedawca] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="salespersonKey" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="sprzedawca" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Data Flow Task\SortSalesman.Outputs[Sort Output].Columns[sprzedawca]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\LookupSalesman.Connections[OleDbConnection]"
+                  connectionManagerID="{C8A1A240-BCE2-40D7-AAE1-8C2A5441DE5B}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[NAV_SQL]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\LookupSalesman.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\LookupSalesman.Inputs[Lookup Input].Columns[sprzedawca]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="sprzedawca"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Data Flow Task\SortSalesman.Outputs[Sort Output].Columns[sprzedawca]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">sprzedawca</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\LookupSalesman.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Data Flow Task\LookupSalesman.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data Flow Task\LookupSalesman.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Data Flow Task\LookupSalesman.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data Flow Task\LookupSalesman.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Data Flow Task\LookupSalesman.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\LookupSalesman.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\LookupSalesman.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\LookupSalesman.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\LookupSalesman.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
               refId="Package\Data Flow Task\Multicast"
               componentClassID="Microsoft.Multicast"
               contactInfo="Multicast;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
@@ -1019,78 +1328,24 @@ where [refTable].[productName] = ? and [refTable].[postinggroup] = ?</property>
                 </output>
                 <output
                   refId="Package\Data Flow Task\Multicast.Outputs[Multicast Output 2]"
-                  dangling="true"
                   deleteOutputOnPathDetached="true"
                   name="Multicast Output 2"
                   synchronousInputId="Package\Data Flow Task\Multicast.Inputs[Multicast Input 1]">
                   <externalMetadataColumns />
                 </output>
-              </outputs>
-            </component>
-            <component
-              refId="Package\Data Flow Task\Sort 2"
-              componentClassID="Microsoft.Sort"
-              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
-              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
-              name="Sort 2"
-              version="1">
-              <properties>
-                <property
-                  dataType="System.Boolean"
-                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
-                  name="EliminateDuplicates">false</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the maximum number of threads to use for sorting."
-                  expressionType="Notify"
-                  name="MaximumThreads">-1</property>
-              </properties>
-              <inputs>
-                <input
-                  refId="Package\Data Flow Task\Sort 2.Inputs[Sort Input]"
-                  name="Sort Input">
-                  <externalMetadataColumns />
-                </input>
-              </inputs>
-              <outputs>
                 <output
-                  refId="Package\Data Flow Task\Sort 2.Outputs[Sort Output]"
-                  isSorted="true"
-                  name="Sort Output">
+                  refId="Package\Data Flow Task\Multicast.Outputs[Multicast Output 3]"
+                  deleteOutputOnPathDetached="true"
+                  name="Multicast Output 3"
+                  synchronousInputId="Package\Data Flow Task\Multicast.Inputs[Multicast Input 1]">
                   <externalMetadataColumns />
                 </output>
-              </outputs>
-            </component>
-            <component
-              refId="Package\Data Flow Task\Sort 3"
-              componentClassID="Microsoft.Sort"
-              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
-              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
-              name="Sort 3"
-              version="1">
-              <properties>
-                <property
-                  dataType="System.Boolean"
-                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
-                  name="EliminateDuplicates">false</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the maximum number of threads to use for sorting."
-                  expressionType="Notify"
-                  name="MaximumThreads">-1</property>
-              </properties>
-              <inputs>
-                <input
-                  refId="Package\Data Flow Task\Sort 3.Inputs[Sort Input]"
-                  name="Sort Input">
-                  <externalMetadataColumns />
-                </input>
-              </inputs>
-              <outputs>
                 <output
-                  refId="Package\Data Flow Task\Sort 3.Outputs[Sort Output]"
-                  isSorted="true"
-                  name="Sort Output">
+                  refId="Package\Data Flow Task\Multicast.Outputs[Multicast Output 5]"
+                  dangling="true"
+                  deleteOutputOnPathDetached="true"
+                  name="Multicast Output 5"
+                  synchronousInputId="Package\Data Flow Task\Multicast.Inputs[Multicast Input 1]">
                   <externalMetadataColumns />
                 </output>
               </outputs>
@@ -1106,7 +1361,7 @@ where [refTable].[productName] = ? and [refTable].[postinggroup] = ?</property>
                 <property
                   dataType="System.Boolean"
                   description="Indicates whether the Sort transformation removes rows with duplicate sort values."
-                  name="EliminateDuplicates">false</property>
+                  name="EliminateDuplicates">true</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the maximum number of threads to use for sorting."
@@ -1117,6 +1372,42 @@ where [refTable].[productName] = ? and [refTable].[postinggroup] = ?</property>
                 <input
                   refId="Package\Data Flow Task\SortCustomer.Inputs[Sort Input]"
                   name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\SortCustomer.Inputs[Sort Input].Columns[customer]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="customer"
+                      lineageId="Package\Data Flow Task\Staging.Outputs[OLE DB Source Output].Columns[customer]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\SortCustomer.Inputs[Sort Input].Columns[city]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="city"
+                      lineageId="Package\Data Flow Task\Staging.Outputs[OLE DB Source Output].Columns[city]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">2</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
                   <externalMetadataColumns />
                 </input>
               </inputs>
@@ -1125,6 +1416,106 @@ where [refTable].[productName] = ? and [refTable].[postinggroup] = ?</property>
                   refId="Package\Data Flow Task\SortCustomer.Outputs[Sort Output]"
                   isSorted="true"
                   name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\SortCustomer.Outputs[Sort Output].Columns[customer]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\SortCustomer.Outputs[Sort Output].Columns[customer]"
+                      name="customer"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Data Flow Task\Staging.Outputs[OLE DB Source Output].Columns[customer]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\SortCustomer.Outputs[Sort Output].Columns[city]"
+                      dataType="wstr"
+                      length="30"
+                      lineageId="Package\Data Flow Task\SortCustomer.Outputs[Sort Output].Columns[city]"
+                      name="city"
+                      sortKeyPosition="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Data Flow Task\Staging.Outputs[OLE DB Source Output].Columns[city]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\SortDate"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+              name="SortDate"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\SortDate.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\SortDate.Inputs[Sort Input].Columns[orderDate]"
+                      cachedDataType="dbDate"
+                      cachedName="orderDate"
+                      lineageId="Package\Data Flow Task\Staging.Outputs[OLE DB Source Output].Columns[orderDate]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\SortDate.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\SortDate.Outputs[Sort Output].Columns[orderDate]"
+                      dataType="dbDate"
+                      lineageId="Package\Data Flow Task\SortDate.Outputs[Sort Output].Columns[orderDate]"
+                      name="orderDate"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Data Flow Task\Staging.Outputs[OLE DB Source Output].Columns[orderDate]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
                   <externalMetadataColumns />
                 </output>
               </outputs>
@@ -1224,6 +1615,76 @@ where [refTable].[productName] = ? and [refTable].[postinggroup] = ?</property>
                           dataType="System.Int32"
                           description="Specifies the lineage identifier of the input column that is associated with this output column."
                           name="SortColumnId">#{Package\Data Flow Task\Staging.Outputs[OLE DB Source Output].Columns[postinggroup]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\SortSalesman"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+              name="SortSalesman"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\SortSalesman.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\SortSalesman.Inputs[Sort Input].Columns[sprzedawca]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="sprzedawca"
+                      lineageId="Package\Data Flow Task\Staging.Outputs[OLE DB Source Output].Columns[sprzedawca]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\SortSalesman.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\SortSalesman.Outputs[Sort Output].Columns[sprzedawca]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\SortSalesman.Outputs[Sort Output].Columns[sprzedawca]"
+                      name="sprzedawca"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Data Flow Task\Staging.Outputs[OLE DB Source Output].Columns[sprzedawca]}</property>
                       </properties>
                     </outputColumn>
                   </outputColumns>
@@ -1580,15 +2041,45 @@ where [refTable].[productName] = ? and [refTable].[postinggroup] = ?</property>
           </components>
           <paths>
             <path
+              refId="Package\Data Flow Task.Paths[Derived Column Output]"
+              endId="Package\Data Flow Task\LookupDate.Inputs[Lookup Input]"
+              name="Derived Column Output"
+              startId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Output]" />
+            <path
               refId="Package\Data Flow Task.Paths[Lookup No Match Output]"
               endId="Package\Data Flow Task\DIM Product.Inputs[OLE DB Destination Input]"
               name="Lookup No Match Output"
               startId="Package\Data Flow Task\LookupProduct.Outputs[Lookup No Match Output]" />
             <path
+              refId="Package\Data Flow Task.Paths[Lookup No Match Output1]"
+              endId="Package\Data Flow Task\DIM Customer.Inputs[OLE DB Destination Input]"
+              name="Lookup No Match Output"
+              startId="Package\Data Flow Task\LookupCustomer.Outputs[Lookup No Match Output]" />
+            <path
+              refId="Package\Data Flow Task.Paths[Lookup No Match Output2]"
+              endId="Package\Data Flow Task\Dim Salesman.Inputs[OLE DB Destination Input]"
+              name="Lookup No Match Output"
+              startId="Package\Data Flow Task\LookupSalesman.Outputs[Lookup No Match Output]" />
+            <path
+              refId="Package\Data Flow Task.Paths[Lookup No Match Output3]"
+              endId="Package\Data Flow Task\DimDate.Inputs[OLE DB Destination Input]"
+              name="Lookup No Match Output"
+              startId="Package\Data Flow Task\LookupDate.Outputs[Lookup No Match Output]" />
+            <path
               refId="Package\Data Flow Task.Paths[Multicast Output 1]"
               endId="Package\Data Flow Task\SortCustomer.Inputs[Sort Input]"
               name="Multicast Output 1"
               startId="Package\Data Flow Task\Multicast.Outputs[Multicast Output 1]" />
+            <path
+              refId="Package\Data Flow Task.Paths[Multicast Output 2]"
+              endId="Package\Data Flow Task\SortSalesman.Inputs[Sort Input]"
+              name="Multicast Output 2"
+              startId="Package\Data Flow Task\Multicast.Outputs[Multicast Output 2]" />
+            <path
+              refId="Package\Data Flow Task.Paths[Multicast Output 3]"
+              endId="Package\Data Flow Task\SortDate.Inputs[Sort Input]"
+              name="Multicast Output 3"
+              startId="Package\Data Flow Task\Multicast.Outputs[Multicast Output 3]" />
             <path
               refId="Package\Data Flow Task.Paths[Multicast Output 4]"
               endId="Package\Data Flow Task\SortProduct.Inputs[Sort Input]"
@@ -1604,6 +2095,21 @@ where [refTable].[productName] = ? and [refTable].[postinggroup] = ?</property>
               endId="Package\Data Flow Task\LookupProduct.Inputs[Lookup Input]"
               name="Sort Output"
               startId="Package\Data Flow Task\SortProduct.Outputs[Sort Output]" />
+            <path
+              refId="Package\Data Flow Task.Paths[Sort Output1]"
+              endId="Package\Data Flow Task\LookupCustomer.Inputs[Lookup Input]"
+              name="Sort Output"
+              startId="Package\Data Flow Task\SortCustomer.Outputs[Sort Output]" />
+            <path
+              refId="Package\Data Flow Task.Paths[Sort Output2]"
+              endId="Package\Data Flow Task\LookupSalesman.Inputs[Lookup Input]"
+              name="Sort Output"
+              startId="Package\Data Flow Task\SortSalesman.Outputs[Sort Output]" />
+            <path
+              refId="Package\Data Flow Task.Paths[Sort Output3]"
+              endId="Package\Data Flow Task\Derived Column.Inputs[Derived Column Input]"
+              name="Sort Output"
+              startId="Package\Data Flow Task\SortDate.Outputs[Sort Output]" />
           </paths>
         </pipeline>
       </DTS:ObjectData>
@@ -1634,89 +2140,87 @@ where [refTable].[productName] = ? and [refTable].[postinggroup] = ?</property>
       <GraphLayout
         Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="120,42"
-          Id="Package\Data Flow Task\Multicast"
-          TopLeft="314.388888888889,89.6111111111111" />
-        <NodeLayout
-          Size="160,67"
-          Id="Package\Data Flow Task\Staging"
-          TopLeft="500.5,4.5" />
-        <EdgeLayout
-          Id="Package\Data Flow Task.Paths[OLE DB Source Output]"
-          TopLeft="500.5,38">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-66.1111111111111,72.6111111111111"
-              Start="0,0"
-              End="-58.6111111111111,72.6111111111111">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="-29.0555555555555,0" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-29.0555555555555,0"
-                    Point2="-33.0555555555555,0"
-                    Point3="-33.0555555555555,4" />
-                  <mssgle:LineSegment
-                    End="-33.0555555555555,68.6111111111111" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-33.0555555555555,68.6111111111111"
-                    Point2="-33.0555555555555,72.6111111111111"
-                    Point3="-37.0555555555555,72.6111111111111" />
-                  <mssgle:LineSegment
-                    End="-58.6111111111111,72.6111111111111" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
           Size="134,42"
           Id="Package\Data Flow Task\SortProduct"
-          TopLeft="87.7777777777778,218.888888888889" />
+          TopLeft="49.7777777777778,219.888888888889" />
         <NodeLayout
           Size="143,42"
           Id="Package\Data Flow Task\SortCustomer"
-          TopLeft="385.416666666667,218.527777777778" />
+          TopLeft="317.416666666667,231.527777777778" />
         <NodeLayout
-          Size="98,42"
-          Id="Package\Data Flow Task\Sort 2"
-          TopLeft="711.111111111111,215.388888888889" />
+          Size="158,42"
+          Id="Package\Data Flow Task\LookupSalesman"
+          TopLeft="554.555555555556,333.5" />
         <NodeLayout
-          Size="98,42"
-          Id="Package\Data Flow Task\Sort 3"
-          TopLeft="992.222222222222,207.388888888889" />
+          Size="120,42"
+          Id="Package\Data Flow Task\SortDate"
+          TopLeft="810.222222222222,186.388888888889" />
+        <NodeLayout
+          Size="120,42"
+          Id="Package\Data Flow Task\DimDate"
+          TopLeft="810.444444444445,508.166666666667" />
+        <NodeLayout
+          Size="138,42"
+          Id="Package\Data Flow Task\DIM Product"
+          TopLeft="77.6666666666667,471.777777777778" />
+        <NodeLayout
+          Size="143,42"
+          Id="Package\Data Flow Task\SortSalesman"
+          TopLeft="502.111111111111,229.388888888889" />
+        <NodeLayout
+          Size="135,42"
+          Id="Package\Data Flow Task\LookupDate"
+          TopLeft="801.444444444444,385.722222222222" />
+        <NodeLayout
+          Size="120,42"
+          Id="Package\Data Flow Task\Multicast"
+          TopLeft="193.388888888889,87.6111111111111" />
+        <NodeLayout
+          Size="160,67"
+          Id="Package\Data Flow Task\Staging"
+          TopLeft="376.5,0.5" />
+        <NodeLayout
+          Size="149,42"
+          Id="Package\Data Flow Task\LookupProduct"
+          TopLeft="52.3333333333334,323.888888888889" />
+        <NodeLayout
+          Size="146,42"
+          Id="Package\Data Flow Task\Dim Salesman"
+          TopLeft="556.777777777778,456.833333333333" />
+        <NodeLayout
+          Size="147,42"
+          Id="Package\Data Flow Task\DIM Customer"
+          TopLeft="305.111111111111,477.444444444445" />
+        <NodeLayout
+          Size="158,42"
+          Id="Package\Data Flow Task\LookupCustomer"
+          TopLeft="307.111111111111,343.222222222222" />
         <EdgeLayout
-          Id="Package\Data Flow Task.Paths[Multicast Output 4]"
-          TopLeft="374.388888888889,131.611111111111">
+          Id="Package\Data Flow Task.Paths[Sort Output]"
+          TopLeft="116.777777777778,261.888888888889">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-219.611111111111,87.2777777777777"
+              EndConnector="10.0555555555556,62"
               Start="0,0"
-              End="-219.611111111111,79.7777777777777">
+              End="10.0555555555556,54.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,39.6388888888889" />
+                    End="0,27" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,39.6388888888889"
-                    Point2="0,43.6388888888889"
-                    Point3="-4,43.6388888888889" />
+                    Point1="0,27"
+                    Point2="0,31"
+                    Point3="4,31" />
                   <mssgle:LineSegment
-                    End="-215.611111111111,43.6388888888889" />
+                    End="6.0555555555556,31" />
                   <mssgle:CubicBezierSegment
-                    Point1="-215.611111111111,43.6388888888889"
-                    Point2="-219.611111111111,43.6388888888889"
-                    Point3="-219.611111111111,47.6388888888889" />
+                    Point1="6.0555555555556,31"
+                    Point2="10.0555555555556,31"
+                    Point3="10.0555555555556,35" />
                   <mssgle:LineSegment
-                    End="-219.611111111111,79.7777777777777" />
+                    End="10.0555555555556,54.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1725,52 +2229,100 @@ where [refTable].[productName] = ? and [refTable].[postinggroup] = ?</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="149,42"
-          Id="Package\Data Flow Task\LookupProduct"
-          TopLeft="73.3333333333334,328.888888888889" />
-        <NodeLayout
-          Size="113,42"
-          Id="Package\Data Flow Task\Lookup 1"
-          TopLeft="401.111111111111,334.222222222222" />
-        <NodeLayout
-          Size="113,42"
-          Id="Package\Data Flow Task\Lookup 2"
-          TopLeft="715.555555555556,336.5" />
-        <NodeLayout
-          Size="113,42"
-          Id="Package\Data Flow Task\Lookup 3"
-          TopLeft="984.444444444444,330.722222222222" />
-        <NodeLayout
-          Size="138,42"
-          Id="Package\Data Flow Task\DIM Product"
-          TopLeft="66.6666666666667,467.777777777778" />
-        <NodeLayout
-          Size="147,42"
-          Id="Package\Data Flow Task\DIM Customer"
-          TopLeft="381.111111111111,476.444444444445" />
-        <NodeLayout
-          Size="146,42"
-          Id="Package\Data Flow Task\Dim Salesman"
-          TopLeft="717.777777777778,459.833333333333" />
-        <NodeLayout
-          Size="120,42"
-          Id="Package\Data Flow Task\DimDate"
-          TopLeft="994.444444444445,465.166666666667" />
         <EdgeLayout
-          Id="Package\Data Flow Task.Paths[Sort Output]"
-          TopLeft="151.305555555556,260.888888888889">
+          Id="Package\Data Flow Task.Paths[OLE DB Source Output]"
+          TopLeft="376.5,34">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,68.0000000000001"
+              EndConnector="-63.111111111111,74.6111111111111"
               Start="0,0"
-              End="0,60.5000000000001">
+              End="-55.611111111111,74.6111111111111">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,60.5000000000001" />
+                    End="-27.5555555555555,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-27.5555555555555,0"
+                    Point2="-31.5555555555555,0"
+                    Point3="-31.5555555555555,4" />
+                  <mssgle:LineSegment
+                    End="-31.5555555555555,70.6111111111111" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-31.5555555555555,70.6111111111111"
+                    Point2="-31.5555555555555,74.6111111111111"
+                    Point3="-35.5555555555555,74.6111111111111" />
+                  <mssgle:LineSegment
+                    End="-55.611111111111,74.6111111111111" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Multicast Output 4]"
+          TopLeft="219.788888888889,129.611111111111">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-103.011111111111,90.2777777777779"
+              Start="0,0"
+              End="-103.011111111111,82.7777777777779">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.5848765432099" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,23.5848765432099"
+                    Point2="0,27.5848765432099"
+                    Point3="-4,27.5848765432099" />
+                  <mssgle:LineSegment
+                    End="-99.0111111111112,27.5848765432099" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-99.0111111111112,27.5848765432099"
+                    Point2="-103.011111111111,27.5848765432099"
+                    Point3="-103.011111111111,31.5848765432099" />
+                  <mssgle:LineSegment
+                    End="-103.011111111111,82.7777777777779" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Multicast Output 1]"
+          TopLeft="242.188888888889,129.611111111111">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="146.727777777778,101.916666666667"
+              Start="0,0"
+              End="146.727777777778,94.4166666666669">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,41.7126225490197" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,41.7126225490197"
+                    Point2="0,45.7126225490197"
+                    Point3="4,45.7126225490197" />
+                  <mssgle:LineSegment
+                    End="142.727777777778,45.7126225490197" />
+                  <mssgle:CubicBezierSegment
+                    Point1="142.727777777778,45.7126225490197"
+                    Point2="146.727777777778,45.7126225490197"
+                    Point3="146.727777777778,49.7126225490197" />
+                  <mssgle:LineSegment
+                    End="146.727777777778,94.4166666666669" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1781,66 +2333,54 @@ where [refTable].[productName] = ? and [refTable].[postinggroup] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Data Flow Task.Paths[Lookup No Match Output]"
-          TopLeft="147.833333333333,370.888888888889">
+          TopLeft="126.833333333333,365.888888888889">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-12.1666666666667,96.8888888888889"
+              EndConnector="19.8333333333333,105.888888888889"
               Start="0,0"
-              End="-12.1666666666667,89.3888888888889">
+              End="19.8333333333333,98.388888888889">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,44.4444444444444" />
+                    End="0,48.9444444444445" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,44.4444444444444"
-                    Point2="0,48.4444444444444"
-                    Point3="-4,48.4444444444444" />
+                    Point1="0,48.9444444444445"
+                    Point2="0,52.9444444444445"
+                    Point3="4,52.9444444444445" />
                   <mssgle:LineSegment
-                    End="-8.16666666666674,48.4444444444444" />
+                    End="15.8333333333333,52.9444444444445" />
                   <mssgle:CubicBezierSegment
-                    Point1="-8.16666666666674,48.4444444444444"
-                    Point2="-12.1666666666667,48.4444444444444"
-                    Point3="-12.1666666666667,52.4444444444444" />
+                    Point1="15.8333333333333,52.9444444444445"
+                    Point2="19.8333333333333,52.9444444444445"
+                    Point3="19.8333333333333,56.9444444444445" />
                   <mssgle:LineSegment
-                    End="-12.1666666666667,89.3888888888889" />
+                    End="19.8333333333333,98.388888888889" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-61.8897200520834,53.4444444444444,111.6127734375,11.609375"
+              BoundingBox="-54.7583723958333,57.9444444444445,129.350078125,16"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Data Flow Task.Paths[Multicast Output 1]"
-          TopLeft="393.055555555556,131.611111111111">
+          Id="Package\Data Flow Task.Paths[Sort Output1]"
+          TopLeft="387.513888888889,273.527777777778">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="63.8611111111112,86.9166666666667"
+              EndConnector="0,69.694444444444"
               Start="0,0"
-              End="63.8611111111112,79.4166666666667">
+              End="0,62.194444444444">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,31.452850877193" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,31.452850877193"
-                    Point2="0,35.452850877193"
-                    Point3="4,35.452850877193" />
-                  <mssgle:LineSegment
-                    End="59.8611111111112,35.452850877193" />
-                  <mssgle:CubicBezierSegment
-                    Point1="59.8611111111112,35.452850877193"
-                    Point2="63.8611111111112,35.452850877193"
-                    Point3="63.8611111111112,39.452850877193" />
-                  <mssgle:LineSegment
-                    End="63.8611111111112,79.4166666666667" />
+                    End="0,62.194444444444" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1849,9 +2389,303 @@ where [refTable].[productName] = ? and [refTable].[postinggroup] = ?</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Lookup No Match Output1]"
+          TopLeft="382.361111111111,385.222222222222">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,92.222222222223"
+              Start="0,0"
+              End="0,84.722222222223">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,84.722222222223" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-55.80638671875,36.5564236111115,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Multicast Output 2]"
+          TopLeft="264.588888888889,129.611111111111">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="309.022222222222,99.7777777777779"
+              Start="0,0"
+              End="309.022222222222,92.2777777777779">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,40.7532679738563" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,40.7532679738563"
+                    Point2="0,44.7532679738563"
+                    Point3="4,44.7532679738563" />
+                  <mssgle:LineSegment
+                    End="305.022222222222,44.7532679738563" />
+                  <mssgle:CubicBezierSegment
+                    Point1="305.022222222222,44.7532679738563"
+                    Point2="309.022222222222,44.7532679738563"
+                    Point3="309.022222222222,48.7532679738563" />
+                  <mssgle:LineSegment
+                    End="309.022222222222,92.2777777777779" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Sort Output2]"
+          TopLeft="573.611111111111,271.388888888889">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="59.944444444445,62.111111111111"
+              Start="0,0"
+              End="59.944444444445,54.611111111111">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,27.0555555555555" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,27.0555555555555"
+                    Point2="0,31.0555555555555"
+                    Point3="4,31.0555555555555" />
+                  <mssgle:LineSegment
+                    End="55.944444444445,31.0555555555555" />
+                  <mssgle:CubicBezierSegment
+                    Point1="55.944444444445,31.0555555555555"
+                    Point2="59.944444444445,31.0555555555555"
+                    Point3="59.944444444445,35.0555555555555" />
+                  <mssgle:LineSegment
+                    End="59.944444444445,54.611111111111" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Lookup No Match Output2]"
+          TopLeft="631.666666666667,375.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,81.333333333333"
+              Start="0,0"
+              End="0,73.833333333333">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,73.833333333333" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-55.80638671875,31.1119791666665,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Multicast Output 3]"
+          TopLeft="286.988888888889,129.611111111111">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="583.233333333333,56.7777777777779"
+              Start="0,0"
+              End="583.233333333333,49.2777777777779">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,13.3487654320988" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,13.3487654320988"
+                    Point2="0,17.3487654320988"
+                    Point3="4,17.3487654320988" />
+                  <mssgle:LineSegment
+                    End="579.233333333333,17.3487654320988" />
+                  <mssgle:CubicBezierSegment
+                    Point1="579.233333333333,17.3487654320988"
+                    Point2="583.233333333333,17.3487654320988"
+                    Point3="583.233333333333,21.3487654320988" />
+                  <mssgle:LineSegment
+                    End="583.233333333333,49.2777777777779" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="154,42"
+          Id="Package\Data Flow Task\Derived Column"
+          TopLeft="798,286" />
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Sort Output3]"
+          TopLeft="872.611111111111,228.388888888889">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,57.611111111111"
+              Start="0,0"
+              End="0,50.111111111111">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,50.111111111111" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Derived Column Output]"
+          TopLeft="871.972222222222,328">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,57.722222222222"
+              Start="0,0"
+              End="0,50.222222222222">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,50.222222222222" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Lookup No Match Output3]"
+          TopLeft="869.694444444444,427.722222222222">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,80.444444444445"
+              Start="0,0"
+              End="0,72.944444444445">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,72.944444444445" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-55.80638671875,30.6675347222225,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task\LookupSalesman">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dim].[salesperson]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task\DimDate">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task\DIM Product">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task\LookupDate">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dim].[date]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\Data Flow Task\Staging">
     <Properties>
@@ -1889,7 +2723,7 @@ where [refTable].[productName] = ? and [refTable].[postinggroup] = ?</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Data Flow Task\DIM Product">
+    design-time-name="Package\Data Flow Task\Dim Salesman">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -1898,6 +2732,42 @@ where [refTable].[productName] = ? and [refTable].[postinggroup] = ?</property>
         <Name>TableInfoObjectType</Name>
         <Value
           type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task\DIM Customer">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task\LookupCustomer">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dim].[customer]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
