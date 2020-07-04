@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
   DTS:CreationDate="5/18/2020 7:44:09 PM"
@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Facts"
   DTS:PackageType="5"
-  DTS:VersionBuild="2"
-  DTS:VersionGUID="{BC14C23A-0431-4300-98F6-B36CAFA7334C}">
+  DTS:VersionBuild="4"
+  DTS:VersionGUID="{1C62963F-8218-4463-BEFF-051CB1C85599}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -31,373 +31,6 @@
         <pipeline
           version="1">
           <components>
-            <component
-              refId="Package\Sales\Customers"
-              componentClassID="Microsoft.Lookup"
-              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
-              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
-              name="Customers"
-              usesDispositions="true"
-              version="6">
-              <properties>
-                <property
-                  dataType="System.String"
-                  description="Specifies the SQL statement that generates the lookup table."
-                  expressionType="Notify"
-                  name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dim].[customer]</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
-                  expressionType="Notify"
-                  name="SqlCommandParam"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dim].[customer]) [refTable]
-where [refTable].[firstName] = ? and [refTable].[lastName] = ? and [refTable].[birthDate] = ? and [refTable].[maritalStatus] = ?</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the type of connection used to access the reference dataset."
-                  name="ConnectionType"
-                  typeConverter="LookupConnectionType">0</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the cache type of the lookup table."
-                  name="CacheType"
-                  typeConverter="CacheType">0</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
-                  name="NoMatchBehavior"
-                  typeConverter="LookupNoMatchBehavior">0</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
-                  name="NoMatchCachePercentage">0</property>
-                <property
-                  dataType="System.Int32"
-                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
-                  name="MaxMemoryUsage">25</property>
-                <property
-                  dataType="System.Int64"
-                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
-                  name="MaxMemoryUsage64">25</property>
-                <property
-                  dataType="System.String"
-                  description="Indicates whether to reference metadata in an XML format."
-                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="customerKey" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="firstName" dataType="DT_WSTR" length="100" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="lastName" dataType="DT_WSTR" length="200" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="birthDate" dataType="DT_DBDATE" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="maritalStatus" dataType="DT_WSTR" length="10" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
-                <property
-                  containsID="true"
-                  dataType="System.String"
-                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
-                  name="ParameterMap">#{Package\Sales\Staging.Outputs[OLE DB Source Output].Columns[firstName]};#{Package\Sales\Staging.Outputs[OLE DB Source Output].Columns[lastName]};#{Package\Sales\Staging.Outputs[OLE DB Source Output].Columns[birthDate]};#{Package\Sales\Staging.Outputs[OLE DB Source Output].Columns[maritalStatus]};</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the column code page to use when code page information is unavailable from the data source."
-                  name="DefaultCodePage">1252</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
-                  name="TreatDuplicateKeysAsError">false</property>
-              </properties>
-              <connections>
-                <connection
-                  refId="Package\Sales\Customers.Connections[OleDbConnection]"
-                  connectionManagerID="{96B87E04-DEA4-49D4-9C00-66DE989260A0}:invalid"
-                  connectionManagerRefId="{96B87E04-DEA4-49D4-9C00-66DE989260A0}:invalid"
-                  description="Connection manager used to access lookup data."
-                  name="OleDbConnection" />
-              </connections>
-              <inputs>
-                <input
-                  refId="Package\Sales\Customers.Inputs[Lookup Input]"
-                  name="Lookup Input">
-                  <inputColumns>
-                    <inputColumn
-                      refId="Package\Sales\Customers.Inputs[Lookup Input].Columns[firstName]"
-                      cachedDataType="wstr"
-                      cachedLength="100"
-                      cachedName="firstName"
-                      lineageId="Package\Sales\Staging.Outputs[OLE DB Source Output].Columns[firstName]">
-                      <properties>
-                        <property
-                          dataType="System.String"
-                          description="Specifies the column in the reference table that a column joins."
-                          name="JoinToReferenceColumn">firstName</property>
-                        <property
-                          dataType="System.Null"
-                          description="Specifies the column in the reference table from which a column is copied."
-                          name="CopyFromReferenceColumn" />
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Sales\Customers.Inputs[Lookup Input].Columns[lastName]"
-                      cachedDataType="wstr"
-                      cachedLength="200"
-                      cachedName="lastName"
-                      lineageId="Package\Sales\Staging.Outputs[OLE DB Source Output].Columns[lastName]">
-                      <properties>
-                        <property
-                          dataType="System.String"
-                          description="Specifies the column in the reference table that a column joins."
-                          name="JoinToReferenceColumn">lastName</property>
-                        <property
-                          dataType="System.Null"
-                          description="Specifies the column in the reference table from which a column is copied."
-                          name="CopyFromReferenceColumn" />
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Sales\Customers.Inputs[Lookup Input].Columns[birthDate]"
-                      cachedDataType="dbDate"
-                      cachedName="birthDate"
-                      lineageId="Package\Sales\Staging.Outputs[OLE DB Source Output].Columns[birthDate]">
-                      <properties>
-                        <property
-                          dataType="System.String"
-                          description="Specifies the column in the reference table that a column joins."
-                          name="JoinToReferenceColumn">birthDate</property>
-                        <property
-                          dataType="System.Null"
-                          description="Specifies the column in the reference table from which a column is copied."
-                          name="CopyFromReferenceColumn" />
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Sales\Customers.Inputs[Lookup Input].Columns[maritalStatus]"
-                      cachedDataType="wstr"
-                      cachedLength="10"
-                      cachedName="maritalStatus"
-                      lineageId="Package\Sales\Staging.Outputs[OLE DB Source Output].Columns[maritalStatus]">
-                      <properties>
-                        <property
-                          dataType="System.String"
-                          description="Specifies the column in the reference table that a column joins."
-                          name="JoinToReferenceColumn">maritalStatus</property>
-                        <property
-                          dataType="System.Null"
-                          description="Specifies the column in the reference table from which a column is copied."
-                          name="CopyFromReferenceColumn" />
-                      </properties>
-                    </inputColumn>
-                  </inputColumns>
-                  <externalMetadataColumns />
-                </input>
-              </inputs>
-              <outputs>
-                <output
-                  refId="Package\Sales\Customers.Outputs[Lookup Match Output]"
-                  errorOrTruncationOperation="Lookup"
-                  errorRowDisposition="FailComponent"
-                  exclusionGroup="1"
-                  name="Lookup Match Output"
-                  synchronousInputId="Package\Sales\Customers.Inputs[Lookup Input]">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\Sales\Customers.Outputs[Lookup Match Output].Columns[customerKey]"
-                      dataType="i4"
-                      errorOrTruncationOperation="Copy Column"
-                      lineageId="Package\Sales\Customers.Outputs[Lookup Match Output].Columns[customerKey]"
-                      name="customerKey"
-                      truncationRowDisposition="FailComponent">
-                      <properties>
-                        <property
-                          dataType="System.String"
-                          description="Specifies the column in the reference table from which a column is copied."
-                          name="CopyFromReferenceColumn">customerKey</property>
-                      </properties>
-                    </outputColumn>
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-                <output
-                  refId="Package\Sales\Customers.Outputs[Lookup No Match Output]"
-                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
-                  exclusionGroup="1"
-                  name="Lookup No Match Output"
-                  synchronousInputId="Package\Sales\Customers.Inputs[Lookup Input]">
-                  <externalMetadataColumns />
-                </output>
-                <output
-                  refId="Package\Sales\Customers.Outputs[Lookup Error Output]"
-                  exclusionGroup="1"
-                  isErrorOut="true"
-                  name="Lookup Error Output"
-                  synchronousInputId="Package\Sales\Customers.Inputs[Lookup Input]">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\Sales\Customers.Outputs[Lookup Error Output].Columns[ErrorCode]"
-                      dataType="i4"
-                      lineageId="Package\Sales\Customers.Outputs[Lookup Error Output].Columns[ErrorCode]"
-                      name="ErrorCode"
-                      specialFlags="1" />
-                    <outputColumn
-                      refId="Package\Sales\Customers.Outputs[Lookup Error Output].Columns[ErrorColumn]"
-                      dataType="i4"
-                      lineageId="Package\Sales\Customers.Outputs[Lookup Error Output].Columns[ErrorColumn]"
-                      name="ErrorColumn"
-                      specialFlags="2" />
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
-            <component
-              refId="Package\Sales\Date"
-              componentClassID="Microsoft.Lookup"
-              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
-              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
-              name="Date"
-              usesDispositions="true"
-              version="6">
-              <properties>
-                <property
-                  dataType="System.String"
-                  description="Specifies the SQL statement that generates the lookup table."
-                  expressionType="Notify"
-                  name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dim].[date]</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
-                  expressionType="Notify"
-                  name="SqlCommandParam"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dim].[date]) [refTable]
-where [refTable].[datekey] = ?</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the type of connection used to access the reference dataset."
-                  name="ConnectionType"
-                  typeConverter="LookupConnectionType">0</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the cache type of the lookup table."
-                  name="CacheType"
-                  typeConverter="CacheType">0</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
-                  name="NoMatchBehavior"
-                  typeConverter="LookupNoMatchBehavior">0</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
-                  name="NoMatchCachePercentage">0</property>
-                <property
-                  dataType="System.Int32"
-                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
-                  name="MaxMemoryUsage">25</property>
-                <property
-                  dataType="System.Int64"
-                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
-                  name="MaxMemoryUsage64">25</property>
-                <property
-                  dataType="System.String"
-                  description="Indicates whether to reference metadata in an XML format."
-                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="datekey" dataType="DT_DBDATE" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="monthName" dataType="DT_WSTR" length="30" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Year" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="month" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="day" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
-                <property
-                  containsID="true"
-                  dataType="System.String"
-                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
-                  name="ParameterMap">#{Package\Sales\Staging.Outputs[OLE DB Source Output].Columns[orderDate]};</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the column code page to use when code page information is unavailable from the data source."
-                  name="DefaultCodePage">1252</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
-                  name="TreatDuplicateKeysAsError">false</property>
-              </properties>
-              <connections>
-                <connection
-                  refId="Package\Sales\Date.Connections[OleDbConnection]"
-                  connectionManagerID="{96B87E04-DEA4-49D4-9C00-66DE989260A0}:invalid"
-                  connectionManagerRefId="{96B87E04-DEA4-49D4-9C00-66DE989260A0}:invalid"
-                  description="Connection manager used to access lookup data."
-                  name="OleDbConnection" />
-              </connections>
-              <inputs>
-                <input
-                  refId="Package\Sales\Date.Inputs[Lookup Input]"
-                  name="Lookup Input">
-                  <inputColumns>
-                    <inputColumn
-                      refId="Package\Sales\Date.Inputs[Lookup Input].Columns[orderDate]"
-                      cachedDataType="dbDate"
-                      cachedName="orderDate"
-                      lineageId="Package\Sales\Staging.Outputs[OLE DB Source Output].Columns[orderDate]">
-                      <properties>
-                        <property
-                          dataType="System.String"
-                          description="Specifies the column in the reference table that a column joins."
-                          name="JoinToReferenceColumn">datekey</property>
-                        <property
-                          dataType="System.Null"
-                          description="Specifies the column in the reference table from which a column is copied."
-                          name="CopyFromReferenceColumn" />
-                      </properties>
-                    </inputColumn>
-                  </inputColumns>
-                  <externalMetadataColumns />
-                </input>
-              </inputs>
-              <outputs>
-                <output
-                  refId="Package\Sales\Date.Outputs[Lookup Match Output]"
-                  errorOrTruncationOperation="Lookup"
-                  errorRowDisposition="FailComponent"
-                  exclusionGroup="1"
-                  name="Lookup Match Output"
-                  synchronousInputId="Package\Sales\Date.Inputs[Lookup Input]">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\Sales\Date.Outputs[Lookup Match Output].Columns[datekey]"
-                      dataType="dbDate"
-                      errorOrTruncationOperation="Copy Column"
-                      lineageId="Package\Sales\Date.Outputs[Lookup Match Output].Columns[datekey]"
-                      name="datekey"
-                      truncationRowDisposition="FailComponent">
-                      <properties>
-                        <property
-                          dataType="System.String"
-                          description="Specifies the column in the reference table from which a column is copied."
-                          name="CopyFromReferenceColumn">datekey</property>
-                      </properties>
-                    </outputColumn>
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-                <output
-                  refId="Package\Sales\Date.Outputs[Lookup No Match Output]"
-                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
-                  exclusionGroup="1"
-                  name="Lookup No Match Output"
-                  synchronousInputId="Package\Sales\Date.Inputs[Lookup Input]">
-                  <externalMetadataColumns />
-                </output>
-                <output
-                  refId="Package\Sales\Date.Outputs[Lookup Error Output]"
-                  exclusionGroup="1"
-                  isErrorOut="true"
-                  name="Lookup Error Output"
-                  synchronousInputId="Package\Sales\Date.Inputs[Lookup Input]">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\Sales\Date.Outputs[Lookup Error Output].Columns[ErrorCode]"
-                      dataType="i4"
-                      lineageId="Package\Sales\Date.Outputs[Lookup Error Output].Columns[ErrorCode]"
-                      name="ErrorCode"
-                      specialFlags="1" />
-                    <outputColumn
-                      refId="Package\Sales\Date.Outputs[Lookup Error Output].Columns[ErrorColumn]"
-                      dataType="i4"
-                      lineageId="Package\Sales\Date.Outputs[Lookup Error Output].Columns[ErrorColumn]"
-                      name="ErrorColumn"
-                      specialFlags="2" />
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
             <component
               refId="Package\Sales\Fact Sales"
               componentClassID="Microsoft.OLEDBDestination"
@@ -457,8 +90,8 @@ where [refTable].[datekey] = ?</property>
               <connections>
                 <connection
                   refId="Package\Sales\Fact Sales.Connections[OleDbConnection]"
-                  connectionManagerID="{96B87E04-DEA4-49D4-9C00-66DE989260A0}:invalid"
-                  connectionManagerRefId="{96B87E04-DEA4-49D4-9C00-66DE989260A0}:invalid"
+                  connectionManagerID="{C8A1A240-BCE2-40D7-AAE1-8C2A5441DE5B}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[NAV_SQL]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -471,39 +104,71 @@ where [refTable].[datekey] = ?</property>
                   name="OLE DB Destination Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Sales\Fact Sales.Inputs[OLE DB Destination Input].Columns[orderDate]"
-                      cachedDataType="dbDate"
-                      cachedName="orderDate"
-                      externalMetadataColumnId="Package\Sales\Fact Sales.Inputs[OLE DB Destination Input].ExternalColumns[orderDate]"
-                      lineageId="Package\Sales\Sort.Outputs[Sort Output].Columns[orderDate]" />
-                    <inputColumn
-                      refId="Package\Sales\Fact Sales.Inputs[OLE DB Destination Input].Columns[orderquantity]"
-                      cachedDataType="i4"
-                      cachedName="orderquantity"
-                      externalMetadataColumnId="Package\Sales\Fact Sales.Inputs[OLE DB Destination Input].ExternalColumns[orderQuantity]"
-                      lineageId="Package\Sales\Sort.Outputs[Sort Output].Columns[orderquantity]" />
-                    <inputColumn
-                      refId="Package\Sales\Fact Sales.Inputs[OLE DB Destination Input].Columns[unitPrice]"
+                      refId="Package\Sales\Fact Sales.Inputs[OLE DB Destination Input].Columns[profit]"
                       cachedDataType="numeric"
-                      cachedName="unitPrice"
-                      cachedPrecision="9"
-                      cachedScale="4"
-                      externalMetadataColumnId="Package\Sales\Fact Sales.Inputs[OLE DB Destination Input].ExternalColumns[unitPrice]"
-                      lineageId="Package\Sales\Sort.Outputs[Sort Output].Columns[unitPrice]" />
-                    <inputColumn
-                      refId="Package\Sales\Fact Sales.Inputs[OLE DB Destination Input].Columns[customerKey]"
-                      cachedDataType="i4"
-                      cachedName="customerKey"
-                      cachedSortKeyPosition="2"
-                      externalMetadataColumnId="Package\Sales\Fact Sales.Inputs[OLE DB Destination Input].ExternalColumns[customerKey]"
-                      lineageId="Package\Sales\Sort.Outputs[Sort Output].Columns[customerKey]" />
+                      cachedName="profit"
+                      cachedPrecision="10"
+                      cachedScale="5"
+                      externalMetadataColumnId="Package\Sales\Fact Sales.Inputs[OLE DB Destination Input].ExternalColumns[profit]"
+                      lineageId="Package\Sales\Sort 1.Outputs[Sort Output].Columns[profit]" />
                     <inputColumn
                       refId="Package\Sales\Fact Sales.Inputs[OLE DB Destination Input].Columns[productKey]"
                       cachedDataType="i4"
                       cachedName="productKey"
-                      cachedSortKeyPosition="3"
+                      cachedSortKeyPosition="4"
                       externalMetadataColumnId="Package\Sales\Fact Sales.Inputs[OLE DB Destination Input].ExternalColumns[productKey]"
-                      lineageId="Package\Sales\Sort.Outputs[Sort Output].Columns[productKey]" />
+                      lineageId="Package\Sales\Sort 1.Outputs[Sort Output].Columns[productKey]" />
+                    <inputColumn
+                      refId="Package\Sales\Fact Sales.Inputs[OLE DB Destination Input].Columns[customerKey]"
+                      cachedDataType="i4"
+                      cachedName="customerKey"
+                      cachedSortKeyPosition="3"
+                      externalMetadataColumnId="Package\Sales\Fact Sales.Inputs[OLE DB Destination Input].ExternalColumns[customerKey]"
+                      lineageId="Package\Sales\Sort 1.Outputs[Sort Output].Columns[customerKey]" />
+                    <inputColumn
+                      refId="Package\Sales\Fact Sales.Inputs[OLE DB Destination Input].Columns[salespersonKey]"
+                      cachedDataType="i4"
+                      cachedName="salespersonKey"
+                      cachedSortKeyPosition="2"
+                      externalMetadataColumnId="Package\Sales\Fact Sales.Inputs[OLE DB Destination Input].ExternalColumns[salespersonKey]"
+                      lineageId="Package\Sales\Sort 1.Outputs[Sort Output].Columns[salespersonKey]" />
+                    <inputColumn
+                      refId="Package\Sales\Fact Sales.Inputs[OLE DB Destination Input].Columns[quantity]"
+                      cachedDataType="numeric"
+                      cachedName="quantity"
+                      cachedPrecision="10"
+                      cachedScale="5"
+                      externalMetadataColumnId="Package\Sales\Fact Sales.Inputs[OLE DB Destination Input].ExternalColumns[orderQuantity]"
+                      lineageId="Package\Sales\Sort 1.Outputs[Sort Output].Columns[quantity]" />
+                    <inputColumn
+                      refId="Package\Sales\Fact Sales.Inputs[OLE DB Destination Input].Columns[rodzajsprzedazy]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="rodzajsprzedazy"
+                      externalMetadataColumnId="Package\Sales\Fact Sales.Inputs[OLE DB Destination Input].ExternalColumns[salestype]"
+                      lineageId="Package\Sales\Sort 1.Outputs[Sort Output].Columns[rodzajsprzedazy]" />
+                    <inputColumn
+                      refId="Package\Sales\Fact Sales.Inputs[OLE DB Destination Input].Columns[uniteprice]"
+                      cachedDataType="numeric"
+                      cachedName="uniteprice"
+                      cachedPrecision="10"
+                      cachedScale="5"
+                      externalMetadataColumnId="Package\Sales\Fact Sales.Inputs[OLE DB Destination Input].ExternalColumns[unitPrice]"
+                      lineageId="Package\Sales\Sort 1.Outputs[Sort Output].Columns[uniteprice]" />
+                    <inputColumn
+                      refId="Package\Sales\Fact Sales.Inputs[OLE DB Destination Input].Columns[kampania]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="kampania"
+                      externalMetadataColumnId="Package\Sales\Fact Sales.Inputs[OLE DB Destination Input].ExternalColumns[campaign]"
+                      lineageId="Package\Sales\Sort 1.Outputs[Sort Output].Columns[kampania]" />
+                    <inputColumn
+                      refId="Package\Sales\Fact Sales.Inputs[OLE DB Destination Input].Columns[datekey]"
+                      cachedDataType="i4"
+                      cachedName="datekey"
+                      cachedSortKeyPosition="1"
+                      externalMetadataColumnId="Package\Sales\Fact Sales.Inputs[OLE DB Destination Input].ExternalColumns[orderDate]"
+                      lineageId="Package\Sales\Sort 1.Outputs[Sort Output].Columns[datekey]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -517,12 +182,16 @@ where [refTable].[datekey] = ?</property>
                       name="productKey" />
                     <externalMetadataColumn
                       refId="Package\Sales\Fact Sales.Inputs[OLE DB Destination Input].ExternalColumns[orderDate]"
-                      dataType="dbDate"
+                      dataType="i4"
                       name="orderDate" />
                     <externalMetadataColumn
                       refId="Package\Sales\Fact Sales.Inputs[OLE DB Destination Input].ExternalColumns[customerKey]"
                       dataType="i4"
                       name="customerKey" />
+                    <externalMetadataColumn
+                      refId="Package\Sales\Fact Sales.Inputs[OLE DB Destination Input].ExternalColumns[salespersonKey]"
+                      dataType="i4"
+                      name="salespersonKey" />
                     <externalMetadataColumn
                       refId="Package\Sales\Fact Sales.Inputs[OLE DB Destination Input].ExternalColumns[orderQuantity]"
                       dataType="i4"
@@ -531,14 +200,24 @@ where [refTable].[datekey] = ?</property>
                       refId="Package\Sales\Fact Sales.Inputs[OLE DB Destination Input].ExternalColumns[unitPrice]"
                       dataType="numeric"
                       name="unitPrice"
-                      precision="9"
-                      scale="4" />
+                      precision="10"
+                      scale="5" />
                     <externalMetadataColumn
-                      refId="Package\Sales\Fact Sales.Inputs[OLE DB Destination Input].ExternalColumns[salesAmount]"
+                      refId="Package\Sales\Fact Sales.Inputs[OLE DB Destination Input].ExternalColumns[profit]"
                       dataType="numeric"
-                      name="salesAmount"
-                      precision="20"
-                      scale="4" />
+                      name="profit"
+                      precision="10"
+                      scale="5" />
+                    <externalMetadataColumn
+                      refId="Package\Sales\Fact Sales.Inputs[OLE DB Destination Input].ExternalColumns[salestype]"
+                      dataType="wstr"
+                      length="10"
+                      name="salestype" />
+                    <externalMetadataColumn
+                      refId="Package\Sales\Fact Sales.Inputs[OLE DB Destination Input].ExternalColumns[campaign]"
+                      dataType="wstr"
+                      length="50"
+                      name="campaign" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
@@ -568,11 +247,11 @@ where [refTable].[datekey] = ?</property>
               </outputs>
             </component>
             <component
-              refId="Package\Sales\Product"
+              refId="Package\Sales\Lookup Customer"
               componentClassID="Microsoft.Lookup"
               contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
               description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
-              name="Product"
+              name="Lookup Customer"
               usesDispositions="true"
               version="6">
               <properties>
@@ -581,14 +260,14 @@ where [refTable].[datekey] = ?</property>
                   description="Specifies the SQL statement that generates the lookup table."
                   expressionType="Notify"
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dim].[product]</property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dim].[customer]</property>
                 <property
                   dataType="System.String"
                   description="Specifies a SQL statement that uses parameters to generate the lookup table."
                   expressionType="Notify"
                   name="SqlCommandParam"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dim].[product]) [refTable]
-where [refTable].[productName] = ?</property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dim].[customer]) [refTable]
+where [refTable].[name] = ? and [refTable].[city] = ?</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the type of connection used to access the reference dataset."
@@ -619,12 +298,12 @@ where [refTable].[productName] = ?</property>
                 <property
                   dataType="System.String"
                   description="Indicates whether to reference metadata in an XML format."
-                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="productKey" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="productName" dataType="DT_WSTR" length="150" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="customerKey" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="name" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="city" dataType="DT_WSTR" length="30" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
                 <property
                   containsID="true"
                   dataType="System.String"
                   description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
-                  name="ParameterMap">#{Package\Sales\Staging.Outputs[OLE DB Source Output].Columns[productName]};</property>
+                  name="ParameterMap">#{Package\Sales\Staging.Outputs[OLE DB Source Output].Columns[customer]};#{Package\Sales\Staging.Outputs[OLE DB Source Output].Columns[city]};</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -636,19 +315,353 @@ where [refTable].[productName] = ?</property>
               </properties>
               <connections>
                 <connection
-                  refId="Package\Sales\Product.Connections[OleDbConnection]"
-                  connectionManagerID="{96B87E04-DEA4-49D4-9C00-66DE989260A0}:invalid"
-                  connectionManagerRefId="{96B87E04-DEA4-49D4-9C00-66DE989260A0}:invalid"
+                  refId="Package\Sales\Lookup Customer.Connections[OleDbConnection]"
+                  connectionManagerID="{C8A1A240-BCE2-40D7-AAE1-8C2A5441DE5B}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[NAV_SQL]"
                   description="Connection manager used to access lookup data."
                   name="OleDbConnection" />
               </connections>
               <inputs>
                 <input
-                  refId="Package\Sales\Product.Inputs[Lookup Input]"
+                  refId="Package\Sales\Lookup Customer.Inputs[Lookup Input]"
                   name="Lookup Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Sales\Product.Inputs[Lookup Input].Columns[productName]"
+                      refId="Package\Sales\Lookup Customer.Inputs[Lookup Input].Columns[city]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="city"
+                      lineageId="Package\Sales\Staging.Outputs[OLE DB Source Output].Columns[city]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">city</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Sales\Lookup Customer.Inputs[Lookup Input].Columns[customer]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="customer"
+                      lineageId="Package\Sales\Staging.Outputs[OLE DB Source Output].Columns[customer]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">name</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Sales\Lookup Customer.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="IgnoreFailure"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Sales\Lookup Customer.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Sales\Lookup Customer.Outputs[Lookup Match Output].Columns[customerKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Sales\Lookup Customer.Outputs[Lookup Match Output].Columns[customerKey]"
+                      name="customerKey"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">customerKey</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Sales\Lookup Customer.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Sales\Lookup Customer.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Sales\Lookup Customer.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Sales\Lookup Customer.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Sales\Lookup Customer.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Sales\Lookup Customer.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Sales\Lookup Customer.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Sales\Lookup Customer.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Sales\Lookup Date"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup Date"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dim].[date]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dim].[date]) [refTable]
+where [refTable].[date] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="datekey" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Year" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="day" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="date" dataType="DT_DBDATE" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="month" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Sales\Staging.Outputs[OLE DB Source Output].Columns[orderDate]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Sales\Lookup Date.Connections[OleDbConnection]"
+                  connectionManagerID="{C8A1A240-BCE2-40D7-AAE1-8C2A5441DE5B}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[NAV_SQL]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Sales\Lookup Date.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Sales\Lookup Date.Inputs[Lookup Input].Columns[orderDate]"
+                      cachedDataType="dbDate"
+                      cachedName="orderDate"
+                      lineageId="Package\Sales\Staging.Outputs[OLE DB Source Output].Columns[orderDate]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">date</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Sales\Lookup Date.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="IgnoreFailure"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Sales\Lookup Date.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Sales\Lookup Date.Outputs[Lookup Match Output].Columns[datekey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Sales\Lookup Date.Outputs[Lookup Match Output].Columns[datekey]"
+                      name="datekey"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">datekey</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Sales\Lookup Date.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Sales\Lookup Date.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Sales\Lookup Date.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Sales\Lookup Date.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Sales\Lookup Date.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Sales\Lookup Date.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Sales\Lookup Date.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Sales\Lookup Date.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Sales\Lookup Product"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup Product"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dim].[product]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dim].[product]) [refTable]
+where [refTable].[productName] = ? and [refTable].[postinggroup] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="productKey" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="productName" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="postinggroup" dataType="DT_WSTR" length="10" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Sales\Staging.Outputs[OLE DB Source Output].Columns[productName]};#{Package\Sales\Staging.Outputs[OLE DB Source Output].Columns[postinggroup]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Sales\Lookup Product.Connections[OleDbConnection]"
+                  connectionManagerID="{C8A1A240-BCE2-40D7-AAE1-8C2A5441DE5B}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[NAV_SQL]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Sales\Lookup Product.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Sales\Lookup Product.Inputs[Lookup Input].Columns[productName]"
                       cachedDataType="wstr"
                       cachedLength="150"
                       cachedName="productName"
@@ -664,26 +677,43 @@ where [refTable].[productName] = ?</property>
                           name="CopyFromReferenceColumn" />
                       </properties>
                     </inputColumn>
+                    <inputColumn
+                      refId="Package\Sales\Lookup Product.Inputs[Lookup Input].Columns[postinggroup]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="postinggroup"
+                      lineageId="Package\Sales\Staging.Outputs[OLE DB Source Output].Columns[postinggroup]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">postinggroup</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Sales\Product.Outputs[Lookup Match Output]"
+                  refId="Package\Sales\Lookup Product.Outputs[Lookup Match Output]"
                   errorOrTruncationOperation="Lookup"
-                  errorRowDisposition="FailComponent"
+                  errorRowDisposition="IgnoreFailure"
                   exclusionGroup="1"
                   name="Lookup Match Output"
-                  synchronousInputId="Package\Sales\Product.Inputs[Lookup Input]">
+                  synchronousInputId="Package\Sales\Lookup Product.Inputs[Lookup Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Sales\Product.Outputs[Lookup Match Output].Columns[productKey]"
+                      refId="Package\Sales\Lookup Product.Outputs[Lookup Match Output].Columns[productKey]"
                       dataType="i4"
                       errorOrTruncationOperation="Copy Column"
-                      lineageId="Package\Sales\Product.Outputs[Lookup Match Output].Columns[productKey]"
+                      lineageId="Package\Sales\Lookup Product.Outputs[Lookup Match Output].Columns[productKey]"
                       name="productKey"
-                      truncationRowDisposition="FailComponent">
+                      truncationRowDisposition="IgnoreFailure">
                       <properties>
                         <property
                           dataType="System.String"
@@ -695,30 +725,30 @@ where [refTable].[productName] = ?</property>
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\Sales\Product.Outputs[Lookup No Match Output]"
+                  refId="Package\Sales\Lookup Product.Outputs[Lookup No Match Output]"
                   description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
                   exclusionGroup="1"
                   name="Lookup No Match Output"
-                  synchronousInputId="Package\Sales\Product.Inputs[Lookup Input]">
+                  synchronousInputId="Package\Sales\Lookup Product.Inputs[Lookup Input]">
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\Sales\Product.Outputs[Lookup Error Output]"
+                  refId="Package\Sales\Lookup Product.Outputs[Lookup Error Output]"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="Lookup Error Output"
-                  synchronousInputId="Package\Sales\Product.Inputs[Lookup Input]">
+                  synchronousInputId="Package\Sales\Lookup Product.Inputs[Lookup Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Sales\Product.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      refId="Package\Sales\Lookup Product.Outputs[Lookup Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Sales\Product.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      lineageId="Package\Sales\Lookup Product.Outputs[Lookup Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Sales\Product.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      refId="Package\Sales\Lookup Product.Outputs[Lookup Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Sales\Product.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\Sales\Lookup Product.Outputs[Lookup Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -727,11 +757,170 @@ where [refTable].[productName] = ?</property>
               </outputs>
             </component>
             <component
-              refId="Package\Sales\Sort"
+              refId="Package\Sales\Lookup Salesman"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup Salesman"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dim].[salesperson]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dim].[salesperson]) [refTable]
+where [refTable].[sprzedawca] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="salespersonKey" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="sprzedawca" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Sales\Staging.Outputs[OLE DB Source Output].Columns[sprzedawca]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Sales\Lookup Salesman.Connections[OleDbConnection]"
+                  connectionManagerID="{C8A1A240-BCE2-40D7-AAE1-8C2A5441DE5B}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[NAV_SQL]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Sales\Lookup Salesman.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Sales\Lookup Salesman.Inputs[Lookup Input].Columns[sprzedawca]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="sprzedawca"
+                      lineageId="Package\Sales\Staging.Outputs[OLE DB Source Output].Columns[sprzedawca]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">sprzedawca</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Sales\Lookup Salesman.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="IgnoreFailure"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Sales\Lookup Salesman.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Sales\Lookup Salesman.Outputs[Lookup Match Output].Columns[salespersonKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Sales\Lookup Salesman.Outputs[Lookup Match Output].Columns[salespersonKey]"
+                      name="salespersonKey"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">salespersonKey</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Sales\Lookup Salesman.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Sales\Lookup Salesman.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Sales\Lookup Salesman.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Sales\Lookup Salesman.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Sales\Lookup Salesman.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Sales\Lookup Salesman.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Sales\Lookup Salesman.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Sales\Lookup Salesman.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Sales\Sort 1"
               componentClassID="Microsoft.Sort"
               contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
               description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
-              name="Sort"
+              name="Sort 1"
               version="1">
               <properties>
                 <property
@@ -746,98 +935,15 @@ where [refTable].[productName] = ?</property>
               </properties>
               <inputs>
                 <input
-                  refId="Package\Sales\Sort.Inputs[Sort Input]"
+                  refId="Package\Sales\Sort 1.Inputs[Sort Input]"
                   name="Sort Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Sales\Sort.Inputs[Sort Input].Columns[productName]"
-                      cachedDataType="wstr"
-                      cachedLength="150"
-                      cachedName="productName"
-                      lineageId="Package\Sales\Staging.Outputs[OLE DB Source Output].Columns[productName]">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the comparison options for character data."
-                          name="NewComparisonFlags">0</property>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the sort order of the column."
-                          name="NewSortKeyPosition">0</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Sales\Sort.Inputs[Sort Input].Columns[orderDate]"
-                      cachedDataType="dbDate"
-                      cachedName="orderDate"
-                      lineageId="Package\Sales\Staging.Outputs[OLE DB Source Output].Columns[orderDate]">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the comparison options for character data."
-                          name="NewComparisonFlags">0</property>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the sort order of the column."
-                          name="NewSortKeyPosition">0</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Sales\Sort.Inputs[Sort Input].Columns[firstName]"
-                      cachedDataType="wstr"
-                      cachedLength="100"
-                      cachedName="firstName"
-                      lineageId="Package\Sales\Staging.Outputs[OLE DB Source Output].Columns[firstName]">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the comparison options for character data."
-                          name="NewComparisonFlags">0</property>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the sort order of the column."
-                          name="NewSortKeyPosition">0</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Sales\Sort.Inputs[Sort Input].Columns[lastName]"
-                      cachedDataType="wstr"
-                      cachedLength="200"
-                      cachedName="lastName"
-                      lineageId="Package\Sales\Staging.Outputs[OLE DB Source Output].Columns[lastName]">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the comparison options for character data."
-                          name="NewComparisonFlags">0</property>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the sort order of the column."
-                          name="NewSortKeyPosition">0</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Sales\Sort.Inputs[Sort Input].Columns[birthDate]"
-                      cachedDataType="dbDate"
-                      cachedName="birthDate"
-                      lineageId="Package\Sales\Staging.Outputs[OLE DB Source Output].Columns[birthDate]">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the comparison options for character data."
-                          name="NewComparisonFlags">0</property>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the sort order of the column."
-                          name="NewSortKeyPosition">0</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Sales\Sort.Inputs[Sort Input].Columns[maritalStatus]"
+                      refId="Package\Sales\Sort 1.Inputs[Sort Input].Columns[rodzajsprzedazy]"
                       cachedDataType="wstr"
                       cachedLength="10"
-                      cachedName="maritalStatus"
-                      lineageId="Package\Sales\Staging.Outputs[OLE DB Source Output].Columns[maritalStatus]">
+                      cachedName="rodzajsprzedazy"
+                      lineageId="Package\Sales\Staging.Outputs[OLE DB Source Output].Columns[rodzajsprzedazy]">
                       <properties>
                         <property
                           dataType="System.Int32"
@@ -850,28 +956,12 @@ where [refTable].[productName] = ?</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Sales\Sort.Inputs[Sort Input].Columns[orderquantity]"
-                      cachedDataType="i4"
-                      cachedName="orderquantity"
-                      lineageId="Package\Sales\Staging.Outputs[OLE DB Source Output].Columns[orderquantity]">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the comparison options for character data."
-                          name="NewComparisonFlags">0</property>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the sort order of the column."
-                          name="NewSortKeyPosition">0</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Sales\Sort.Inputs[Sort Input].Columns[unitPrice]"
+                      refId="Package\Sales\Sort 1.Inputs[Sort Input].Columns[quantity]"
                       cachedDataType="numeric"
-                      cachedName="unitPrice"
-                      cachedPrecision="9"
-                      cachedScale="4"
-                      lineageId="Package\Sales\Staging.Outputs[OLE DB Source Output].Columns[unitPrice]">
+                      cachedName="quantity"
+                      cachedPrecision="10"
+                      cachedScale="5"
+                      lineageId="Package\Sales\Staging.Outputs[OLE DB Source Output].Columns[quantity]">
                       <properties>
                         <property
                           dataType="System.Int32"
@@ -884,10 +974,12 @@ where [refTable].[productName] = ?</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Sales\Sort.Inputs[Sort Input].Columns[customerKey]"
-                      cachedDataType="i4"
-                      cachedName="customerKey"
-                      lineageId="Package\Sales\Customers.Outputs[Lookup Match Output].Columns[customerKey]">
+                      refId="Package\Sales\Sort 1.Inputs[Sort Input].Columns[profit]"
+                      cachedDataType="numeric"
+                      cachedName="profit"
+                      cachedPrecision="10"
+                      cachedScale="5"
+                      lineageId="Package\Sales\Staging.Outputs[OLE DB Source Output].Columns[profit]">
                       <properties>
                         <property
                           dataType="System.Int32"
@@ -896,14 +988,82 @@ where [refTable].[productName] = ?</property>
                         <property
                           dataType="System.Int32"
                           description="Specifies the sort order of the column."
-                          name="NewSortKeyPosition">2</property>
+                          name="NewSortKeyPosition">0</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Sales\Sort.Inputs[Sort Input].Columns[productKey]"
+                      refId="Package\Sales\Sort 1.Inputs[Sort Input].Columns[uniteprice]"
+                      cachedDataType="numeric"
+                      cachedName="uniteprice"
+                      cachedPrecision="10"
+                      cachedScale="5"
+                      lineageId="Package\Sales\Staging.Outputs[OLE DB Source Output].Columns[uniteprice]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Sales\Sort 1.Inputs[Sort Input].Columns[discount]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="discount"
+                      lineageId="Package\Sales\Staging.Outputs[OLE DB Source Output].Columns[discount]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Sales\Sort 1.Inputs[Sort Input].Columns[kampania]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="kampania"
+                      lineageId="Package\Sales\Staging.Outputs[OLE DB Source Output].Columns[kampania]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Sales\Sort 1.Inputs[Sort Input].Columns[productKey]"
                       cachedDataType="i4"
                       cachedName="productKey"
-                      lineageId="Package\Sales\Product.Outputs[Lookup Match Output].Columns[productKey]">
+                      lineageId="Package\Sales\Lookup Product.Outputs[Lookup Match Output].Columns[productKey]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">4</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Sales\Sort 1.Inputs[Sort Input].Columns[customerKey]"
+                      cachedDataType="i4"
+                      cachedName="customerKey"
+                      lineageId="Package\Sales\Lookup Customer.Outputs[Lookup Match Output].Columns[customerKey]">
                       <properties>
                         <property
                           dataType="System.Int32"
@@ -916,10 +1076,26 @@ where [refTable].[productName] = ?</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Sales\Sort.Inputs[Sort Input].Columns[datekey]"
-                      cachedDataType="dbDate"
+                      refId="Package\Sales\Sort 1.Inputs[Sort Input].Columns[salespersonKey]"
+                      cachedDataType="i4"
+                      cachedName="salespersonKey"
+                      lineageId="Package\Sales\Lookup Salesman.Outputs[Lookup Match Output].Columns[salespersonKey]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">2</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Sales\Sort 1.Inputs[Sort Input].Columns[datekey]"
+                      cachedDataType="i4"
                       cachedName="datekey"
-                      lineageId="Package\Sales\Date.Outputs[Lookup Match Output].Columns[datekey]">
+                      lineageId="Package\Sales\Lookup Date.Outputs[Lookup Match Output].Columns[datekey]">
                       <properties>
                         <property
                           dataType="System.Int32"
@@ -937,152 +1113,143 @@ where [refTable].[productName] = ?</property>
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Sales\Sort.Outputs[Sort Output]"
+                  refId="Package\Sales\Sort 1.Outputs[Sort Output]"
                   isSorted="true"
                   name="Sort Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Sales\Sort.Outputs[Sort Output].Columns[productName]"
-                      dataType="wstr"
-                      length="150"
-                      lineageId="Package\Sales\Sort.Outputs[Sort Output].Columns[productName]"
-                      name="productName">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Specifies the lineage identifier of the input column that is associated with this output column."
-                          name="SortColumnId">#{Package\Sales\Staging.Outputs[OLE DB Source Output].Columns[productName]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\Sales\Sort.Outputs[Sort Output].Columns[orderDate]"
-                      dataType="dbDate"
-                      lineageId="Package\Sales\Sort.Outputs[Sort Output].Columns[orderDate]"
-                      name="orderDate">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Specifies the lineage identifier of the input column that is associated with this output column."
-                          name="SortColumnId">#{Package\Sales\Staging.Outputs[OLE DB Source Output].Columns[orderDate]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\Sales\Sort.Outputs[Sort Output].Columns[firstName]"
-                      dataType="wstr"
-                      length="100"
-                      lineageId="Package\Sales\Sort.Outputs[Sort Output].Columns[firstName]"
-                      name="firstName">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Specifies the lineage identifier of the input column that is associated with this output column."
-                          name="SortColumnId">#{Package\Sales\Staging.Outputs[OLE DB Source Output].Columns[firstName]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\Sales\Sort.Outputs[Sort Output].Columns[lastName]"
-                      dataType="wstr"
-                      length="200"
-                      lineageId="Package\Sales\Sort.Outputs[Sort Output].Columns[lastName]"
-                      name="lastName">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Specifies the lineage identifier of the input column that is associated with this output column."
-                          name="SortColumnId">#{Package\Sales\Staging.Outputs[OLE DB Source Output].Columns[lastName]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\Sales\Sort.Outputs[Sort Output].Columns[birthDate]"
-                      dataType="dbDate"
-                      lineageId="Package\Sales\Sort.Outputs[Sort Output].Columns[birthDate]"
-                      name="birthDate">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Specifies the lineage identifier of the input column that is associated with this output column."
-                          name="SortColumnId">#{Package\Sales\Staging.Outputs[OLE DB Source Output].Columns[birthDate]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\Sales\Sort.Outputs[Sort Output].Columns[maritalStatus]"
+                      refId="Package\Sales\Sort 1.Outputs[Sort Output].Columns[rodzajsprzedazy]"
                       dataType="wstr"
                       length="10"
-                      lineageId="Package\Sales\Sort.Outputs[Sort Output].Columns[maritalStatus]"
-                      name="maritalStatus">
+                      lineageId="Package\Sales\Sort 1.Outputs[Sort Output].Columns[rodzajsprzedazy]"
+                      name="rodzajsprzedazy">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="Specifies the lineage identifier of the input column that is associated with this output column."
-                          name="SortColumnId">#{Package\Sales\Staging.Outputs[OLE DB Source Output].Columns[maritalStatus]}</property>
+                          name="SortColumnId">#{Package\Sales\Staging.Outputs[OLE DB Source Output].Columns[rodzajsprzedazy]}</property>
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Sales\Sort.Outputs[Sort Output].Columns[orderquantity]"
-                      dataType="i4"
-                      lineageId="Package\Sales\Sort.Outputs[Sort Output].Columns[orderquantity]"
-                      name="orderquantity">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Specifies the lineage identifier of the input column that is associated with this output column."
-                          name="SortColumnId">#{Package\Sales\Staging.Outputs[OLE DB Source Output].Columns[orderquantity]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\Sales\Sort.Outputs[Sort Output].Columns[unitPrice]"
+                      refId="Package\Sales\Sort 1.Outputs[Sort Output].Columns[quantity]"
                       dataType="numeric"
-                      lineageId="Package\Sales\Sort.Outputs[Sort Output].Columns[unitPrice]"
-                      name="unitPrice"
-                      precision="9"
-                      scale="4">
+                      lineageId="Package\Sales\Sort 1.Outputs[Sort Output].Columns[quantity]"
+                      name="quantity"
+                      precision="10"
+                      scale="5">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="Specifies the lineage identifier of the input column that is associated with this output column."
-                          name="SortColumnId">#{Package\Sales\Staging.Outputs[OLE DB Source Output].Columns[unitPrice]}</property>
+                          name="SortColumnId">#{Package\Sales\Staging.Outputs[OLE DB Source Output].Columns[quantity]}</property>
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Sales\Sort.Outputs[Sort Output].Columns[customerKey]"
-                      dataType="i4"
-                      lineageId="Package\Sales\Sort.Outputs[Sort Output].Columns[customerKey]"
-                      name="customerKey"
-                      sortKeyPosition="2">
+                      refId="Package\Sales\Sort 1.Outputs[Sort Output].Columns[profit]"
+                      dataType="numeric"
+                      lineageId="Package\Sales\Sort 1.Outputs[Sort Output].Columns[profit]"
+                      name="profit"
+                      precision="10"
+                      scale="5">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="Specifies the lineage identifier of the input column that is associated with this output column."
-                          name="SortColumnId">#{Package\Sales\Customers.Outputs[Lookup Match Output].Columns[customerKey]}</property>
+                          name="SortColumnId">#{Package\Sales\Staging.Outputs[OLE DB Source Output].Columns[profit]}</property>
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Sales\Sort.Outputs[Sort Output].Columns[productKey]"
+                      refId="Package\Sales\Sort 1.Outputs[Sort Output].Columns[uniteprice]"
+                      dataType="numeric"
+                      lineageId="Package\Sales\Sort 1.Outputs[Sort Output].Columns[uniteprice]"
+                      name="uniteprice"
+                      precision="10"
+                      scale="5">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Sales\Staging.Outputs[OLE DB Source Output].Columns[uniteprice]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Sales\Sort 1.Outputs[Sort Output].Columns[discount]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Sales\Sort 1.Outputs[Sort Output].Columns[discount]"
+                      name="discount">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Sales\Staging.Outputs[OLE DB Source Output].Columns[discount]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Sales\Sort 1.Outputs[Sort Output].Columns[kampania]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Sales\Sort 1.Outputs[Sort Output].Columns[kampania]"
+                      name="kampania">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Sales\Staging.Outputs[OLE DB Source Output].Columns[kampania]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Sales\Sort 1.Outputs[Sort Output].Columns[productKey]"
                       dataType="i4"
-                      lineageId="Package\Sales\Sort.Outputs[Sort Output].Columns[productKey]"
+                      lineageId="Package\Sales\Sort 1.Outputs[Sort Output].Columns[productKey]"
                       name="productKey"
+                      sortKeyPosition="4">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Sales\Lookup Product.Outputs[Lookup Match Output].Columns[productKey]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Sales\Sort 1.Outputs[Sort Output].Columns[customerKey]"
+                      dataType="i4"
+                      lineageId="Package\Sales\Sort 1.Outputs[Sort Output].Columns[customerKey]"
+                      name="customerKey"
                       sortKeyPosition="3">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="Specifies the lineage identifier of the input column that is associated with this output column."
-                          name="SortColumnId">#{Package\Sales\Product.Outputs[Lookup Match Output].Columns[productKey]}</property>
+                          name="SortColumnId">#{Package\Sales\Lookup Customer.Outputs[Lookup Match Output].Columns[customerKey]}</property>
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Sales\Sort.Outputs[Sort Output].Columns[datekey]"
-                      dataType="dbDate"
-                      lineageId="Package\Sales\Sort.Outputs[Sort Output].Columns[datekey]"
+                      refId="Package\Sales\Sort 1.Outputs[Sort Output].Columns[salespersonKey]"
+                      dataType="i4"
+                      lineageId="Package\Sales\Sort 1.Outputs[Sort Output].Columns[salespersonKey]"
+                      name="salespersonKey"
+                      sortKeyPosition="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Sales\Lookup Salesman.Outputs[Lookup Match Output].Columns[salespersonKey]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Sales\Sort 1.Outputs[Sort Output].Columns[datekey]"
+                      dataType="i4"
+                      lineageId="Package\Sales\Sort 1.Outputs[Sort Output].Columns[datekey]"
                       name="datekey"
                       sortKeyPosition="1">
                       <properties>
@@ -1090,7 +1257,7 @@ where [refTable].[productName] = ?</property>
                           containsID="true"
                           dataType="System.Int32"
                           description="Specifies the lineage identifier of the input column that is associated with this output column."
-                          name="SortColumnId">#{Package\Sales\Date.Outputs[Lookup Match Output].Columns[datekey]}</property>
+                          name="SortColumnId">#{Package\Sales\Lookup Date.Outputs[Lookup Match Output].Columns[datekey]}</property>
                       </properties>
                     </outputColumn>
                   </outputColumns>
@@ -1149,8 +1316,8 @@ where [refTable].[productName] = ?</property>
               <connections>
                 <connection
                   refId="Package\Sales\Staging.Connections[OleDbConnection]"
-                  connectionManagerID="{96B87E04-DEA4-49D4-9C00-66DE989260A0}:invalid"
-                  connectionManagerRefId="{96B87E04-DEA4-49D4-9C00-66DE989260A0}:invalid"
+                  connectionManagerID="{C8A1A240-BCE2-40D7-AAE1-8C2A5441DE5B}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[NAV_SQL]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -1179,63 +1346,107 @@ where [refTable].[productName] = ?</property>
                       name="orderDate"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Sales\Staging.Outputs[OLE DB Source Output].Columns[firstName]"
+                      refId="Package\Sales\Staging.Outputs[OLE DB Source Output].Columns[postinggroup]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Sales\Staging.Outputs[OLE DB Source Output].ExternalColumns[firstName]"
-                      length="100"
-                      lineageId="Package\Sales\Staging.Outputs[OLE DB Source Output].Columns[firstName]"
-                      name="firstName"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Sales\Staging.Outputs[OLE DB Source Output].Columns[lastName]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Sales\Staging.Outputs[OLE DB Source Output].ExternalColumns[lastName]"
-                      length="200"
-                      lineageId="Package\Sales\Staging.Outputs[OLE DB Source Output].Columns[lastName]"
-                      name="lastName"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Sales\Staging.Outputs[OLE DB Source Output].Columns[birthDate]"
-                      dataType="dbDate"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Sales\Staging.Outputs[OLE DB Source Output].ExternalColumns[birthDate]"
-                      lineageId="Package\Sales\Staging.Outputs[OLE DB Source Output].Columns[birthDate]"
-                      name="birthDate"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Sales\Staging.Outputs[OLE DB Source Output].Columns[maritalStatus]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Sales\Staging.Outputs[OLE DB Source Output].ExternalColumns[maritalStatus]"
+                      externalMetadataColumnId="Package\Sales\Staging.Outputs[OLE DB Source Output].ExternalColumns[postinggroup]"
                       length="10"
-                      lineageId="Package\Sales\Staging.Outputs[OLE DB Source Output].Columns[maritalStatus]"
-                      name="maritalStatus"
+                      lineageId="Package\Sales\Staging.Outputs[OLE DB Source Output].Columns[postinggroup]"
+                      name="postinggroup"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Sales\Staging.Outputs[OLE DB Source Output].Columns[orderquantity]"
-                      dataType="i4"
+                      refId="Package\Sales\Staging.Outputs[OLE DB Source Output].Columns[rodzajsprzedazy]"
+                      dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Sales\Staging.Outputs[OLE DB Source Output].ExternalColumns[orderquantity]"
-                      lineageId="Package\Sales\Staging.Outputs[OLE DB Source Output].Columns[orderquantity]"
-                      name="orderquantity"
+                      externalMetadataColumnId="Package\Sales\Staging.Outputs[OLE DB Source Output].ExternalColumns[rodzajsprzedazy]"
+                      length="10"
+                      lineageId="Package\Sales\Staging.Outputs[OLE DB Source Output].Columns[rodzajsprzedazy]"
+                      name="rodzajsprzedazy"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Sales\Staging.Outputs[OLE DB Source Output].Columns[unitPrice]"
+                      refId="Package\Sales\Staging.Outputs[OLE DB Source Output].Columns[quantity]"
                       dataType="numeric"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Sales\Staging.Outputs[OLE DB Source Output].ExternalColumns[unitPrice]"
-                      lineageId="Package\Sales\Staging.Outputs[OLE DB Source Output].Columns[unitPrice]"
-                      name="unitPrice"
-                      precision="9"
-                      scale="4"
+                      externalMetadataColumnId="Package\Sales\Staging.Outputs[OLE DB Source Output].ExternalColumns[quantity]"
+                      lineageId="Package\Sales\Staging.Outputs[OLE DB Source Output].Columns[quantity]"
+                      name="quantity"
+                      precision="10"
+                      scale="5"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Sales\Staging.Outputs[OLE DB Source Output].Columns[profit]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Sales\Staging.Outputs[OLE DB Source Output].ExternalColumns[profit]"
+                      lineageId="Package\Sales\Staging.Outputs[OLE DB Source Output].Columns[profit]"
+                      name="profit"
+                      precision="10"
+                      scale="5"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Sales\Staging.Outputs[OLE DB Source Output].Columns[uniteprice]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Sales\Staging.Outputs[OLE DB Source Output].ExternalColumns[uniteprice]"
+                      lineageId="Package\Sales\Staging.Outputs[OLE DB Source Output].Columns[uniteprice]"
+                      name="uniteprice"
+                      precision="10"
+                      scale="5"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Sales\Staging.Outputs[OLE DB Source Output].Columns[customer]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Sales\Staging.Outputs[OLE DB Source Output].ExternalColumns[customer]"
+                      length="50"
+                      lineageId="Package\Sales\Staging.Outputs[OLE DB Source Output].Columns[customer]"
+                      name="customer"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Sales\Staging.Outputs[OLE DB Source Output].Columns[city]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Sales\Staging.Outputs[OLE DB Source Output].ExternalColumns[city]"
+                      length="30"
+                      lineageId="Package\Sales\Staging.Outputs[OLE DB Source Output].Columns[city]"
+                      name="city"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Sales\Staging.Outputs[OLE DB Source Output].Columns[discount]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Sales\Staging.Outputs[OLE DB Source Output].ExternalColumns[discount]"
+                      length="50"
+                      lineageId="Package\Sales\Staging.Outputs[OLE DB Source Output].Columns[discount]"
+                      name="discount"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Sales\Staging.Outputs[OLE DB Source Output].Columns[sprzedawca]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Sales\Staging.Outputs[OLE DB Source Output].ExternalColumns[sprzedawca]"
+                      length="50"
+                      lineageId="Package\Sales\Staging.Outputs[OLE DB Source Output].Columns[sprzedawca]"
+                      name="sprzedawca"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Sales\Staging.Outputs[OLE DB Source Output].Columns[kampania]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Sales\Staging.Outputs[OLE DB Source Output].ExternalColumns[kampania]"
+                      length="50"
+                      lineageId="Package\Sales\Staging.Outputs[OLE DB Source Output].Columns[kampania]"
+                      name="kampania"
                       truncationRowDisposition="FailComponent" />
                   </outputColumns>
                   <externalMetadataColumns
@@ -1243,41 +1454,65 @@ where [refTable].[productName] = ?</property>
                     <externalMetadataColumn
                       refId="Package\Sales\Staging.Outputs[OLE DB Source Output].ExternalColumns[productName]"
                       dataType="wstr"
-                      length="150"
+                      length="50"
                       name="productName" />
                     <externalMetadataColumn
                       refId="Package\Sales\Staging.Outputs[OLE DB Source Output].ExternalColumns[orderDate]"
-                      dataType="dbDate"
+                      dataType="dbTimeStamp"
                       name="orderDate" />
                     <externalMetadataColumn
-                      refId="Package\Sales\Staging.Outputs[OLE DB Source Output].ExternalColumns[firstName]"
-                      dataType="wstr"
-                      length="100"
-                      name="firstName" />
-                    <externalMetadataColumn
-                      refId="Package\Sales\Staging.Outputs[OLE DB Source Output].ExternalColumns[lastName]"
-                      dataType="wstr"
-                      length="200"
-                      name="lastName" />
-                    <externalMetadataColumn
-                      refId="Package\Sales\Staging.Outputs[OLE DB Source Output].ExternalColumns[birthDate]"
-                      dataType="dbDate"
-                      name="birthDate" />
-                    <externalMetadataColumn
-                      refId="Package\Sales\Staging.Outputs[OLE DB Source Output].ExternalColumns[maritalStatus]"
+                      refId="Package\Sales\Staging.Outputs[OLE DB Source Output].ExternalColumns[postinggroup]"
                       dataType="wstr"
                       length="10"
-                      name="maritalStatus" />
+                      name="postinggroup" />
                     <externalMetadataColumn
-                      refId="Package\Sales\Staging.Outputs[OLE DB Source Output].ExternalColumns[orderquantity]"
-                      dataType="i4"
-                      name="orderquantity" />
+                      refId="Package\Sales\Staging.Outputs[OLE DB Source Output].ExternalColumns[rodzajsprzedazy]"
+                      dataType="wstr"
+                      length="10"
+                      name="rodzajsprzedazy" />
                     <externalMetadataColumn
-                      refId="Package\Sales\Staging.Outputs[OLE DB Source Output].ExternalColumns[unitPrice]"
+                      refId="Package\Sales\Staging.Outputs[OLE DB Source Output].ExternalColumns[quantity]"
                       dataType="numeric"
-                      name="unitPrice"
-                      precision="9"
-                      scale="4" />
+                      name="quantity"
+                      precision="10"
+                      scale="5" />
+                    <externalMetadataColumn
+                      refId="Package\Sales\Staging.Outputs[OLE DB Source Output].ExternalColumns[profit]"
+                      dataType="numeric"
+                      name="profit"
+                      precision="10"
+                      scale="5" />
+                    <externalMetadataColumn
+                      refId="Package\Sales\Staging.Outputs[OLE DB Source Output].ExternalColumns[uniteprice]"
+                      dataType="numeric"
+                      name="uniteprice"
+                      precision="10"
+                      scale="5" />
+                    <externalMetadataColumn
+                      refId="Package\Sales\Staging.Outputs[OLE DB Source Output].ExternalColumns[customer]"
+                      dataType="wstr"
+                      length="50"
+                      name="customer" />
+                    <externalMetadataColumn
+                      refId="Package\Sales\Staging.Outputs[OLE DB Source Output].ExternalColumns[city]"
+                      dataType="wstr"
+                      length="30"
+                      name="city" />
+                    <externalMetadataColumn
+                      refId="Package\Sales\Staging.Outputs[OLE DB Source Output].ExternalColumns[discount]"
+                      dataType="wstr"
+                      length="50"
+                      name="discount" />
+                    <externalMetadataColumn
+                      refId="Package\Sales\Staging.Outputs[OLE DB Source Output].ExternalColumns[sprzedawca]"
+                      dataType="wstr"
+                      length="50"
+                      name="sprzedawca" />
+                    <externalMetadataColumn
+                      refId="Package\Sales\Staging.Outputs[OLE DB Source Output].ExternalColumns[kampania]"
+                      dataType="wstr"
+                      length="50"
+                      name="kampania" />
                   </externalMetadataColumns>
                 </output>
                 <output
@@ -1288,49 +1523,77 @@ where [refTable].[productName] = ?</property>
                     <outputColumn
                       refId="Package\Sales\Staging.Outputs[OLE DB Source Error Output].Columns[productName]"
                       dataType="wstr"
-                      length="150"
+                      length="50"
                       lineageId="Package\Sales\Staging.Outputs[OLE DB Source Error Output].Columns[productName]"
                       name="productName" />
                     <outputColumn
                       refId="Package\Sales\Staging.Outputs[OLE DB Source Error Output].Columns[orderDate]"
-                      dataType="dbDate"
+                      dataType="dbTimeStamp"
                       lineageId="Package\Sales\Staging.Outputs[OLE DB Source Error Output].Columns[orderDate]"
                       name="orderDate" />
                     <outputColumn
-                      refId="Package\Sales\Staging.Outputs[OLE DB Source Error Output].Columns[firstName]"
-                      dataType="wstr"
-                      length="100"
-                      lineageId="Package\Sales\Staging.Outputs[OLE DB Source Error Output].Columns[firstName]"
-                      name="firstName" />
-                    <outputColumn
-                      refId="Package\Sales\Staging.Outputs[OLE DB Source Error Output].Columns[lastName]"
-                      dataType="wstr"
-                      length="200"
-                      lineageId="Package\Sales\Staging.Outputs[OLE DB Source Error Output].Columns[lastName]"
-                      name="lastName" />
-                    <outputColumn
-                      refId="Package\Sales\Staging.Outputs[OLE DB Source Error Output].Columns[birthDate]"
-                      dataType="dbDate"
-                      lineageId="Package\Sales\Staging.Outputs[OLE DB Source Error Output].Columns[birthDate]"
-                      name="birthDate" />
-                    <outputColumn
-                      refId="Package\Sales\Staging.Outputs[OLE DB Source Error Output].Columns[maritalStatus]"
+                      refId="Package\Sales\Staging.Outputs[OLE DB Source Error Output].Columns[postinggroup]"
                       dataType="wstr"
                       length="10"
-                      lineageId="Package\Sales\Staging.Outputs[OLE DB Source Error Output].Columns[maritalStatus]"
-                      name="maritalStatus" />
+                      lineageId="Package\Sales\Staging.Outputs[OLE DB Source Error Output].Columns[postinggroup]"
+                      name="postinggroup" />
                     <outputColumn
-                      refId="Package\Sales\Staging.Outputs[OLE DB Source Error Output].Columns[orderquantity]"
-                      dataType="i4"
-                      lineageId="Package\Sales\Staging.Outputs[OLE DB Source Error Output].Columns[orderquantity]"
-                      name="orderquantity" />
+                      refId="Package\Sales\Staging.Outputs[OLE DB Source Error Output].Columns[rodzajsprzedazy]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\Sales\Staging.Outputs[OLE DB Source Error Output].Columns[rodzajsprzedazy]"
+                      name="rodzajsprzedazy" />
                     <outputColumn
-                      refId="Package\Sales\Staging.Outputs[OLE DB Source Error Output].Columns[unitPrice]"
+                      refId="Package\Sales\Staging.Outputs[OLE DB Source Error Output].Columns[quantity]"
                       dataType="numeric"
-                      lineageId="Package\Sales\Staging.Outputs[OLE DB Source Error Output].Columns[unitPrice]"
-                      name="unitPrice"
-                      precision="9"
-                      scale="4" />
+                      lineageId="Package\Sales\Staging.Outputs[OLE DB Source Error Output].Columns[quantity]"
+                      name="quantity"
+                      precision="10"
+                      scale="5" />
+                    <outputColumn
+                      refId="Package\Sales\Staging.Outputs[OLE DB Source Error Output].Columns[profit]"
+                      dataType="numeric"
+                      lineageId="Package\Sales\Staging.Outputs[OLE DB Source Error Output].Columns[profit]"
+                      name="profit"
+                      precision="10"
+                      scale="5" />
+                    <outputColumn
+                      refId="Package\Sales\Staging.Outputs[OLE DB Source Error Output].Columns[uniteprice]"
+                      dataType="numeric"
+                      lineageId="Package\Sales\Staging.Outputs[OLE DB Source Error Output].Columns[uniteprice]"
+                      name="uniteprice"
+                      precision="10"
+                      scale="5" />
+                    <outputColumn
+                      refId="Package\Sales\Staging.Outputs[OLE DB Source Error Output].Columns[customer]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Sales\Staging.Outputs[OLE DB Source Error Output].Columns[customer]"
+                      name="customer" />
+                    <outputColumn
+                      refId="Package\Sales\Staging.Outputs[OLE DB Source Error Output].Columns[city]"
+                      dataType="wstr"
+                      length="30"
+                      lineageId="Package\Sales\Staging.Outputs[OLE DB Source Error Output].Columns[city]"
+                      name="city" />
+                    <outputColumn
+                      refId="Package\Sales\Staging.Outputs[OLE DB Source Error Output].Columns[discount]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Sales\Staging.Outputs[OLE DB Source Error Output].Columns[discount]"
+                      name="discount" />
+                    <outputColumn
+                      refId="Package\Sales\Staging.Outputs[OLE DB Source Error Output].Columns[sprzedawca]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Sales\Staging.Outputs[OLE DB Source Error Output].Columns[sprzedawca]"
+                      name="sprzedawca" />
+                    <outputColumn
+                      refId="Package\Sales\Staging.Outputs[OLE DB Source Error Output].Columns[kampania]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Sales\Staging.Outputs[OLE DB Source Error Output].Columns[kampania]"
+                      name="kampania" />
                     <outputColumn
                       refId="Package\Sales\Staging.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                       dataType="i4"
@@ -1352,29 +1615,34 @@ where [refTable].[productName] = ?</property>
           <paths>
             <path
               refId="Package\Sales.Paths[Lookup Match Output]"
-              endId="Package\Sales\Product.Inputs[Lookup Input]"
+              endId="Package\Sales\Lookup Customer.Inputs[Lookup Input]"
               name="Lookup Match Output"
-              startId="Package\Sales\Customers.Outputs[Lookup Match Output]" />
+              startId="Package\Sales\Lookup Product.Outputs[Lookup Match Output]" />
             <path
               refId="Package\Sales.Paths[Lookup Match Output1]"
-              endId="Package\Sales\Date.Inputs[Lookup Input]"
+              endId="Package\Sales\Lookup Salesman.Inputs[Lookup Input]"
               name="Lookup Match Output"
-              startId="Package\Sales\Product.Outputs[Lookup Match Output]" />
+              startId="Package\Sales\Lookup Customer.Outputs[Lookup Match Output]" />
             <path
               refId="Package\Sales.Paths[Lookup Match Output2]"
-              endId="Package\Sales\Sort.Inputs[Sort Input]"
+              endId="Package\Sales\Lookup Date.Inputs[Lookup Input]"
               name="Lookup Match Output"
-              startId="Package\Sales\Date.Outputs[Lookup Match Output]" />
+              startId="Package\Sales\Lookup Salesman.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Sales.Paths[Lookup Match Output3]"
+              endId="Package\Sales\Sort 1.Inputs[Sort Input]"
+              name="Lookup Match Output"
+              startId="Package\Sales\Lookup Date.Outputs[Lookup Match Output]" />
             <path
               refId="Package\Sales.Paths[OLE DB Source Output]"
-              endId="Package\Sales\Customers.Inputs[Lookup Input]"
+              endId="Package\Sales\Lookup Product.Inputs[Lookup Input]"
               name="OLE DB Source Output"
               startId="Package\Sales\Staging.Outputs[OLE DB Source Output]" />
             <path
               refId="Package\Sales.Paths[Sort Output]"
               endId="Package\Sales\Fact Sales.Inputs[OLE DB Destination Input]"
               name="Sort Output"
-              startId="Package\Sales\Sort.Outputs[Sort Output]" />
+              startId="Package\Sales\Sort 1.Outputs[Sort Output]" />
           </paths>
         </pipeline>
       </DTS:ObjectData>
@@ -1407,37 +1675,49 @@ where [refTable].[productName] = ?</property>
         <NodeLayout
           Size="114,42"
           Id="Package\Sales\Staging"
-          TopLeft="330,47" />
+          TopLeft="135,16" />
         <NodeLayout
-          Size="129,42"
-          Id="Package\Sales\Customers"
-          TopLeft="101,103" />
+          Size="152,42"
+          Id="Package\Sales\Lookup Product"
+          TopLeft="138,86" />
+        <NodeLayout
+          Size="161,42"
+          Id="Package\Sales\Lookup Customer"
+          TopLeft="357,94" />
+        <NodeLayout
+          Size="161,42"
+          Id="Package\Sales\Lookup Salesman"
+          TopLeft="550,94" />
+        <NodeLayout
+          Size="138,42"
+          Id="Package\Sales\Lookup Date"
+          TopLeft="797,95" />
         <EdgeLayout
           Id="Package\Sales.Paths[OLE DB Source Output]"
-          TopLeft="330,68">
+          TopLeft="192,58">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-100,56"
+              EndConnector="22,28"
               Start="0,0"
-              End="-92.5,56">
+              End="22,20.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="-46,0" />
+                    End="0,10" />
                   <mssgle:CubicBezierSegment
-                    Point1="-46,0"
-                    Point2="-50,0"
-                    Point3="-50,4" />
+                    Point1="0,10"
+                    Point2="0,14"
+                    Point3="4,14" />
                   <mssgle:LineSegment
-                    End="-50,52" />
+                    End="18,14" />
                   <mssgle:CubicBezierSegment
-                    Point1="-50,52"
-                    Point2="-50,56"
-                    Point3="-54,56" />
+                    Point1="18,14"
+                    Point2="22,14"
+                    Point3="22,18" />
                   <mssgle:LineSegment
-                    End="-92.5,56" />
+                    End="22,20.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1446,120 +1726,160 @@ where [refTable].[productName] = ?</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="115,42"
-          Id="Package\Sales\Product"
-          TopLeft="107,219" />
         <EdgeLayout
           Id="Package\Sales.Paths[Lookup Match Output]"
-          TopLeft="165,145">
+          TopLeft="290,107">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,74"
+              EndConnector="67,8"
               Start="0,0"
-              End="0,66.5">
+              End="59.5,8">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,66.5" />
+                    End="29.5,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="29.5,0"
+                    Point2="33.5,0"
+                    Point3="33.5,4" />
+                  <mssgle:LineSegment
+                    End="33.5,4" />
+                  <mssgle:CubicBezierSegment
+                    Point1="33.5,4"
+                    Point2="33.5,8"
+                    Point3="37.5,8" />
+                  <mssgle:LineSegment
+                    End="59.5,8" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-48.19138671875,27.4453125,96.3827734375,11.609375"
+              BoundingBox="-14.69138671875,9,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sales.Paths[Lookup Match Output1]"
+          TopLeft="518,115">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="32,0"
+              Start="0,0"
+              End="24.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="24.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-35.94138671875,5,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sales.Paths[Lookup Match Output2]"
+          TopLeft="711,115.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="86,0"
+              Start="0,0"
+              End="78.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="78.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-8.94138671875,5,96.3827734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <NodeLayout
-          Size="101,42"
-          Id="Package\Sales\Date"
-          TopLeft="106,366" />
+          Size="107,42"
+          Id="Package\Sales\Sort 1"
+          TopLeft="797,216" />
         <EdgeLayout
-          Id="Package\Sales.Paths[Lookup Match Output1]"
-          TopLeft="164.5,261">
+          Id="Package\Sales.Paths[Lookup Match Output3]"
+          TopLeft="866,137">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-8,105"
+              EndConnector="-15.5,79"
               Start="0,0"
-              End="-8,97.5">
+              End="-15.5,71.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,48.5" />
+                    End="0,35.5" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,48.5"
-                    Point2="0,52.5"
-                    Point3="-4,52.5" />
+                    Point1="0,35.5"
+                    Point2="0,39.5"
+                    Point3="-4,39.5" />
                   <mssgle:LineSegment
-                    End="-4,52.5" />
+                    End="-11.5,39.5" />
                   <mssgle:CubicBezierSegment
-                    Point1="-4,52.5"
-                    Point2="-8,52.5"
-                    Point3="-8,56.5" />
+                    Point1="-11.5,39.5"
+                    Point2="-15.5,39.5"
+                    Point3="-15.5,43.5" />
                   <mssgle:LineSegment
-                    End="-8,97.5" />
+                    End="-15.5,71.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-52.19138671875,57.5,96.3827734375,11.609375"
+              BoundingBox="-55.94138671875,44.5,96.3827734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <NodeLayout
           Size="126,42"
           Id="Package\Sales\Fact Sales"
-          TopLeft="553,372" />
-        <NodeLayout
-          Size="98,42"
-          Id="Package\Sales\Sort"
-          TopLeft="299,370" />
-        <EdgeLayout
-          Id="Package\Sales.Paths[Lookup Match Output2]"
-          TopLeft="207,389">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="92,0"
-              Start="0,0"
-              End="84.5,0">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="84.5,0" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-5.94138671875,5,96.3827734375,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
+          TopLeft="806,349" />
         <EdgeLayout
           Id="Package\Sales.Paths[Sort Output]"
-          TopLeft="397,392">
+          TopLeft="850.5,258">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="156,0"
+              EndConnector="18.5,91"
               Start="0,0"
-              End="148.5,0">
+              End="18.5,83.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="148.5,0" />
+                    End="0,41.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,41.5"
+                    Point2="0,45.5"
+                    Point3="4,45.5" />
+                  <mssgle:LineSegment
+                    End="14.5,45.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="14.5,45.5"
+                    Point2="18.5,45.5"
+                    Point3="18.5,49.5" />
+                  <mssgle:LineSegment
+                    End="18.5,83.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1585,30 +1905,7 @@ where [refTable].[productName] = ?</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Sales\Customers">
-    <Properties>
-      <Property>
-        <Name>OverwriteParamsSQLProp</Name>
-        <Value
-          type="q2:boolean">false</Value>
-      </Property>
-      <Property>
-        <Name>UsedTableName</Name>
-        <Value
-          type="q3:string">[dim].[customer]</Value>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q4:int">0</Value>
-      </Property>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Sales\Product">
+    design-time-name="Package\Sales\Lookup Product">
     <Properties>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
@@ -1631,7 +1928,53 @@ where [refTable].[productName] = ?</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Sales\Date">
+    design-time-name="Package\Sales\Lookup Customer">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dim].[customer]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Sales\Lookup Salesman">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dim].[salesperson]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Sales\Lookup Date">
     <Properties>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
