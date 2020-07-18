@@ -77,5 +77,10 @@
     <Build Include="Security\dim.sql" />
     <Build Include="Security\fact.sql" />
     <Build Include="Security\staging.sql" />
+    <Build Include="staging\Tables\cost.sql" />
+    <Build Include="fact\Tables\Costs.sql" />
+    <Build Include="dim\Tables\costType.sql" />
+    <Build Include="dim\Tables\costCenter.sql" />
+    <Build Include="dim\Tables\cost.sql" />
   </ItemGroup>
 </Project>
