@@ -11,12 +11,1324 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Facts"
   DTS:PackageType="5"
-  DTS:VersionBuild="4"
-  DTS:VersionGUID="{1C62963F-8218-4463-BEFF-051CB1C85599}">
+  DTS:VersionBuild="6"
+  DTS:VersionGUID="{650B6B2E-7692-46FB-83F6-5E9508F7FE8A}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
   <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Cost"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{CE777B37-4C34-43E9-B9FF-9542493EAC16}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Cost"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Cost\Cost"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Cost"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[fact].[Costs]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Cost\Cost.Connections[OleDbConnection]"
+                  connectionManagerID="{C8A1A240-BCE2-40D7-AAE1-8C2A5441DE5B}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[NAV_SQL]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Cost\Cost.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Cost\Cost.Inputs[OLE DB Destination Input].Columns[amount]"
+                      cachedDataType="numeric"
+                      cachedName="amount"
+                      cachedPrecision="38"
+                      cachedScale="20"
+                      externalMetadataColumnId="Package\Cost\Cost.Inputs[OLE DB Destination Input].ExternalColumns[amount]"
+                      lineageId="Package\Cost\Sort.Outputs[Sort Output].Columns[amount]" />
+                    <inputColumn
+                      refId="Package\Cost\Cost.Inputs[OLE DB Destination Input].Columns[costId]"
+                      cachedDataType="i4"
+                      cachedName="costId"
+                      externalMetadataColumnId="Package\Cost\Cost.Inputs[OLE DB Destination Input].ExternalColumns[costID]"
+                      lineageId="Package\Cost\Sort.Outputs[Sort Output].Columns[costId]" />
+                    <inputColumn
+                      refId="Package\Cost\Cost.Inputs[OLE DB Destination Input].Columns[costCenterId]"
+                      cachedDataType="i4"
+                      cachedName="costCenterId"
+                      externalMetadataColumnId="Package\Cost\Cost.Inputs[OLE DB Destination Input].ExternalColumns[costCenterId]"
+                      lineageId="Package\Cost\Sort.Outputs[Sort Output].Columns[costCenterId]" />
+                    <inputColumn
+                      refId="Package\Cost\Cost.Inputs[OLE DB Destination Input].Columns[costTypeID]"
+                      cachedDataType="i4"
+                      cachedName="costTypeID"
+                      externalMetadataColumnId="Package\Cost\Cost.Inputs[OLE DB Destination Input].ExternalColumns[costTypeId]"
+                      lineageId="Package\Cost\Sort.Outputs[Sort Output].Columns[costTypeID]" />
+                    <inputColumn
+                      refId="Package\Cost\Cost.Inputs[OLE DB Destination Input].Columns[datekey]"
+                      cachedDataType="i4"
+                      cachedName="datekey"
+                      externalMetadataColumnId="Package\Cost\Cost.Inputs[OLE DB Destination Input].ExternalColumns[Date]"
+                      lineageId="Package\Cost\Sort.Outputs[Sort Output].Columns[datekey]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Cost\Cost.Inputs[OLE DB Destination Input].ExternalColumns[ID]"
+                      dataType="i4"
+                      name="ID" />
+                    <externalMetadataColumn
+                      refId="Package\Cost\Cost.Inputs[OLE DB Destination Input].ExternalColumns[costID]"
+                      dataType="i4"
+                      name="costID" />
+                    <externalMetadataColumn
+                      refId="Package\Cost\Cost.Inputs[OLE DB Destination Input].ExternalColumns[costCenterId]"
+                      dataType="i4"
+                      name="costCenterId" />
+                    <externalMetadataColumn
+                      refId="Package\Cost\Cost.Inputs[OLE DB Destination Input].ExternalColumns[costTypeId]"
+                      dataType="i4"
+                      name="costTypeId" />
+                    <externalMetadataColumn
+                      refId="Package\Cost\Cost.Inputs[OLE DB Destination Input].ExternalColumns[Date]"
+                      dataType="i4"
+                      name="Date" />
+                    <externalMetadataColumn
+                      refId="Package\Cost\Cost.Inputs[OLE DB Destination Input].ExternalColumns[amount]"
+                      dataType="numeric"
+                      name="amount"
+                      precision="38"
+                      scale="20" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Cost\Cost.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Cost\Cost.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cost\Cost.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Cost\Cost.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Cost\Cost.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Cost\Cost.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Cost\Lookup Cost"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup Cost"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dim].[cost]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dim].[cost]) [refTable]
+where [refTable].[description] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="costId" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="description" dataType="DT_WSTR" length="80" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Cost\Staging.Outputs[OLE DB Source Output].Columns[description]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Cost\Lookup Cost.Connections[OleDbConnection]"
+                  connectionManagerID="{C8A1A240-BCE2-40D7-AAE1-8C2A5441DE5B}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[NAV_SQL]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Cost\Lookup Cost.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Cost\Lookup Cost.Inputs[Lookup Input].Columns[description]"
+                      cachedDataType="wstr"
+                      cachedLength="80"
+                      cachedName="description"
+                      lineageId="Package\Cost\Staging.Outputs[OLE DB Source Output].Columns[description]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">description</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Cost\Lookup Cost.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Cost\Lookup Cost.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cost\Lookup Cost.Outputs[Lookup Match Output].Columns[costId]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Cost\Lookup Cost.Outputs[Lookup Match Output].Columns[costId]"
+                      name="costId"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">costId</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Cost\Lookup Cost.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Cost\Lookup Cost.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Cost\Lookup Cost.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Cost\Lookup Cost.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cost\Lookup Cost.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Cost\Lookup Cost.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Cost\Lookup Cost.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Cost\Lookup Cost.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Cost\Lookup Cost Center"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup Cost Center"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dim].[costCenter]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dim].[costCenter]) [refTable]
+where [refTable].[costCenter] = ? and [refTable].[name] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="costCenterId" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="costCenter" dataType="DT_WSTR" length="20" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="name" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Cost\Staging.Outputs[OLE DB Source Output].Columns[cost_center]};#{Package\Cost\Staging.Outputs[OLE DB Source Output].Columns[cost_center_name]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Cost\Lookup Cost Center.Connections[OleDbConnection]"
+                  connectionManagerID="{C8A1A240-BCE2-40D7-AAE1-8C2A5441DE5B}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[NAV_SQL]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Cost\Lookup Cost Center.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Cost\Lookup Cost Center.Inputs[Lookup Input].Columns[cost_center]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="cost_center"
+                      lineageId="Package\Cost\Staging.Outputs[OLE DB Source Output].Columns[cost_center]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">costCenter</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Cost\Lookup Cost Center.Inputs[Lookup Input].Columns[cost_center_name]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="cost_center_name"
+                      lineageId="Package\Cost\Staging.Outputs[OLE DB Source Output].Columns[cost_center_name]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">name</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Cost\Lookup Cost Center.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Cost\Lookup Cost Center.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cost\Lookup Cost Center.Outputs[Lookup Match Output].Columns[costCenterId]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Cost\Lookup Cost Center.Outputs[Lookup Match Output].Columns[costCenterId]"
+                      name="costCenterId"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">costCenterId</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Cost\Lookup Cost Center.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Cost\Lookup Cost Center.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Cost\Lookup Cost Center.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Cost\Lookup Cost Center.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cost\Lookup Cost Center.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Cost\Lookup Cost Center.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Cost\Lookup Cost Center.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Cost\Lookup Cost Center.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Cost\Lookup Cost Type"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup Cost Type"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dim].[costType]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dim].[costType]) [refTable]
+where [refTable].[name] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="costTypeID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="name" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Cost\Staging.Outputs[OLE DB Source Output].Columns[cost_type]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Cost\Lookup Cost Type.Connections[OleDbConnection]"
+                  connectionManagerID="{C8A1A240-BCE2-40D7-AAE1-8C2A5441DE5B}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[NAV_SQL]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Cost\Lookup Cost Type.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Cost\Lookup Cost Type.Inputs[Lookup Input].Columns[cost_type]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="cost_type"
+                      lineageId="Package\Cost\Staging.Outputs[OLE DB Source Output].Columns[cost_type]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">name</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Cost\Lookup Cost Type.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Cost\Lookup Cost Type.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cost\Lookup Cost Type.Outputs[Lookup Match Output].Columns[costTypeID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Cost\Lookup Cost Type.Outputs[Lookup Match Output].Columns[costTypeID]"
+                      name="costTypeID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">costTypeID</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Cost\Lookup Cost Type.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Cost\Lookup Cost Type.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Cost\Lookup Cost Type.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Cost\Lookup Cost Type.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cost\Lookup Cost Type.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Cost\Lookup Cost Type.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Cost\Lookup Cost Type.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Cost\Lookup Cost Type.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Cost\Lookup Date"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup Date"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dim].[date]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dim].[date]) [refTable]
+where [refTable].[date] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="datekey" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Year" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="day" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="date" dataType="DT_DBDATE" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="month" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Cost\Staging.Outputs[OLE DB Source Output].Columns[date]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Cost\Lookup Date.Connections[OleDbConnection]"
+                  connectionManagerID="{C8A1A240-BCE2-40D7-AAE1-8C2A5441DE5B}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[NAV_SQL]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Cost\Lookup Date.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Cost\Lookup Date.Inputs[Lookup Input].Columns[date]"
+                      cachedDataType="dbDate"
+                      cachedName="date"
+                      lineageId="Package\Cost\Staging.Outputs[OLE DB Source Output].Columns[date]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">date</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Cost\Lookup Date.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Cost\Lookup Date.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cost\Lookup Date.Outputs[Lookup Match Output].Columns[datekey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Cost\Lookup Date.Outputs[Lookup Match Output].Columns[datekey]"
+                      name="datekey"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">datekey</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Cost\Lookup Date.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Cost\Lookup Date.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Cost\Lookup Date.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Cost\Lookup Date.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cost\Lookup Date.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Cost\Lookup Date.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Cost\Lookup Date.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Cost\Lookup Date.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Cost\Sort"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+              name="Sort"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Cost\Sort.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Cost\Sort.Inputs[Sort Input].Columns[nr]"
+                      cachedDataType="i4"
+                      cachedName="nr"
+                      lineageId="Package\Cost\Staging.Outputs[OLE DB Source Output].Columns[nr]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Cost\Sort.Inputs[Sort Input].Columns[amount]"
+                      cachedDataType="numeric"
+                      cachedName="amount"
+                      cachedPrecision="38"
+                      cachedScale="20"
+                      lineageId="Package\Cost\Staging.Outputs[OLE DB Source Output].Columns[amount]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Cost\Sort.Inputs[Sort Input].Columns[costId]"
+                      cachedDataType="i4"
+                      cachedName="costId"
+                      lineageId="Package\Cost\Lookup Cost.Outputs[Lookup Match Output].Columns[costId]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Cost\Sort.Inputs[Sort Input].Columns[costCenterId]"
+                      cachedDataType="i4"
+                      cachedName="costCenterId"
+                      lineageId="Package\Cost\Lookup Cost Center.Outputs[Lookup Match Output].Columns[costCenterId]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Cost\Sort.Inputs[Sort Input].Columns[costTypeID]"
+                      cachedDataType="i4"
+                      cachedName="costTypeID"
+                      lineageId="Package\Cost\Lookup Cost Type.Outputs[Lookup Match Output].Columns[costTypeID]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Cost\Sort.Inputs[Sort Input].Columns[datekey]"
+                      cachedDataType="i4"
+                      cachedName="datekey"
+                      lineageId="Package\Cost\Lookup Date.Outputs[Lookup Match Output].Columns[datekey]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Cost\Sort.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cost\Sort.Outputs[Sort Output].Columns[nr]"
+                      dataType="i4"
+                      lineageId="Package\Cost\Sort.Outputs[Sort Output].Columns[nr]"
+                      name="nr"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Cost\Staging.Outputs[OLE DB Source Output].Columns[nr]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Cost\Sort.Outputs[Sort Output].Columns[amount]"
+                      dataType="numeric"
+                      lineageId="Package\Cost\Sort.Outputs[Sort Output].Columns[amount]"
+                      name="amount"
+                      precision="38"
+                      scale="20">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Cost\Staging.Outputs[OLE DB Source Output].Columns[amount]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Cost\Sort.Outputs[Sort Output].Columns[costId]"
+                      dataType="i4"
+                      lineageId="Package\Cost\Sort.Outputs[Sort Output].Columns[costId]"
+                      name="costId">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Cost\Lookup Cost.Outputs[Lookup Match Output].Columns[costId]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Cost\Sort.Outputs[Sort Output].Columns[costCenterId]"
+                      dataType="i4"
+                      lineageId="Package\Cost\Sort.Outputs[Sort Output].Columns[costCenterId]"
+                      name="costCenterId">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Cost\Lookup Cost Center.Outputs[Lookup Match Output].Columns[costCenterId]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Cost\Sort.Outputs[Sort Output].Columns[costTypeID]"
+                      dataType="i4"
+                      lineageId="Package\Cost\Sort.Outputs[Sort Output].Columns[costTypeID]"
+                      name="costTypeID">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Cost\Lookup Cost Type.Outputs[Lookup Match Output].Columns[costTypeID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Cost\Sort.Outputs[Sort Output].Columns[datekey]"
+                      dataType="i4"
+                      lineageId="Package\Cost\Sort.Outputs[Sort Output].Columns[datekey]"
+                      name="datekey">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Cost\Lookup Date.Outputs[Lookup Match Output].Columns[datekey]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Cost\Staging"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Staging"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[staging].[cost]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Cost\Staging.Connections[OleDbConnection]"
+                  connectionManagerID="{C8A1A240-BCE2-40D7-AAE1-8C2A5441DE5B}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[NAV_SQL]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Cost\Staging.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cost\Staging.Outputs[OLE DB Source Output].Columns[nr]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cost\Staging.Outputs[OLE DB Source Output].ExternalColumns[nr]"
+                      lineageId="Package\Cost\Staging.Outputs[OLE DB Source Output].Columns[nr]"
+                      name="nr"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cost\Staging.Outputs[OLE DB Source Output].Columns[date]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cost\Staging.Outputs[OLE DB Source Output].ExternalColumns[date]"
+                      lineageId="Package\Cost\Staging.Outputs[OLE DB Source Output].Columns[date]"
+                      name="date"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cost\Staging.Outputs[OLE DB Source Output].Columns[description]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cost\Staging.Outputs[OLE DB Source Output].ExternalColumns[description]"
+                      length="80"
+                      lineageId="Package\Cost\Staging.Outputs[OLE DB Source Output].Columns[description]"
+                      name="description"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cost\Staging.Outputs[OLE DB Source Output].Columns[amount]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cost\Staging.Outputs[OLE DB Source Output].ExternalColumns[amount]"
+                      lineageId="Package\Cost\Staging.Outputs[OLE DB Source Output].Columns[amount]"
+                      name="amount"
+                      precision="38"
+                      scale="20"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cost\Staging.Outputs[OLE DB Source Output].Columns[cost_center]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cost\Staging.Outputs[OLE DB Source Output].ExternalColumns[cost_center]"
+                      length="20"
+                      lineageId="Package\Cost\Staging.Outputs[OLE DB Source Output].Columns[cost_center]"
+                      name="cost_center"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cost\Staging.Outputs[OLE DB Source Output].Columns[cost_center_name]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cost\Staging.Outputs[OLE DB Source Output].ExternalColumns[cost_center_name]"
+                      length="50"
+                      lineageId="Package\Cost\Staging.Outputs[OLE DB Source Output].Columns[cost_center_name]"
+                      name="cost_center_name"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cost\Staging.Outputs[OLE DB Source Output].Columns[cost_type]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cost\Staging.Outputs[OLE DB Source Output].ExternalColumns[cost_type]"
+                      length="50"
+                      lineageId="Package\Cost\Staging.Outputs[OLE DB Source Output].Columns[cost_type]"
+                      name="cost_type"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Cost\Staging.Outputs[OLE DB Source Output].ExternalColumns[nr]"
+                      dataType="i4"
+                      name="nr" />
+                    <externalMetadataColumn
+                      refId="Package\Cost\Staging.Outputs[OLE DB Source Output].ExternalColumns[date]"
+                      dataType="dbDate"
+                      name="date" />
+                    <externalMetadataColumn
+                      refId="Package\Cost\Staging.Outputs[OLE DB Source Output].ExternalColumns[description]"
+                      dataType="wstr"
+                      length="80"
+                      name="description" />
+                    <externalMetadataColumn
+                      refId="Package\Cost\Staging.Outputs[OLE DB Source Output].ExternalColumns[amount]"
+                      dataType="numeric"
+                      name="amount"
+                      precision="38"
+                      scale="20" />
+                    <externalMetadataColumn
+                      refId="Package\Cost\Staging.Outputs[OLE DB Source Output].ExternalColumns[cost_center]"
+                      dataType="wstr"
+                      length="20"
+                      name="cost_center" />
+                    <externalMetadataColumn
+                      refId="Package\Cost\Staging.Outputs[OLE DB Source Output].ExternalColumns[cost_center_name]"
+                      dataType="wstr"
+                      length="50"
+                      name="cost_center_name" />
+                    <externalMetadataColumn
+                      refId="Package\Cost\Staging.Outputs[OLE DB Source Output].ExternalColumns[cost_type]"
+                      dataType="wstr"
+                      length="50"
+                      name="cost_type" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Cost\Staging.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cost\Staging.Outputs[OLE DB Source Error Output].Columns[nr]"
+                      dataType="i4"
+                      lineageId="Package\Cost\Staging.Outputs[OLE DB Source Error Output].Columns[nr]"
+                      name="nr" />
+                    <outputColumn
+                      refId="Package\Cost\Staging.Outputs[OLE DB Source Error Output].Columns[date]"
+                      dataType="dbDate"
+                      lineageId="Package\Cost\Staging.Outputs[OLE DB Source Error Output].Columns[date]"
+                      name="date" />
+                    <outputColumn
+                      refId="Package\Cost\Staging.Outputs[OLE DB Source Error Output].Columns[description]"
+                      dataType="wstr"
+                      length="80"
+                      lineageId="Package\Cost\Staging.Outputs[OLE DB Source Error Output].Columns[description]"
+                      name="description" />
+                    <outputColumn
+                      refId="Package\Cost\Staging.Outputs[OLE DB Source Error Output].Columns[amount]"
+                      dataType="numeric"
+                      lineageId="Package\Cost\Staging.Outputs[OLE DB Source Error Output].Columns[amount]"
+                      name="amount"
+                      precision="38"
+                      scale="20" />
+                    <outputColumn
+                      refId="Package\Cost\Staging.Outputs[OLE DB Source Error Output].Columns[cost_center]"
+                      dataType="wstr"
+                      length="20"
+                      lineageId="Package\Cost\Staging.Outputs[OLE DB Source Error Output].Columns[cost_center]"
+                      name="cost_center" />
+                    <outputColumn
+                      refId="Package\Cost\Staging.Outputs[OLE DB Source Error Output].Columns[cost_center_name]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Cost\Staging.Outputs[OLE DB Source Error Output].Columns[cost_center_name]"
+                      name="cost_center_name" />
+                    <outputColumn
+                      refId="Package\Cost\Staging.Outputs[OLE DB Source Error Output].Columns[cost_type]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Cost\Staging.Outputs[OLE DB Source Error Output].Columns[cost_type]"
+                      name="cost_type" />
+                    <outputColumn
+                      refId="Package\Cost\Staging.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Cost\Staging.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Cost\Staging.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Cost\Staging.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Cost.Paths[Lookup Match Output]"
+              endId="Package\Cost\Lookup Cost Center.Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\Cost\Lookup Cost.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Cost.Paths[Lookup Match Output1]"
+              endId="Package\Cost\Lookup Cost Type.Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\Cost\Lookup Cost Center.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Cost.Paths[Lookup Match Output2]"
+              endId="Package\Cost\Lookup Date.Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\Cost\Lookup Cost Type.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Cost.Paths[Lookup Match Output3]"
+              endId="Package\Cost\Sort.Inputs[Sort Input]"
+              name="Lookup Match Output"
+              startId="Package\Cost\Lookup Date.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Cost.Paths[OLE DB Source Output]"
+              endId="Package\Cost\Lookup Cost.Inputs[Lookup Input]"
+              name="OLE DB Source Output"
+              startId="Package\Cost\Staging.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Cost.Paths[Sort Output]"
+              endId="Package\Cost\Cost.Inputs[OLE DB Destination Input]"
+              name="Sort Output"
+              startId="Package\Cost\Sort.Outputs[Sort Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
     <DTS:Executable
       DTS:refId="Package\Sales"
       DTS:CreationName="Microsoft.Pipeline"
@@ -1663,7 +2975,11 @@ where [refTable].[sprzedawca] = ?</property>
         <NodeLayout
           Size="103,42"
           Id="Package\Sales"
-          TopLeft="286,97" />
+          TopLeft="219,92" />
+        <NodeLayout
+          Size="100,42"
+          Id="Package\Cost"
+          TopLeft="483,91" />
       </GraphLayout>
     </LayoutInfo>
   </Package>
@@ -1673,9 +2989,17 @@ where [refTable].[sprzedawca] = ?</property>
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
+          Size="138,42"
+          Id="Package\Sales\Lookup Date"
+          TopLeft="797,95" />
+        <NodeLayout
           Size="114,42"
           Id="Package\Sales\Staging"
           TopLeft="135,16" />
+        <NodeLayout
+          Size="107,42"
+          Id="Package\Sales\Sort 1"
+          TopLeft="797,216" />
         <NodeLayout
           Size="152,42"
           Id="Package\Sales\Lookup Product"
@@ -1685,13 +3009,13 @@ where [refTable].[sprzedawca] = ?</property>
           Id="Package\Sales\Lookup Customer"
           TopLeft="357,94" />
         <NodeLayout
+          Size="126,42"
+          Id="Package\Sales\Fact Sales"
+          TopLeft="806,349" />
+        <NodeLayout
           Size="161,42"
           Id="Package\Sales\Lookup Salesman"
           TopLeft="550,94" />
-        <NodeLayout
-          Size="138,42"
-          Id="Package\Sales\Lookup Date"
-          TopLeft="797,95" />
         <EdgeLayout
           Id="Package\Sales.Paths[OLE DB Source Output]"
           TopLeft="192,58">
@@ -1724,6 +3048,90 @@ where [refTable].[sprzedawca] = ?</property>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sales.Paths[Lookup Match Output3]"
+          TopLeft="866,137">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-15.5,79"
+              Start="0,0"
+              End="-15.5,71.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,35.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,35.5"
+                    Point2="0,39.5"
+                    Point3="-4,39.5" />
+                  <mssgle:LineSegment
+                    End="-11.5,39.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-11.5,39.5"
+                    Point2="-15.5,39.5"
+                    Point3="-15.5,43.5" />
+                  <mssgle:LineSegment
+                    End="-15.5,71.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-55.94138671875,44.5,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sales.Paths[Lookup Match Output2]"
+          TopLeft="711,115.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="86,0"
+              Start="0,0"
+              End="78.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="78.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-8.94138671875,5,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sales.Paths[Lookup Match Output1]"
+          TopLeft="518,115">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="32,0"
+              Start="0,0"
+              End="24.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="24.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-35.94138671875,5,96.3827734375,11.609375"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -1763,98 +3171,6 @@ where [refTable].[sprzedawca] = ?</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Sales.Paths[Lookup Match Output1]"
-          TopLeft="518,115">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="32,0"
-              Start="0,0"
-              End="24.5,0">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="24.5,0" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-35.94138671875,5,96.3827734375,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Sales.Paths[Lookup Match Output2]"
-          TopLeft="711,115.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="86,0"
-              Start="0,0"
-              End="78.5,0">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="78.5,0" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-8.94138671875,5,96.3827734375,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="107,42"
-          Id="Package\Sales\Sort 1"
-          TopLeft="797,216" />
-        <EdgeLayout
-          Id="Package\Sales.Paths[Lookup Match Output3]"
-          TopLeft="866,137">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-15.5,79"
-              Start="0,0"
-              End="-15.5,71.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,35.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,35.5"
-                    Point2="0,39.5"
-                    Point3="-4,39.5" />
-                  <mssgle:LineSegment
-                    End="-11.5,39.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-11.5,39.5"
-                    Point2="-15.5,39.5"
-                    Point3="-15.5,43.5" />
-                  <mssgle:LineSegment
-                    End="-15.5,71.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-55.94138671875,44.5,96.3827734375,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="126,42"
-          Id="Package\Sales\Fact Sales"
-          TopLeft="806,349" />
-        <EdgeLayout
           Id="Package\Sales.Paths[Sort Output]"
           TopLeft="850.5,258">
           <EdgeLayout.Curve>
@@ -1892,6 +3208,29 @@ where [refTable].[sprzedawca] = ?</property>
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
+    design-time-name="Package\Sales\Lookup Date">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dim].[date]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
     design-time-name="Package\Sales\Staging">
     <Properties>
       <Property>
@@ -1910,7 +3249,7 @@ where [refTable].[sprzedawca] = ?</property>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:boolean">false</Value>
+          type="q2:string">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -1920,7 +3259,7 @@ where [refTable].[sprzedawca] = ?</property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:int">0</Value>
+          type="q4:string">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -1933,7 +3272,7 @@ where [refTable].[sprzedawca] = ?</property>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:boolean">false</Value>
+          type="q2:string">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -1943,10 +3282,23 @@ where [refTable].[sprzedawca] = ?</property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:int">0</Value>
+          type="q4:string">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Sales\Fact Sales">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
@@ -1956,12 +3308,260 @@ where [refTable].[sprzedawca] = ?</property>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:boolean">false</Value>
+          type="q2:string">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
         <Value
           type="q3:string">[dim].[salesperson]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Cost">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="114,42"
+          Id="Package\Cost\Staging"
+          TopLeft="206,59" />
+        <NodeLayout
+          Size="137,42"
+          Id="Package\Cost\Lookup Cost"
+          TopLeft="170,167" />
+        <NodeLayout
+          Size="171,42"
+          Id="Package\Cost\Lookup Cost Center"
+          TopLeft="168,266" />
+        <NodeLayout
+          Size="163,42"
+          Id="Package\Cost\Lookup Cost Type"
+          TopLeft="168,368" />
+        <NodeLayout
+          Size="138,42"
+          Id="Package\Cost\Lookup Date"
+          TopLeft="183,452" />
+        <EdgeLayout
+          Id="Package\Cost.Paths[OLE DB Source Output]"
+          TopLeft="263,101">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-24.5,66"
+              Start="0,0"
+              End="-24.5,58.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,29" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,29"
+                    Point2="0,33"
+                    Point3="-4,33" />
+                  <mssgle:LineSegment
+                    End="-20.5,33" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-20.5,33"
+                    Point2="-24.5,33"
+                    Point3="-24.5,37" />
+                  <mssgle:LineSegment
+                    End="-24.5,58.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Cost.Paths[Lookup Match Output]"
+          TopLeft="238.5,209">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="15,57"
+              Start="0,0"
+              End="15,49.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,24.5"
+                    Point2="0,28.5"
+                    Point3="4,28.5" />
+                  <mssgle:LineSegment
+                    End="11,28.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="11,28.5"
+                    Point2="15,28.5"
+                    Point3="15,32.5" />
+                  <mssgle:LineSegment
+                    End="15,49.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-40.69138671875,33.5,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Cost.Paths[Lookup Match Output1]"
+          TopLeft="251.5,308">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,20.4453125,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Cost.Paths[Lookup Match Output2]"
+          TopLeft="250.75,410">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,42"
+              Start="0,0"
+              End="0,34.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,34.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,11.4453125,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="98,56"
+          Id="Package\Cost\Sort"
+          TopLeft="450,439" />
+        <EdgeLayout
+          Id="Package\Cost.Paths[Lookup Match Output3]"
+          TopLeft="321,470">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="129,0"
+              Start="0,0"
+              End="121.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="121.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="12.55861328125,5,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="100,42"
+          Id="Package\Cost\Cost"
+          TopLeft="645,427" />
+        <EdgeLayout
+          Id="Package\Cost.Paths[Sort Output]"
+          TopLeft="548,467">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="97,-19"
+              Start="0,0"
+              End="89.5,-19">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="44.5,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="44.5,0"
+                    Point2="48.5,0"
+                    Point3="48.5,-4" />
+                  <mssgle:LineSegment
+                    End="48.5,-15" />
+                  <mssgle:CubicBezierSegment
+                    Point1="48.5,-15"
+                    Point2="48.5,-19"
+                    Point3="52.5,-19" />
+                  <mssgle:LineSegment
+                    End="89.5,-19" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Cost\Staging">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Cost\Lookup Cost">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dim].[cost]</Value>
       </Property>
       <Property>
         <Name>TableInfoObjectType</Name>
@@ -1974,7 +3574,53 @@ where [refTable].[sprzedawca] = ?</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Sales\Lookup Date">
+    design-time-name="Package\Cost\Lookup Cost Center">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dim].[costCenter]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Cost\Lookup Cost Type">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dim].[costType]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Cost\Lookup Date">
     <Properties>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
@@ -1997,7 +3643,7 @@ where [refTable].[sprzedawca] = ?</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Sales\Fact Sales">
+    design-time-name="Package\Cost\Cost">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
