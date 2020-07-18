@@ -17,6 +17,16 @@
         </ProjectItem>
       </Dependencies>
     </ProjectItem>
+    <ProjectItem>
+      <Name>Costs.cube</Name>
+      <FullPath>Costs.cube</FullPath>
+      <Dependencies>
+        <ProjectItem>
+          <Name>Costs.partitions</Name>
+          <FullPath>Costs.partitions</FullPath>
+        </ProjectItem>
+      </Dependencies>
+    </ProjectItem>
   </Cubes>
   <Dimensions>
     <ProjectItem>
@@ -35,6 +45,18 @@
       <Name>DIM_Salesperson.dim</Name>
       <FullPath>DIM_Salesperson.dim</FullPath>
     </ProjectItem>
+    <ProjectItem>
+      <Name>DIM_Cost.dim</Name>
+      <FullPath>DIM_Cost.dim</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>DIM_Cost_Center.dim</Name>
+      <FullPath>DIM_Cost_Center.dim</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>DIM_Cost_Type.dim</Name>
+      <FullPath>DIM_Cost_Type.dim</FullPath>
+    </ProjectItem>
   </Dimensions>
   <DataSources>
     <ProjectItem>
@@ -46,6 +68,10 @@
     <ProjectItem>
       <Name>NAV SQL.dsv</Name>
       <FullPath>NAV SQL.dsv</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>Costs.dsv</Name>
+      <FullPath>Costs.dsv</FullPath>
     </ProjectItem>
   </DataSourceViews>
   <Configurations>
