@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Staging"
   DTS:PackageType="5"
-  DTS:VersionBuild="4"
-  DTS:VersionGUID="{8BFDFA06-E376-45BD-BC3E-C67B3809DF50}">
+  DTS:VersionBuild="5"
+  DTS:VersionGUID="{755D1815-B1CE-476C-B335-D64506A64F1C}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -457,11 +457,11 @@ WHERE Amount &gt; 0</property>
               </outputs>
             </component>
             <component
-              refId="Package\NAV\NAV"
+              refId="Package\NAV\sales"
               componentClassID="Microsoft.OLEDBSource"
               contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
               description="OLE DB Source"
-              name="NAV"
+              name="sales"
               usesDispositions="true"
               version="7">
               <properties>
@@ -528,7 +528,7 @@ ON(cp.[Salesperson Code] = sp.Code)</property>
               </properties>
               <connections>
                 <connection
-                  refId="Package\NAV\NAV.Connections[OleDbConnection]"
+                  refId="Package\NAV\sales.Connections[OleDbConnection]"
                   connectionManagerID="{714F4243-8096-4048-8451-5FD552343863}:external"
                   connectionManagerRefId="Project.ConnectionManagers[NAV2016PL]"
                   description="The OLE DB runtime connection used to access the database."
@@ -536,287 +536,287 @@ ON(cp.[Salesperson Code] = sp.Code)</property>
               </connections>
               <outputs>
                 <output
-                  refId="Package\NAV\NAV.Outputs[OLE DB Source Output]"
+                  refId="Package\NAV\sales.Outputs[OLE DB Source Output]"
                   name="OLE DB Source Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\NAV\NAV.Outputs[OLE DB Source Output].Columns[Name]"
+                      refId="Package\NAV\sales.Outputs[OLE DB Source Output].Columns[Name]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\NAV\NAV.Outputs[OLE DB Source Output].ExternalColumns[Name]"
+                      externalMetadataColumnId="Package\NAV\sales.Outputs[OLE DB Source Output].ExternalColumns[Name]"
                       length="50"
-                      lineageId="Package\NAV\NAV.Outputs[OLE DB Source Output].Columns[Name]"
+                      lineageId="Package\NAV\sales.Outputs[OLE DB Source Output].Columns[Name]"
                       name="Name"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\NAV\NAV.Outputs[OLE DB Source Output].Columns[PostingGroup]"
+                      refId="Package\NAV\sales.Outputs[OLE DB Source Output].Columns[PostingGroup]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\NAV\NAV.Outputs[OLE DB Source Output].ExternalColumns[Posting Group]"
+                      externalMetadataColumnId="Package\NAV\sales.Outputs[OLE DB Source Output].ExternalColumns[Posting Group]"
                       length="10"
-                      lineageId="Package\NAV\NAV.Outputs[OLE DB Source Output].Columns[PostingGroup]"
+                      lineageId="Package\NAV\sales.Outputs[OLE DB Source Output].Columns[PostingGroup]"
                       name="PostingGroup"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\NAV\NAV.Outputs[OLE DB Source Output].Columns[SalesType]"
+                      refId="Package\NAV\sales.Outputs[OLE DB Source Output].Columns[SalesType]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\NAV\NAV.Outputs[OLE DB Source Output].ExternalColumns[Gen_ Bus_ Posting Group]"
+                      externalMetadataColumnId="Package\NAV\sales.Outputs[OLE DB Source Output].ExternalColumns[Gen_ Bus_ Posting Group]"
                       length="10"
-                      lineageId="Package\NAV\NAV.Outputs[OLE DB Source Output].Columns[SalesType]"
+                      lineageId="Package\NAV\sales.Outputs[OLE DB Source Output].Columns[SalesType]"
                       name="SalesType"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\NAV\NAV.Outputs[OLE DB Source Output].Columns[ProductName]"
+                      refId="Package\NAV\sales.Outputs[OLE DB Source Output].Columns[ProductName]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\NAV\NAV.Outputs[OLE DB Source Output].ExternalColumns[Description]"
+                      externalMetadataColumnId="Package\NAV\sales.Outputs[OLE DB Source Output].ExternalColumns[Description]"
                       length="50"
-                      lineageId="Package\NAV\NAV.Outputs[OLE DB Source Output].Columns[ProductName]"
+                      lineageId="Package\NAV\sales.Outputs[OLE DB Source Output].Columns[ProductName]"
                       name="ProductName"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\NAV\NAV.Outputs[OLE DB Source Output].Columns[Quantity]"
+                      refId="Package\NAV\sales.Outputs[OLE DB Source Output].Columns[Quantity]"
                       dataType="numeric"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\NAV\NAV.Outputs[OLE DB Source Output].ExternalColumns[Quantity]"
-                      lineageId="Package\NAV\NAV.Outputs[OLE DB Source Output].Columns[Quantity]"
+                      externalMetadataColumnId="Package\NAV\sales.Outputs[OLE DB Source Output].ExternalColumns[Quantity]"
+                      lineageId="Package\NAV\sales.Outputs[OLE DB Source Output].Columns[Quantity]"
                       name="Quantity"
                       precision="38"
                       scale="20"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\NAV\NAV.Outputs[OLE DB Source Output].Columns[Profit _]"
+                      refId="Package\NAV\sales.Outputs[OLE DB Source Output].Columns[Profit _]"
                       dataType="numeric"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\NAV\NAV.Outputs[OLE DB Source Output].ExternalColumns[Profit _]"
-                      lineageId="Package\NAV\NAV.Outputs[OLE DB Source Output].Columns[Profit _]"
+                      externalMetadataColumnId="Package\NAV\sales.Outputs[OLE DB Source Output].ExternalColumns[Profit _]"
+                      lineageId="Package\NAV\sales.Outputs[OLE DB Source Output].Columns[Profit _]"
                       name="Profit _"
                       precision="38"
                       scale="20"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\NAV\NAV.Outputs[OLE DB Source Output].Columns[Unit Price]"
+                      refId="Package\NAV\sales.Outputs[OLE DB Source Output].Columns[Unit Price]"
                       dataType="numeric"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\NAV\NAV.Outputs[OLE DB Source Output].ExternalColumns[Unit Price]"
-                      lineageId="Package\NAV\NAV.Outputs[OLE DB Source Output].Columns[Unit Price]"
+                      externalMetadataColumnId="Package\NAV\sales.Outputs[OLE DB Source Output].ExternalColumns[Unit Price]"
+                      lineageId="Package\NAV\sales.Outputs[OLE DB Source Output].Columns[Unit Price]"
                       name="Unit Price"
                       precision="38"
                       scale="20"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\NAV\NAV.Outputs[OLE DB Source Output].Columns[Customer]"
+                      refId="Package\NAV\sales.Outputs[OLE DB Source Output].Columns[Customer]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\NAV\NAV.Outputs[OLE DB Source Output].ExternalColumns[Bill-to Name]"
+                      externalMetadataColumnId="Package\NAV\sales.Outputs[OLE DB Source Output].ExternalColumns[Bill-to Name]"
                       length="50"
-                      lineageId="Package\NAV\NAV.Outputs[OLE DB Source Output].Columns[Customer]"
+                      lineageId="Package\NAV\sales.Outputs[OLE DB Source Output].Columns[Customer]"
                       name="Customer"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\NAV\NAV.Outputs[OLE DB Source Output].Columns[Bill-to City]"
+                      refId="Package\NAV\sales.Outputs[OLE DB Source Output].Columns[Bill-to City]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\NAV\NAV.Outputs[OLE DB Source Output].ExternalColumns[Bill-to City]"
+                      externalMetadataColumnId="Package\NAV\sales.Outputs[OLE DB Source Output].ExternalColumns[Bill-to City]"
                       length="30"
-                      lineageId="Package\NAV\NAV.Outputs[OLE DB Source Output].Columns[Bill-to City]"
+                      lineageId="Package\NAV\sales.Outputs[OLE DB Source Output].Columns[Bill-to City]"
                       name="Bill-to City"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\NAV\NAV.Outputs[OLE DB Source Output].Columns[Order Date]"
+                      refId="Package\NAV\sales.Outputs[OLE DB Source Output].Columns[Order Date]"
                       dataType="dbTimeStamp"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\NAV\NAV.Outputs[OLE DB Source Output].ExternalColumns[Order Date]"
-                      lineageId="Package\NAV\NAV.Outputs[OLE DB Source Output].Columns[Order Date]"
+                      externalMetadataColumnId="Package\NAV\sales.Outputs[OLE DB Source Output].ExternalColumns[Order Date]"
+                      lineageId="Package\NAV\sales.Outputs[OLE DB Source Output].Columns[Order Date]"
                       name="Order Date"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\NAV\NAV.Outputs[OLE DB Source Output].Columns[discount]"
+                      refId="Package\NAV\sales.Outputs[OLE DB Source Output].Columns[discount]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\NAV\NAV.Outputs[OLE DB Source Output].ExternalColumns[discount]"
+                      externalMetadataColumnId="Package\NAV\sales.Outputs[OLE DB Source Output].ExternalColumns[discount]"
                       length="50"
-                      lineageId="Package\NAV\NAV.Outputs[OLE DB Source Output].Columns[discount]"
+                      lineageId="Package\NAV\sales.Outputs[OLE DB Source Output].Columns[discount]"
                       name="discount"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\NAV\NAV.Outputs[OLE DB Source Output].Columns[campaign]"
+                      refId="Package\NAV\sales.Outputs[OLE DB Source Output].Columns[campaign]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\NAV\NAV.Outputs[OLE DB Source Output].ExternalColumns[campaign]"
+                      externalMetadataColumnId="Package\NAV\sales.Outputs[OLE DB Source Output].ExternalColumns[campaign]"
                       length="50"
-                      lineageId="Package\NAV\NAV.Outputs[OLE DB Source Output].Columns[campaign]"
+                      lineageId="Package\NAV\sales.Outputs[OLE DB Source Output].Columns[campaign]"
                       name="campaign"
                       truncationRowDisposition="FailComponent" />
                   </outputColumns>
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\NAV\NAV.Outputs[OLE DB Source Output].ExternalColumns[Name]"
+                      refId="Package\NAV\sales.Outputs[OLE DB Source Output].ExternalColumns[Name]"
                       dataType="wstr"
                       length="50"
                       name="Name" />
                     <externalMetadataColumn
-                      refId="Package\NAV\NAV.Outputs[OLE DB Source Output].ExternalColumns[Posting Group]"
+                      refId="Package\NAV\sales.Outputs[OLE DB Source Output].ExternalColumns[Posting Group]"
                       dataType="wstr"
                       length="10"
                       name="Posting Group" />
                     <externalMetadataColumn
-                      refId="Package\NAV\NAV.Outputs[OLE DB Source Output].ExternalColumns[Gen_ Bus_ Posting Group]"
+                      refId="Package\NAV\sales.Outputs[OLE DB Source Output].ExternalColumns[Gen_ Bus_ Posting Group]"
                       dataType="wstr"
                       length="10"
                       name="Gen_ Bus_ Posting Group" />
                     <externalMetadataColumn
-                      refId="Package\NAV\NAV.Outputs[OLE DB Source Output].ExternalColumns[Description]"
+                      refId="Package\NAV\sales.Outputs[OLE DB Source Output].ExternalColumns[Description]"
                       dataType="wstr"
                       length="50"
                       name="Description" />
                     <externalMetadataColumn
-                      refId="Package\NAV\NAV.Outputs[OLE DB Source Output].ExternalColumns[Quantity]"
+                      refId="Package\NAV\sales.Outputs[OLE DB Source Output].ExternalColumns[Quantity]"
                       dataType="numeric"
                       name="Quantity"
                       precision="38"
                       scale="20" />
                     <externalMetadataColumn
-                      refId="Package\NAV\NAV.Outputs[OLE DB Source Output].ExternalColumns[Profit _]"
+                      refId="Package\NAV\sales.Outputs[OLE DB Source Output].ExternalColumns[Profit _]"
                       dataType="numeric"
                       name="Profit _"
                       precision="38"
                       scale="20" />
                     <externalMetadataColumn
-                      refId="Package\NAV\NAV.Outputs[OLE DB Source Output].ExternalColumns[Unit Price]"
+                      refId="Package\NAV\sales.Outputs[OLE DB Source Output].ExternalColumns[Unit Price]"
                       dataType="numeric"
                       name="Unit Price"
                       precision="38"
                       scale="20" />
                     <externalMetadataColumn
-                      refId="Package\NAV\NAV.Outputs[OLE DB Source Output].ExternalColumns[Bill-to Name]"
+                      refId="Package\NAV\sales.Outputs[OLE DB Source Output].ExternalColumns[Bill-to Name]"
                       dataType="wstr"
                       length="50"
                       name="Bill-to Name" />
                     <externalMetadataColumn
-                      refId="Package\NAV\NAV.Outputs[OLE DB Source Output].ExternalColumns[Bill-to City]"
+                      refId="Package\NAV\sales.Outputs[OLE DB Source Output].ExternalColumns[Bill-to City]"
                       dataType="wstr"
                       length="30"
                       name="Bill-to City" />
                     <externalMetadataColumn
-                      refId="Package\NAV\NAV.Outputs[OLE DB Source Output].ExternalColumns[Order Date]"
+                      refId="Package\NAV\sales.Outputs[OLE DB Source Output].ExternalColumns[Order Date]"
                       dataType="dbTimeStamp"
                       name="Order Date" />
                     <externalMetadataColumn
-                      refId="Package\NAV\NAV.Outputs[OLE DB Source Output].ExternalColumns[discount]"
+                      refId="Package\NAV\sales.Outputs[OLE DB Source Output].ExternalColumns[discount]"
                       dataType="wstr"
                       length="50"
                       name="discount" />
                     <externalMetadataColumn
-                      refId="Package\NAV\NAV.Outputs[OLE DB Source Output].ExternalColumns[campaign]"
+                      refId="Package\NAV\sales.Outputs[OLE DB Source Output].ExternalColumns[campaign]"
                       dataType="wstr"
                       length="50"
                       name="campaign" />
                   </externalMetadataColumns>
                 </output>
                 <output
-                  refId="Package\NAV\NAV.Outputs[OLE DB Source Error Output]"
+                  refId="Package\NAV\sales.Outputs[OLE DB Source Error Output]"
                   isErrorOut="true"
                   name="OLE DB Source Error Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\NAV\NAV.Outputs[OLE DB Source Error Output].Columns[Posting Group]"
+                      refId="Package\NAV\sales.Outputs[OLE DB Source Error Output].Columns[Posting Group]"
                       dataType="wstr"
                       length="10"
-                      lineageId="Package\NAV\NAV.Outputs[OLE DB Source Error Output].Columns[Posting Group]"
+                      lineageId="Package\NAV\sales.Outputs[OLE DB Source Error Output].Columns[Posting Group]"
                       name="Posting Group" />
                     <outputColumn
-                      refId="Package\NAV\NAV.Outputs[OLE DB Source Error Output].Columns[Gen_ Bus_ Posting Group]"
+                      refId="Package\NAV\sales.Outputs[OLE DB Source Error Output].Columns[Gen_ Bus_ Posting Group]"
                       dataType="wstr"
                       length="10"
-                      lineageId="Package\NAV\NAV.Outputs[OLE DB Source Error Output].Columns[Gen_ Bus_ Posting Group]"
+                      lineageId="Package\NAV\sales.Outputs[OLE DB Source Error Output].Columns[Gen_ Bus_ Posting Group]"
                       name="Gen_ Bus_ Posting Group" />
                     <outputColumn
-                      refId="Package\NAV\NAV.Outputs[OLE DB Source Error Output].Columns[Description]"
+                      refId="Package\NAV\sales.Outputs[OLE DB Source Error Output].Columns[Description]"
                       dataType="wstr"
                       length="50"
-                      lineageId="Package\NAV\NAV.Outputs[OLE DB Source Error Output].Columns[Description]"
+                      lineageId="Package\NAV\sales.Outputs[OLE DB Source Error Output].Columns[Description]"
                       name="Description" />
                     <outputColumn
-                      refId="Package\NAV\NAV.Outputs[OLE DB Source Error Output].Columns[Quantity]"
+                      refId="Package\NAV\sales.Outputs[OLE DB Source Error Output].Columns[Quantity]"
                       dataType="numeric"
-                      lineageId="Package\NAV\NAV.Outputs[OLE DB Source Error Output].Columns[Quantity]"
+                      lineageId="Package\NAV\sales.Outputs[OLE DB Source Error Output].Columns[Quantity]"
                       name="Quantity"
                       precision="38"
                       scale="20" />
                     <outputColumn
-                      refId="Package\NAV\NAV.Outputs[OLE DB Source Error Output].Columns[Profit _]"
+                      refId="Package\NAV\sales.Outputs[OLE DB Source Error Output].Columns[Profit _]"
                       dataType="numeric"
-                      lineageId="Package\NAV\NAV.Outputs[OLE DB Source Error Output].Columns[Profit _]"
+                      lineageId="Package\NAV\sales.Outputs[OLE DB Source Error Output].Columns[Profit _]"
                       name="Profit _"
                       precision="38"
                       scale="20" />
                     <outputColumn
-                      refId="Package\NAV\NAV.Outputs[OLE DB Source Error Output].Columns[Unit Price]"
+                      refId="Package\NAV\sales.Outputs[OLE DB Source Error Output].Columns[Unit Price]"
                       dataType="numeric"
-                      lineageId="Package\NAV\NAV.Outputs[OLE DB Source Error Output].Columns[Unit Price]"
+                      lineageId="Package\NAV\sales.Outputs[OLE DB Source Error Output].Columns[Unit Price]"
                       name="Unit Price"
                       precision="38"
                       scale="20" />
                     <outputColumn
-                      refId="Package\NAV\NAV.Outputs[OLE DB Source Error Output].Columns[Bill-to Name]"
+                      refId="Package\NAV\sales.Outputs[OLE DB Source Error Output].Columns[Bill-to Name]"
                       dataType="wstr"
                       length="50"
-                      lineageId="Package\NAV\NAV.Outputs[OLE DB Source Error Output].Columns[Bill-to Name]"
+                      lineageId="Package\NAV\sales.Outputs[OLE DB Source Error Output].Columns[Bill-to Name]"
                       name="Bill-to Name" />
                     <outputColumn
-                      refId="Package\NAV\NAV.Outputs[OLE DB Source Error Output].Columns[Bill-to City]"
+                      refId="Package\NAV\sales.Outputs[OLE DB Source Error Output].Columns[Bill-to City]"
                       dataType="wstr"
                       length="30"
-                      lineageId="Package\NAV\NAV.Outputs[OLE DB Source Error Output].Columns[Bill-to City]"
+                      lineageId="Package\NAV\sales.Outputs[OLE DB Source Error Output].Columns[Bill-to City]"
                       name="Bill-to City" />
                     <outputColumn
-                      refId="Package\NAV\NAV.Outputs[OLE DB Source Error Output].Columns[Order Date]"
+                      refId="Package\NAV\sales.Outputs[OLE DB Source Error Output].Columns[Order Date]"
                       dataType="dbTimeStamp"
-                      lineageId="Package\NAV\NAV.Outputs[OLE DB Source Error Output].Columns[Order Date]"
+                      lineageId="Package\NAV\sales.Outputs[OLE DB Source Error Output].Columns[Order Date]"
                       name="Order Date" />
                     <outputColumn
-                      refId="Package\NAV\NAV.Outputs[OLE DB Source Error Output].Columns[discount]"
+                      refId="Package\NAV\sales.Outputs[OLE DB Source Error Output].Columns[discount]"
                       dataType="wstr"
                       length="50"
-                      lineageId="Package\NAV\NAV.Outputs[OLE DB Source Error Output].Columns[discount]"
+                      lineageId="Package\NAV\sales.Outputs[OLE DB Source Error Output].Columns[discount]"
                       name="discount" />
                     <outputColumn
-                      refId="Package\NAV\NAV.Outputs[OLE DB Source Error Output].Columns[Name]"
+                      refId="Package\NAV\sales.Outputs[OLE DB Source Error Output].Columns[Name]"
                       dataType="wstr"
                       length="50"
-                      lineageId="Package\NAV\NAV.Outputs[OLE DB Source Error Output].Columns[Name]"
+                      lineageId="Package\NAV\sales.Outputs[OLE DB Source Error Output].Columns[Name]"
                       name="Name" />
                     <outputColumn
-                      refId="Package\NAV\NAV.Outputs[OLE DB Source Error Output].Columns[campaign]"
+                      refId="Package\NAV\sales.Outputs[OLE DB Source Error Output].Columns[campaign]"
                       dataType="wstr"
                       length="50"
-                      lineageId="Package\NAV\NAV.Outputs[OLE DB Source Error Output].Columns[campaign]"
+                      lineageId="Package\NAV\sales.Outputs[OLE DB Source Error Output].Columns[campaign]"
                       name="campaign" />
                     <outputColumn
-                      refId="Package\NAV\NAV.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      refId="Package\NAV\sales.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\NAV\NAV.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      lineageId="Package\NAV\sales.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\NAV\NAV.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      refId="Package\NAV\sales.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\NAV\NAV.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\NAV\sales.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -825,11 +825,11 @@ ON(cp.[Salesperson Code] = sp.Code)</property>
               </outputs>
             </component>
             <component
-              refId="Package\NAV\NAV Staging"
+              refId="Package\NAV\sales Staging"
               componentClassID="Microsoft.OLEDBDestination"
               contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
               description="OLE DB Destination"
-              name="NAV Staging"
+              name="sales Staging"
               usesDispositions="true"
               version="4">
               <properties>
@@ -882,7 +882,7 @@ ON(cp.[Salesperson Code] = sp.Code)</property>
               </properties>
               <connections>
                 <connection
-                  refId="Package\NAV\NAV Staging.Connections[OleDbConnection]"
+                  refId="Package\NAV\sales Staging.Connections[OleDbConnection]"
                   connectionManagerID="{C8A1A240-BCE2-40D7-AAE1-8C2A5441DE5B}:external"
                   connectionManagerRefId="Project.ConnectionManagers[NAV_SQL]"
                   description="The OLE DB runtime connection used to access the database."
@@ -890,160 +890,160 @@ ON(cp.[Salesperson Code] = sp.Code)</property>
               </connections>
               <inputs>
                 <input
-                  refId="Package\NAV\NAV Staging.Inputs[OLE DB Destination Input]"
+                  refId="Package\NAV\sales Staging.Inputs[OLE DB Destination Input]"
                   errorOrTruncationOperation="Insert"
                   errorRowDisposition="FailComponent"
                   hasSideEffects="true"
                   name="OLE DB Destination Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\NAV\NAV Staging.Inputs[OLE DB Destination Input].Columns[PostingGroup]"
+                      refId="Package\NAV\sales Staging.Inputs[OLE DB Destination Input].Columns[PostingGroup]"
                       cachedDataType="wstr"
                       cachedLength="10"
                       cachedName="PostingGroup"
-                      externalMetadataColumnId="Package\NAV\NAV Staging.Inputs[OLE DB Destination Input].ExternalColumns[postinggroup]"
-                      lineageId="Package\NAV\NAV.Outputs[OLE DB Source Output].Columns[PostingGroup]" />
+                      externalMetadataColumnId="Package\NAV\sales Staging.Inputs[OLE DB Destination Input].ExternalColumns[postinggroup]"
+                      lineageId="Package\NAV\sales.Outputs[OLE DB Source Output].Columns[PostingGroup]" />
                     <inputColumn
-                      refId="Package\NAV\NAV Staging.Inputs[OLE DB Destination Input].Columns[ProductName]"
+                      refId="Package\NAV\sales Staging.Inputs[OLE DB Destination Input].Columns[ProductName]"
                       cachedDataType="wstr"
                       cachedLength="50"
                       cachedName="ProductName"
-                      externalMetadataColumnId="Package\NAV\NAV Staging.Inputs[OLE DB Destination Input].ExternalColumns[productName]"
-                      lineageId="Package\NAV\NAV.Outputs[OLE DB Source Output].Columns[ProductName]" />
+                      externalMetadataColumnId="Package\NAV\sales Staging.Inputs[OLE DB Destination Input].ExternalColumns[productName]"
+                      lineageId="Package\NAV\sales.Outputs[OLE DB Source Output].Columns[ProductName]" />
                     <inputColumn
-                      refId="Package\NAV\NAV Staging.Inputs[OLE DB Destination Input].Columns[Quantity]"
+                      refId="Package\NAV\sales Staging.Inputs[OLE DB Destination Input].Columns[Quantity]"
                       cachedDataType="numeric"
                       cachedName="Quantity"
                       cachedPrecision="38"
                       cachedScale="20"
-                      externalMetadataColumnId="Package\NAV\NAV Staging.Inputs[OLE DB Destination Input].ExternalColumns[quantity]"
-                      lineageId="Package\NAV\NAV.Outputs[OLE DB Source Output].Columns[Quantity]" />
+                      externalMetadataColumnId="Package\NAV\sales Staging.Inputs[OLE DB Destination Input].ExternalColumns[quantity]"
+                      lineageId="Package\NAV\sales.Outputs[OLE DB Source Output].Columns[Quantity]" />
                     <inputColumn
-                      refId="Package\NAV\NAV Staging.Inputs[OLE DB Destination Input].Columns[Customer]"
+                      refId="Package\NAV\sales Staging.Inputs[OLE DB Destination Input].Columns[Customer]"
                       cachedDataType="wstr"
                       cachedLength="50"
                       cachedName="Customer"
-                      externalMetadataColumnId="Package\NAV\NAV Staging.Inputs[OLE DB Destination Input].ExternalColumns[customer]"
-                      lineageId="Package\NAV\NAV.Outputs[OLE DB Source Output].Columns[Customer]" />
+                      externalMetadataColumnId="Package\NAV\sales Staging.Inputs[OLE DB Destination Input].ExternalColumns[customer]"
+                      lineageId="Package\NAV\sales.Outputs[OLE DB Source Output].Columns[Customer]" />
                     <inputColumn
-                      refId="Package\NAV\NAV Staging.Inputs[OLE DB Destination Input].Columns[discount]"
+                      refId="Package\NAV\sales Staging.Inputs[OLE DB Destination Input].Columns[discount]"
                       cachedDataType="wstr"
                       cachedLength="50"
                       cachedName="discount"
-                      externalMetadataColumnId="Package\NAV\NAV Staging.Inputs[OLE DB Destination Input].ExternalColumns[discount]"
-                      lineageId="Package\NAV\NAV.Outputs[OLE DB Source Output].Columns[discount]" />
+                      externalMetadataColumnId="Package\NAV\sales Staging.Inputs[OLE DB Destination Input].ExternalColumns[discount]"
+                      lineageId="Package\NAV\sales.Outputs[OLE DB Source Output].Columns[discount]" />
                     <inputColumn
-                      refId="Package\NAV\NAV Staging.Inputs[OLE DB Destination Input].Columns[Name]"
+                      refId="Package\NAV\sales Staging.Inputs[OLE DB Destination Input].Columns[Name]"
                       cachedDataType="wstr"
                       cachedLength="50"
                       cachedName="Name"
-                      externalMetadataColumnId="Package\NAV\NAV Staging.Inputs[OLE DB Destination Input].ExternalColumns[sprzedawca]"
-                      lineageId="Package\NAV\NAV.Outputs[OLE DB Source Output].Columns[Name]" />
+                      externalMetadataColumnId="Package\NAV\sales Staging.Inputs[OLE DB Destination Input].ExternalColumns[sprzedawca]"
+                      lineageId="Package\NAV\sales.Outputs[OLE DB Source Output].Columns[Name]" />
                     <inputColumn
-                      refId="Package\NAV\NAV Staging.Inputs[OLE DB Destination Input].Columns[SalesType]"
+                      refId="Package\NAV\sales Staging.Inputs[OLE DB Destination Input].Columns[SalesType]"
                       cachedDataType="wstr"
                       cachedLength="10"
                       cachedName="SalesType"
-                      externalMetadataColumnId="Package\NAV\NAV Staging.Inputs[OLE DB Destination Input].ExternalColumns[rodzajsprzedazy]"
-                      lineageId="Package\NAV\NAV.Outputs[OLE DB Source Output].Columns[SalesType]" />
+                      externalMetadataColumnId="Package\NAV\sales Staging.Inputs[OLE DB Destination Input].ExternalColumns[rodzajsprzedazy]"
+                      lineageId="Package\NAV\sales.Outputs[OLE DB Source Output].Columns[SalesType]" />
                     <inputColumn
-                      refId="Package\NAV\NAV Staging.Inputs[OLE DB Destination Input].Columns[Profit _]"
+                      refId="Package\NAV\sales Staging.Inputs[OLE DB Destination Input].Columns[Profit _]"
                       cachedDataType="numeric"
                       cachedName="Profit _"
                       cachedPrecision="38"
                       cachedScale="20"
-                      externalMetadataColumnId="Package\NAV\NAV Staging.Inputs[OLE DB Destination Input].ExternalColumns[profit]"
-                      lineageId="Package\NAV\NAV.Outputs[OLE DB Source Output].Columns[Profit _]" />
+                      externalMetadataColumnId="Package\NAV\sales Staging.Inputs[OLE DB Destination Input].ExternalColumns[profit]"
+                      lineageId="Package\NAV\sales.Outputs[OLE DB Source Output].Columns[Profit _]" />
                     <inputColumn
-                      refId="Package\NAV\NAV Staging.Inputs[OLE DB Destination Input].Columns[Unit Price]"
+                      refId="Package\NAV\sales Staging.Inputs[OLE DB Destination Input].Columns[Unit Price]"
                       cachedDataType="numeric"
                       cachedName="Unit Price"
                       cachedPrecision="38"
                       cachedScale="20"
-                      externalMetadataColumnId="Package\NAV\NAV Staging.Inputs[OLE DB Destination Input].ExternalColumns[uniteprice]"
-                      lineageId="Package\NAV\NAV.Outputs[OLE DB Source Output].Columns[Unit Price]" />
+                      externalMetadataColumnId="Package\NAV\sales Staging.Inputs[OLE DB Destination Input].ExternalColumns[uniteprice]"
+                      lineageId="Package\NAV\sales.Outputs[OLE DB Source Output].Columns[Unit Price]" />
                     <inputColumn
-                      refId="Package\NAV\NAV Staging.Inputs[OLE DB Destination Input].Columns[Bill-to City]"
+                      refId="Package\NAV\sales Staging.Inputs[OLE DB Destination Input].Columns[Bill-to City]"
                       cachedDataType="wstr"
                       cachedLength="30"
                       cachedName="Bill-to City"
-                      externalMetadataColumnId="Package\NAV\NAV Staging.Inputs[OLE DB Destination Input].ExternalColumns[city]"
-                      lineageId="Package\NAV\NAV.Outputs[OLE DB Source Output].Columns[Bill-to City]" />
+                      externalMetadataColumnId="Package\NAV\sales Staging.Inputs[OLE DB Destination Input].ExternalColumns[city]"
+                      lineageId="Package\NAV\sales.Outputs[OLE DB Source Output].Columns[Bill-to City]" />
                     <inputColumn
-                      refId="Package\NAV\NAV Staging.Inputs[OLE DB Destination Input].Columns[Order Date]"
+                      refId="Package\NAV\sales Staging.Inputs[OLE DB Destination Input].Columns[Order Date]"
                       cachedDataType="dbTimeStamp"
                       cachedName="Order Date"
-                      externalMetadataColumnId="Package\NAV\NAV Staging.Inputs[OLE DB Destination Input].ExternalColumns[orderDate]"
-                      lineageId="Package\NAV\NAV.Outputs[OLE DB Source Output].Columns[Order Date]" />
+                      externalMetadataColumnId="Package\NAV\sales Staging.Inputs[OLE DB Destination Input].ExternalColumns[orderDate]"
+                      lineageId="Package\NAV\sales.Outputs[OLE DB Source Output].Columns[Order Date]" />
                     <inputColumn
-                      refId="Package\NAV\NAV Staging.Inputs[OLE DB Destination Input].Columns[campaign]"
+                      refId="Package\NAV\sales Staging.Inputs[OLE DB Destination Input].Columns[campaign]"
                       cachedDataType="wstr"
                       cachedLength="50"
                       cachedName="campaign"
-                      externalMetadataColumnId="Package\NAV\NAV Staging.Inputs[OLE DB Destination Input].ExternalColumns[kampania]"
-                      lineageId="Package\NAV\NAV.Outputs[OLE DB Source Output].Columns[campaign]" />
+                      externalMetadataColumnId="Package\NAV\sales Staging.Inputs[OLE DB Destination Input].ExternalColumns[kampania]"
+                      lineageId="Package\NAV\sales.Outputs[OLE DB Source Output].Columns[campaign]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\NAV\NAV Staging.Inputs[OLE DB Destination Input].ExternalColumns[productName]"
+                      refId="Package\NAV\sales Staging.Inputs[OLE DB Destination Input].ExternalColumns[productName]"
                       dataType="wstr"
                       length="50"
                       name="productName" />
                     <externalMetadataColumn
-                      refId="Package\NAV\NAV Staging.Inputs[OLE DB Destination Input].ExternalColumns[orderDate]"
+                      refId="Package\NAV\sales Staging.Inputs[OLE DB Destination Input].ExternalColumns[orderDate]"
                       dataType="dbTimeStamp"
                       name="orderDate" />
                     <externalMetadataColumn
-                      refId="Package\NAV\NAV Staging.Inputs[OLE DB Destination Input].ExternalColumns[postinggroup]"
+                      refId="Package\NAV\sales Staging.Inputs[OLE DB Destination Input].ExternalColumns[postinggroup]"
                       dataType="wstr"
                       length="10"
                       name="postinggroup" />
                     <externalMetadataColumn
-                      refId="Package\NAV\NAV Staging.Inputs[OLE DB Destination Input].ExternalColumns[rodzajsprzedazy]"
+                      refId="Package\NAV\sales Staging.Inputs[OLE DB Destination Input].ExternalColumns[rodzajsprzedazy]"
                       dataType="wstr"
                       length="10"
                       name="rodzajsprzedazy" />
                     <externalMetadataColumn
-                      refId="Package\NAV\NAV Staging.Inputs[OLE DB Destination Input].ExternalColumns[quantity]"
+                      refId="Package\NAV\sales Staging.Inputs[OLE DB Destination Input].ExternalColumns[quantity]"
                       dataType="numeric"
                       name="quantity"
                       precision="10"
                       scale="5" />
                     <externalMetadataColumn
-                      refId="Package\NAV\NAV Staging.Inputs[OLE DB Destination Input].ExternalColumns[profit]"
+                      refId="Package\NAV\sales Staging.Inputs[OLE DB Destination Input].ExternalColumns[profit]"
                       dataType="numeric"
                       name="profit"
                       precision="10"
                       scale="5" />
                     <externalMetadataColumn
-                      refId="Package\NAV\NAV Staging.Inputs[OLE DB Destination Input].ExternalColumns[uniteprice]"
+                      refId="Package\NAV\sales Staging.Inputs[OLE DB Destination Input].ExternalColumns[uniteprice]"
                       dataType="numeric"
                       name="uniteprice"
                       precision="10"
                       scale="5" />
                     <externalMetadataColumn
-                      refId="Package\NAV\NAV Staging.Inputs[OLE DB Destination Input].ExternalColumns[customer]"
+                      refId="Package\NAV\sales Staging.Inputs[OLE DB Destination Input].ExternalColumns[customer]"
                       dataType="wstr"
                       length="50"
                       name="customer" />
                     <externalMetadataColumn
-                      refId="Package\NAV\NAV Staging.Inputs[OLE DB Destination Input].ExternalColumns[city]"
+                      refId="Package\NAV\sales Staging.Inputs[OLE DB Destination Input].ExternalColumns[city]"
                       dataType="wstr"
                       length="30"
                       name="city" />
                     <externalMetadataColumn
-                      refId="Package\NAV\NAV Staging.Inputs[OLE DB Destination Input].ExternalColumns[discount]"
+                      refId="Package\NAV\sales Staging.Inputs[OLE DB Destination Input].ExternalColumns[discount]"
                       dataType="wstr"
                       length="50"
                       name="discount" />
                     <externalMetadataColumn
-                      refId="Package\NAV\NAV Staging.Inputs[OLE DB Destination Input].ExternalColumns[sprzedawca]"
+                      refId="Package\NAV\sales Staging.Inputs[OLE DB Destination Input].ExternalColumns[sprzedawca]"
                       dataType="wstr"
                       length="50"
                       name="sprzedawca" />
                     <externalMetadataColumn
-                      refId="Package\NAV\NAV Staging.Inputs[OLE DB Destination Input].ExternalColumns[kampania]"
+                      refId="Package\NAV\sales Staging.Inputs[OLE DB Destination Input].ExternalColumns[kampania]"
                       dataType="wstr"
                       length="50"
                       name="kampania" />
@@ -1052,22 +1052,22 @@ ON(cp.[Salesperson Code] = sp.Code)</property>
               </inputs>
               <outputs>
                 <output
-                  refId="Package\NAV\NAV Staging.Outputs[OLE DB Destination Error Output]"
+                  refId="Package\NAV\sales Staging.Outputs[OLE DB Destination Error Output]"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="OLE DB Destination Error Output"
-                  synchronousInputId="Package\NAV\NAV Staging.Inputs[OLE DB Destination Input]">
+                  synchronousInputId="Package\NAV\sales Staging.Inputs[OLE DB Destination Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\NAV\NAV Staging.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      refId="Package\NAV\sales Staging.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\NAV\NAV Staging.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      lineageId="Package\NAV\sales Staging.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\NAV\NAV Staging.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      refId="Package\NAV\sales Staging.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\NAV\NAV Staging.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\NAV\sales Staging.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -1079,9 +1079,9 @@ ON(cp.[Salesperson Code] = sp.Code)</property>
           <paths>
             <path
               refId="Package\NAV.Paths[OLE DB Source Output]"
-              endId="Package\NAV\NAV Staging.Inputs[OLE DB Destination Input]"
+              endId="Package\NAV\sales Staging.Inputs[OLE DB Destination Input]"
               name="OLE DB Source Output"
-              startId="Package\NAV\NAV.Outputs[OLE DB Source Output]" />
+              startId="Package\NAV\sales.Outputs[OLE DB Source Output]" />
             <path
               refId="Package\NAV.Paths[OLE DB Source Output1]"
               endId="Package\NAV\Cost Staging.Inputs[OLE DB Destination Input]"
@@ -1117,43 +1117,21 @@ ON(cp.[Salesperson Code] = sp.Code)</property>
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="138,42"
-          Id="Package\NAV\NAV Staging"
-          TopLeft="204,202" />
-        <NodeLayout
-          Size="99,42"
-          Id="Package\NAV\NAV"
+          Size="102,42"
+          Id="Package\NAV\sales"
           TopLeft="223,42" />
-        <EdgeLayout
-          Id="Package\NAV.Paths[OLE DB Source Output]"
-          TopLeft="272.75,84">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,118"
-              Start="0,0"
-              End="0,110.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,110.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
+        <NodeLayout
+          Size="138,42"
+          Id="Package\NAV\Cost Staging"
+          TopLeft="551,210" />
         <NodeLayout
           Size="100,42"
           Id="Package\NAV\Cost"
           TopLeft="576,40" />
         <NodeLayout
-          Size="138,42"
-          Id="Package\NAV\Cost Staging"
-          TopLeft="551,210" />
+          Size="141,42"
+          Id="Package\NAV\sales Staging"
+          TopLeft="204,202" />
         <EdgeLayout
           Id="Package\NAV.Paths[OLE DB Source Output1]"
           TopLeft="623,82">
@@ -1176,11 +1154,33 @@ ON(cp.[Salesperson Code] = sp.Code)</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <EdgeLayout
+          Id="Package\NAV.Paths[OLE DB Source Output]"
+          TopLeft="274.25,84">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,118"
+              Start="0,0"
+              End="0,110.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,110.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\NAV\NAV">
+    design-time-name="Package\NAV\sales">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -1188,7 +1188,7 @@ ON(cp.[Salesperson Code] = sp.Code)</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\NAV\NAV Staging">
+    design-time-name="Package\NAV\Cost Staging">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -1214,7 +1214,7 @@ ON(cp.[Salesperson Code] = sp.Code)</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\NAV\Cost Staging">
+    design-time-name="Package\NAV\sales Staging">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
