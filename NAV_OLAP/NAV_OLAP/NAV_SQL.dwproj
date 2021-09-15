@@ -3,20 +3,10 @@
   <SchemaVersion>9.0.2.10</SchemaVersion>
   <State>$base64$PFNvdXJjZUNvbnRyb2xJbmZvIHhtbG5zOnhzZD0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEiIHhtbG5zOnhzaT0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEtaW5zdGFuY2UiIHhtbG5zOmRkbDI9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vYW5hbHlzaXNzZXJ2aWNlcy8yMDAzL2VuZ2luZS8yIiB4bWxuczpkZGwyXzI9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vYW5hbHlzaXNzZXJ2aWNlcy8yMDAzL2VuZ2luZS8yLzIiIHhtbG5zOmRkbDEwMF8xMDA9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vYW5hbHlzaXNzZXJ2aWNlcy8yMDA4L2VuZ2luZS8xMDAvMTAwIiB4bWxuczpkZGwyMDA9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vYW5hbHlzaXNzZXJ2aWNlcy8yMDEwL2VuZ2luZS8yMDAiIHhtbG5zOmRkbDIwMF8yMDA9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vYW5hbHlzaXNzZXJ2aWNlcy8yMDEwL2VuZ2luZS8yMDAvMjAwIiB4bWxuczpkZGwzMDA9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vYW5hbHlzaXNzZXJ2aWNlcy8yMDExL2VuZ2luZS8zMDAiIHhtbG5zOmRkbDMwMF8zMDA9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vYW5hbHlzaXNzZXJ2aWNlcy8yMDExL2VuZ2luZS8zMDAvMzAwIiB4bWxuczpkZGw0MDA9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vYW5hbHlzaXNzZXJ2aWNlcy8yMDEyL2VuZ2luZS80MDAiIHhtbG5zOmRkbDQwMF80MDA9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vYW5hbHlzaXNzZXJ2aWNlcy8yMDEyL2VuZ2luZS80MDAvNDAwIiB4bWxuczpkZGw1MDA9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vYW5hbHlzaXNzZXJ2aWNlcy8yMDEzL2VuZ2luZS81MDAiIHhtbG5zOmRkbDUwMF81MDA9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vYW5hbHlzaXNzZXJ2aWNlcy8yMDEzL2VuZ2luZS81MDAvNTAwIiB4bWxuczpkd2Q9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vRGF0YVdhcmVob3VzZS9EZXNpZ25lci8xLjAiPg0KICA8RW5hYmxlZD5mYWxzZTwvRW5hYmxlZD4NCiAgPFByb2plY3ROYW1lPjwvUHJvamVjdE5hbWU+DQogIDxBdXhQYXRoPjwvQXV4UGF0aD4NCiAgPExvY2FsUGF0aD48L0xvY2FsUGF0aD4NCiAgPFByb3ZpZGVyPjwvUHJvdmlkZXI+DQo8L1NvdXJjZUNvbnRyb2xJbmZvPg==</State>
   <Database>
-    <Name>NAV_OLAP.database</Name>
-    <FullPath>NAV_OLAP.database</FullPath>
+    <Name>NAV_SQL.database</Name>
+    <FullPath>NAV_SQL.database</FullPath>
   </Database>
   <Cubes>
-    <ProjectItem>
-      <Name>Sales.cube</Name>
-      <FullPath>Sales.cube</FullPath>
-      <Dependencies>
-        <ProjectItem>
-          <Name>Sales.partitions</Name>
-          <FullPath>Sales.partitions</FullPath>
-        </ProjectItem>
-      </Dependencies>
-    </ProjectItem>
     <ProjectItem>
       <Name>Costs.cube</Name>
       <FullPath>Costs.cube</FullPath>
@@ -27,23 +17,21 @@
         </ProjectItem>
       </Dependencies>
     </ProjectItem>
+    <ProjectItem>
+      <Name>Sales.cube</Name>
+      <FullPath>Sales.cube</FullPath>
+      <Dependencies>
+        <ProjectItem>
+          <Name>Sales.partitions</Name>
+          <FullPath>Sales.partitions</FullPath>
+        </ProjectItem>
+      </Dependencies>
+    </ProjectItem>
   </Cubes>
   <Dimensions>
     <ProjectItem>
-      <Name>DIM_Customer.dim</Name>
-      <FullPath>DIM_Customer.dim</FullPath>
-    </ProjectItem>
-    <ProjectItem>
-      <Name>DIM_Date.dim</Name>
-      <FullPath>DIM_Date.dim</FullPath>
-    </ProjectItem>
-    <ProjectItem>
-      <Name>DIM_Product.dim</Name>
-      <FullPath>DIM_Product.dim</FullPath>
-    </ProjectItem>
-    <ProjectItem>
-      <Name>DIM_Salesperson.dim</Name>
-      <FullPath>DIM_Salesperson.dim</FullPath>
+      <Name>DIM_Calendar.dim</Name>
+      <FullPath>DIM_Calendar.dim</FullPath>
     </ProjectItem>
     <ProjectItem>
       <Name>DIM_Cost.dim</Name>
@@ -58,8 +46,16 @@
       <FullPath>DIM_Cost_Type.dim</FullPath>
     </ProjectItem>
     <ProjectItem>
-      <Name>DIM_Calendar.dim</Name>
-      <FullPath>DIM_Calendar.dim</FullPath>
+      <Name>DIM_Customer.dim</Name>
+      <FullPath>DIM_Customer.dim</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>DIM_Product.dim</Name>
+      <FullPath>DIM_Product.dim</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>DIM_Salesperson.dim</Name>
+      <FullPath>DIM_Salesperson.dim</FullPath>
     </ProjectItem>
   </Dimensions>
   <DataSources>
@@ -70,32 +66,19 @@
   </DataSources>
   <DataSourceViews>
     <ProjectItem>
-      <Name>Sales.dsv</Name>
-      <FullPath>Sales.dsv</FullPath>
-    </ProjectItem>
-    <ProjectItem>
       <Name>Costs.dsv</Name>
       <FullPath>Costs.dsv</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>Sales.dsv</Name>
+      <FullPath>Sales.dsv</FullPath>
     </ProjectItem>
   </DataSourceViews>
   <Configurations>
     <Configuration>
       <Name>Development</Name>
       <Options>
-        <ConnectionMappings>
-          <ConfigurationSetting>
-            <Id>NAV SQL</Id>
-            <Name>NAV SQL</Name>
-            <Value xsi:type="xsd:string">Provider=SQLNCLI11.1;Data Source=DESKTOP-6PP0O3F\SQLEXPRESS;Integrated Security=SSPI;Initial Catalog=NAV_SQL</Value>
-          </ConfigurationSetting>
-        </ConnectionMappings>
-        <ConnectionSecurityMappings>
-          <ConfigurationSetting>
-            <Id>NAV SQL</Id>
-            <Name>NAV SQL</Name>
-            <Value xsi:type="xsd:int">0</Value>
-          </ConfigurationSetting>
-        </ConnectionSecurityMappings>
+        <DeploymentServerEdition>Enterprise</DeploymentServerEdition>
       </Options>
     </Configuration>
   </Configurations>
